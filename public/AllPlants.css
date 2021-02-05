@@ -1,0 +1,18 @@
+#all-plants {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#plant-div {
+  margin: 2rem;
+}
+#plant-div > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+a,
+a:visited {
+  color: black;
+}
