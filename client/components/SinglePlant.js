@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-const SinglePlant = ({ plant }) => {
+const SinglePlant = ({
+  plant,
+  match: {
+    params: { id },
+  },
+}) => {
+  id = id * 1;
   if (!plant.id) {
     return null;
   }
@@ -27,3 +33,5 @@ const mapDispatch = () => {
 };
 
 export default connect(mapState, mapDispatch)(SinglePlant);
+{
+}
