@@ -1,10 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import '../../public/AllPlants.css';
-import { fetchPlants } from '../store/plants';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import "../../public/AllPlants.css";
+import { fetchPlants } from "../store/plants";
+import { Link } from "react-router-dom";
 
-export const plants = [
+/* export const plants = [
   {
     name: "'ena'ena",
     id: 1,
@@ -70,43 +70,43 @@ export const plants = [
     description:
       'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.',
   },
-];
+]; */
 
 class AllPlants extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  async componentDidMount() {
-    await this.props.getPlants();
-  }
-  render() {
-    const { plants } = this.props;
-    if (!this.props.plants) {
-      return null;
-    } else {
-      return (
-        <div id="all-plants">
-          {plants.map((plant, idx) => (
-            <Link key={idx} to={`/plants/${plant.id}`}>
-              <div id="plant-div">
-                <img src={plant.imageUrl} />
-                <div>
-                  <span>{plant.name}</span>
-                  <span>{plant.price}</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      );
-    }
-  }
+	constructor(props) {
+		super(props);
+	}
+	async componentDidMount() {
+		await this.props.getPlants();
+	}
+	render() {
+		const { plants } = this.props;
+		if (!this.props.plants) {
+			return null;
+		} else {
+			return (
+				<div id="all-plants">
+					{plants.map((plant, idx) => (
+						<Link key={idx} to={`/plants/${plant.id}`}>
+							<div id="plant-div">
+								<img src={plant.imageUrl} />
+								<div>
+									<span>{plant.name}</span>
+									<span>{plant.price}</span>
+								</div>
+							</div>
+						</Link>
+					))}
+				</div>
+			);
+		}
+	}
 }
 
 const mapDispatch = (dispatch) => {
-  return {
-    getPlants: () => dispatch(fetchPlants()),
-  };
+	return {
+		getPlants: () => dispatch(fetchPlants()),
+	};
 };
 
 export default connect((state) => state, mapDispatch)(AllPlants);
