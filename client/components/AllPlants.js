@@ -89,7 +89,7 @@ class AllPlants extends React.Component {
           {plants.map((plant, idx) => (
             <Link key={idx} to={`/plants/${plant.id}`}>
               <div id="plant-div">
-                <img src={plant.imageUrl} />
+                <img src={plant.img} />
                 <div>
                   <span>{plant.name}</span>
                   <span>{plant.price}</span>
