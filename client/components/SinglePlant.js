@@ -1,9 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const SinglePlant = ({ plant }) => {
+  console.log(plant, 'plant');
   if (!plant.id) {
     return null;
   }
@@ -15,11 +16,12 @@ const SinglePlant = ({ plant }) => {
 };
 
 const mapState = (state, otherProps, history) => {
+  console.log(otherProps.match.params.plantId, 'params id');
   const plant =
-    state.plants.find((plant) => plant.id === otherProps.match.params.id * 1) ||
-    {};
-
-  return { plant, history };
+    state.plants.find(
+      (plant) => plant.id === otherProps.match.params.plantId * 1
+    ) || {};
+  return { plant };
 };
 
 const mapDispatch = () => {
