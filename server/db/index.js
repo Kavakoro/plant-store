@@ -35,7 +35,7 @@ const syncAndSeed = async () => {
       petFriendly: 'Yes — non-toxic to cats and dogs',
       airCleaner:
         'Yes — Purifies air polluted with synthetic chemicals from cleaning products',
-      img: 'minimoneytree',
+      img: '/images/minimoneytree.jpeg',
       price: 35,
     }),
     Plant.create({
@@ -47,7 +47,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'PhilodendronBrasil',
+      img: '/images/PhilodendronBrasil.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -59,7 +59,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'moonshine',
+      img: '/images/moonshine.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -72,7 +72,7 @@ const syncAndSeed = async () => {
       petFriendly: 'No — Can cause mouth irritation and digestive reaction',
       airCleaner:
         'Yes — Removes benzene, formaldehyde, xylene, and toluene from the air',
-      img: 'DracaenaDorado',
+      img: '/images/DracaenaDorado.jpeg',
       price: 195,
     }),
     Plant.create({
@@ -85,7 +85,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'Monstera',
+      img: '/images/Monstera.jpeg',
       price: 150,
     }),
     Plant.create({
@@ -97,7 +97,7 @@ const syncAndSeed = async () => {
       difficulty: 'Easy — Relatively low maintenance',
       petFriendly: 'No — Can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — Removes toxins from air',
-      img: 'BirdofParadise',
+      img: '/images/BirdofParadise.jpeg',
       price: 150,
     }),
     Plant.create({
@@ -110,7 +110,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — Can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — Removes air toxins',
-      img: 'aglaonema',
+      img: '/images/aglaonema.jpeg',
       price: 150,
     }),
     Plant.create({
@@ -123,7 +123,7 @@ const syncAndSeed = async () => {
       petFriendly: 'No — Can cause mouth irritation and digestive reaction',
       airCleaner:
         'Yes — Removes Formaldehyde, Xylene, and Benzene from the air',
-      img: 'silverpothos',
+      img: '/images/silverpothos.jpeg',
       price: 35,
     }),
     Plant.create({
@@ -135,7 +135,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'sansevieria',
+      img: '/images/sansevieria.jpeg',
       price: 150,
     }),
     Plant.create({
@@ -147,7 +147,7 @@ const syncAndSeed = async () => {
       difficulty: 'Moderate — Needs a bit of extra care',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'fiddlefig',
+      img: '/images/fiddlefig.jpeg',
       price: 195,
     }),
     Plant.create({
@@ -159,7 +159,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'Yes — Non-toxic',
       airCleaner: 'Yes — Removes air toxins',
-      img: 'ponytail',
+      img: '/images/ponytail.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -170,7 +170,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'Yes — Non-toxic and pet-friendly',
       airCleaner: 'Yes — Removes formaldehyde from air',
-      img: 'bamboopalm',
+      img: '/images/bamboopalm.jpeg',
       price: 195,
     }),
     Plant.create({
@@ -183,7 +183,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'zzplant',
+      img: '/images/zzplant.jpeg',
       price: 150,
     }),
     Plant.create({
@@ -194,7 +194,7 @@ const syncAndSeed = async () => {
       difficulty: 'Easy — Relatively low maintenance',
       petFriendly: 'Yes — non-toxic to cats and dogs',
       airCleaner: 'Yes — removes toxins from air',
-      img: 'redprayerplant',
+      img: '/images/redprayerplant.jpeg',
       price: 35,
     }),
     Plant.create({
@@ -206,7 +206,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'Yes — non-toxic, but beware of the sharp spines',
       airCleaner: 'Yes — removes toxins from the air',
-      img: 'pricklypearcactus',
+      img: '/images/pricklypearcactus.jpeg',
       price: 80,
     }),
     Plant.create({
@@ -218,7 +218,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes toxins from the air',
-      img: 'HedgehogAloe',
+      img: '/images/HedgehogAloe.jpeg',
       price: 35,
     }),
     Plant.create({
@@ -231,7 +231,7 @@ const syncAndSeed = async () => {
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner:
         'Yes — removes formaldehyde, xylene, and toluene from the air',
-      img: 'openWeave',
+      img: '/images/openWeave.jpeg',
       price: 195,
     }),
     Plant.create({
@@ -243,7 +243,7 @@ const syncAndSeed = async () => {
       difficulty: 'Easy — Relatively low maintenance',
       petFriendly: 'Yes — Non-toxic and pet-friendly',
       airCleaner: 'Yes — removes toxins from the air',
-      img: 'kimberlyFern',
+      img: '/images/kimberlyFern.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -254,7 +254,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'Yes — non-toxic for cats and dogs',
       airCleaner: 'Yes — removes formaldehyde from air',
-      img: 'ParlorPalm',
+      img: '/images/ParlorPalm.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -267,7 +267,7 @@ const syncAndSeed = async () => {
       petFriendly:
         'Yes — Bromeliads are not known to be toxic, but can cause contact dermatitis.',
       airCleaner: 'Yes — Removes harmful pollutants from the air',
-      img: 'pineapple',
+      img: '/images/pineapple.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -279,7 +279,7 @@ const syncAndSeed = async () => {
       difficulty: 'Moderate — Needs a bit of extra care',
       petFriendly: 'No — Can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — Removes Formaldehyde from the air',
-      img: 'bonsai',
+      img: '/images/bonsai.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -291,7 +291,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'Yes — Non toxic and pet friendly',
       airCleaner: 'Yes — Removes harmful pollutants from the air',
-      img: 'ginny',
+      img: '/images/ginny.jpeg',
       price: 35,
     }),
     Plant.create({
@@ -304,7 +304,7 @@ const syncAndSeed = async () => {
       petFriendly:
         'Yes — Bromeliads are not known to be toxic, but can cause contact dermatitis.',
       airCleaner: 'Yes — Removes harmful pollutants from the air',
-      img: 'pink',
+      img: '/images/pink.jpeg',
       price: 65,
     }),
     Plant.create({
@@ -317,7 +317,7 @@ const syncAndSeed = async () => {
       difficulty: 'No-fuss — Carefree',
       petFriendly: 'No — can cause mouth irritation and digestive reaction',
       airCleaner: 'Yes — removes toxins from air',
-      img: 'zebrina',
+      img: '/images/zebrina.jpeg',
       price: 35,
     }),
   ]);
