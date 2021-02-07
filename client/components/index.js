@@ -8,3 +8,4 @@ export { default as Home } from './Home';
 export { Login, Signup } from './AuthForm';
 export { default as AllPlants } from './AllPlants';
 export { default as SinglePlant } from './SinglePlant';
+export { Cart } from './Cart.js';
