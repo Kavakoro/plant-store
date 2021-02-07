@@ -1,7 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup, Home, AllPlants, SinglePlant } from './components';
+import {
+  Login,
+  Signup,
+  Home,
+  AllPlants,
+  SinglePlant,
+  Cart,
+} from './components';
 // import AllPlants from './components/AllPlants';
 import { me } from './store';
 /**
@@ -34,6 +41,7 @@ class Routes extends Component {
         <Route exact path="/" component={AllPlants} />
         <Route exact path="/login" component={AllPlants} />
         <Route exact path="/plants/:plantId" component={SinglePlant} />
+        <Route exact path="/cart" component={Cart} />
       </div>
     );
   }
