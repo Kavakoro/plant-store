@@ -15,13 +15,13 @@ const cart = {
     {
       id: 1,
       name: 'Fern',
-      img: 'https://www.loremflickr.com/200/200/houseplant',
+      img: 'https://www.loremflickr.com/220/200/houseplant',
       price: 127,
     },
     {
       id: 2,
       name: 'Cactus',
-      img: 'https://www.loremflickr.com/200/200/houseplant?random=1',
+      img: 'https://www.loremflickr.com/220/200/houseplant?random=1',
       price: 150,
     },
   ],
