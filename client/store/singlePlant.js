@@ -1,23 +1,21 @@
 import Axios from "axios";
 
-export const _createStudent = (student) => ({
-  type: "CREATE_STUDENT",
-  student,
+const SET_PLANT = "SET_PLANT";
+export const _setPlant = (plant) => ({
+  type: SET_PLANT,
+  plant,
 });
 
-export const createStudent = (firstName, lastName, email, history) => {
+export const setPlant = (id) => {
   return async (dispatch) => {
-    const student = (
-      await Axios.post("/api/students", { firstName, lastName, email })
-    ).data;
-    dispatch(_createStudent(student));
-    history.push(`/students/${student.id}`);
+    const plant = (await Axios.get(`/api/plants/${id}`)).data;
+    dispatch(_setPlant(plant));
   };
 };
 
-export default function singleStudentReducer(state = [], action) {
-  if (action.type === "CREATE_STUDENT") {
-    state = [...state, action.student];
+export function singlePlantReducer(state = [], action) {
+  if (action.type === SET_PLANT) {
+    return action.plant;
   }
   return state;
 }
