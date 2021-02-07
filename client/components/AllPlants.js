@@ -79,7 +79,9 @@ class AllPlants extends React.Component {
   async componentDidMount() {
     await this.props.getPlants();
   }
+
   render() {
+    const { toggleButton } = this;
     const { plants } = this.props;
     if (!this.props.plants) {
       return null;
@@ -87,15 +89,18 @@ class AllPlants extends React.Component {
       return (
         <div id="all-plants">
           {plants.map((plant, idx) => (
-            <Link key={idx} to={`/plants/${plant.id}`}>
-              <div id="plant-div">
-                <img src={plant.img} />
-                <div>
-                  <span>{plant.name}</span>
-                  <span>{plant.price}</span>
+            <div key={idx}>
+              <button>Add To Cart</button>
+              <Link to={`/plants/${plant.id}`}>
+                <div id="plant-div">
+                  <img src={plant.img} />
+                  <div>
+                    <span>{plant.name}</span>
+                    <span>{plant.price}</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       );

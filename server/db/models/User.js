@@ -11,13 +11,13 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    validate: {
-      EmptyField: function () {
-        if (!User.email || !User.password) {
-          throw 'Username/Password cannot be empty.';
-        }
-      },
-    },
+    // validate: {
+    //   EmptyField: function () {
+    //     if (!User.email || !User.password) {
+    //       throw 'Username/Password cannot be empty.';
+    //     }
+    //   },
+    // },
   },
   password: {
     type: Sequelize.STRING,
