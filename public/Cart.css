@@ -71,6 +71,7 @@ button {
 button.remove {
   background-color: rgba(0, 128, 0, 0);
   color: #fcf9f3;
+  font-size: 1.1rem;
 }
 
 button.remove:hover {
