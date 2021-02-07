@@ -78,7 +78,9 @@ button.remove:hover {
   color: white;
   text-decoration: underline;
 }
-
+span:hover {
+  cursor: default;
+}
 .subtotal {
   padding: 1rem;
 }

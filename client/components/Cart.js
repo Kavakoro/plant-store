@@ -2,18 +2,19 @@ import React from 'react';
 import '../../public/Cart.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCart } from '../store/cart';
+import { fetchCart, updateCart } from '../store/cart';
+import auth from '../store/auth';
 
 //cart will be held in state (redux store) in an object. THe cart will
 //reflect the cart of hhe specific user using the site, so it should be an object
 
 //should we have a class method to calculate total on the front end as items are added?
 //or should this logic be done on the backend? is it "business logic" ?
-// if no items in cart, display alternate message 'there are no items in cart, etc' <return to shopping>
-//need button to remove item from cart
+// if no items in cart, display alternate message 'there are no items in cart, etc'button: <return to shopping>
 
 //dummy data - export to store to test out store code/logic
 export const cartObj = {
+  orderId: 2,
   plants: [
     {
       id: 1,
@@ -28,7 +29,13 @@ export const cartObj = {
       price: 150,
     },
   ],
+  //total can be calcuated in api logic?
   total: 287,
+  //quantities can be calculate in api logic and attached to cart obj before being sent back
+  quantities: {
+    Fern: 1,
+    Cactus: 1,
+  },
 };
 
 const id = 1; // hard-coded data for testing
@@ -38,8 +45,9 @@ class Cart extends React.Component {
     super(props);
   }
   componentDidMount() {
-    //make call to fetch cart here - someo of the logic can be done in api (i.e if user known to us,
-    //look for cart; if cart in localStorage, use that, etc)
+    //make call to fetch cart here -  (if user known to us, api will return their cart; if not, api can return a cart object with
+    // no plants, etc
+    //if guest/user in localStorage, query db for that user's cart, etc)
     // const { id } = this.props.auth;
     if (id) {
       this.props.getCart(id);
@@ -47,8 +55,9 @@ class Cart extends React.Component {
   }
   render() {
     // const { plants } = cartObj; //hard-coded data for now
-    const { plants } = this.props.cart;
     const { cart } = this.props;
+    const { plants, quantities, orderId } = cart;
+
     if (!plants) {
       return (
         <div id="cart">
@@ -73,17 +82,48 @@ class Cart extends React.Component {
                     </div>
                     <div>
                       <strong>
-                        <span>- </span>
+                        <span
+                          onClick={() =>
+                            this.props.updateCart(
+                              orderId,
+                              plant.id,
+                              quantities[plant.name]--
+                            )
+                          }
+                        >
+                          -{' '}
+                        </span>
                       </strong>
-                      <input defaultValue={1} readOnly={true} type="number" />
+                      <input
+                        value={quantities[plant.name]}
+                        readOnly={true}
+                        type="number"
+                      />
                       <strong>
-                        <span>+ </span>
+                        <span
+                          onClick={() =>
+                            this.props.updateCart(
+                              orderId,
+                              plant.id,
+                              quantities[plant.name]++
+                            )
+                          }
+                        >
+                          +{' '}
+                        </span>
                       </strong>
                     </div>
                   </div>
                   <div className="column space-between">
                     <span>${plant.price.toFixed(2)}</span>
-                    <button className="remove">REMOVE</button>
+                    <button
+                      onClick={() =>
+                        this.props.updateCart(orderId, plant.id, 0)
+                      }
+                      className="remove"
+                    >
+                      REMOVE
+                    </button>
                   </div>
                 </div>
               </div>
@@ -113,6 +153,8 @@ class Cart extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     getCart: (id) => dispatch(fetchCart(id)),
+    updateCart: (orderId, plantId, quantity) =>
+      dispatch(updateCart(orderId, plantId, quantity)),
   };
 };
 
