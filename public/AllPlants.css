@@ -11,8 +11,33 @@
   display: flex;
   justify-content: space-between;
 }
-
+#plant-div img {
+  height: 26rem;
+  width: 21rem;
+}
 a,
 a:visited {
   color: black;
+}
+
+a:hover {
+  cursor: default;
+}
+
+#all-plants button {
+  background-color: rgb(252 249 243 / 65%);
+  border: 1px solid rgb(6, 82, 6);
+  height: 2.5rem;
+  position: relative;
+  top: 80%;
+  font-size: 1.1rem;
+  left: 25%;
+  width: 55%;
+}
+
+/* #all-plants button.active {
+  visibility: visible;
+} */
+#all-plants button:hover {
+  background-color: #fcf9f3;
 }
