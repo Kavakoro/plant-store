@@ -1,3 +1,7 @@
+button {
+  border-style: none;
+}
+
 #cart {
   color: #fcf9f3;
   padding: 5rem;
@@ -62,6 +66,16 @@
 }
 .space-between {
   justify-content: space-between;
+}
+
+button.remove {
+  background-color: rgba(0, 128, 0, 0);
+  color: #fcf9f3;
+}
+
+button.remove:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 .subtotal span {

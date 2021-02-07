@@ -62,7 +62,10 @@ export const Cart = (props) => {
                     </strong>
                   </div>
                 </div>
-                <div>${plant.price.toFixed(2)}</div>
+                <div className="column space-between">
+                  <span>${plant.price.toFixed(2)}</span>
+                  <button className="remove">REMOVE</button>
+                </div>
               </div>
             </div>
           ))}
