@@ -2,3 +2,7 @@ body {
   background-color: #fcf9f3;
   font-family: 'Unna', serif;
 }
+
+hr {
+  margin-bottom: 0;
+}

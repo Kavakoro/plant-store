@@ -12,6 +12,7 @@ import { fetchCart } from '../store/cart';
 // if no items in cart, display alternate message 'there are no items in cart, etc' <return to shopping>
 //need button to remove item from cart
 
+//dummy data - export to store to test out store code/logic
 export const cartObj = {
   plants: [
     {
@@ -46,8 +47,8 @@ class Cart extends React.Component {
   }
   render() {
     // const { plants } = cartObj; //hard-coded data for now
-    const plants = this.props.cart.plants;
-    const cart = this.props.cart;
+    const { plants } = this.props.cart;
+    const { cart } = this.props;
     if (!plants) {
       return (
         <div id="cart">
