@@ -56,7 +56,7 @@ class Cart extends React.Component {
   render() {
     // const { plants } = cartObj; //hard-coded data for now
     const { cart } = this.props;
-    const { plants, quantities } = cart;
+    const { plants, quantities, orderId } = cart;
 
     if (!plants) {
       return (
@@ -84,11 +84,11 @@ class Cart extends React.Component {
                       <strong>
                         <span
                           onClick={() =>
-                            this.props.updateCart({
-                              userId: auth.id,
-                              plantId: plant.id,
-                              quantity: quantities[plant.name]--,
-                            })
+                            this.props.updateCart(
+                              orderId,
+                              plant.id,
+                              quantities[plant.name]--
+                            )
                           }
                         >
                           -{' '}
@@ -102,11 +102,11 @@ class Cart extends React.Component {
                       <strong>
                         <span
                           onClick={() =>
-                            this.props.updateCart({
-                              userId: auth.id,
-                              plantId: plant.id,
-                              quantity: quantities[plant.name]++,
-                            })
+                            this.props.updateCart(
+                              orderId,
+                              plant.id,
+                              quantities[plant.name]++
+                            )
                           }
                         >
                           +{' '}
@@ -116,7 +116,14 @@ class Cart extends React.Component {
                   </div>
                   <div className="column space-between">
                     <span>${plant.price.toFixed(2)}</span>
-                    <button className="remove">REMOVE</button>
+                    <button
+                      onClick={() =>
+                        this.props.updateCart(orderId, plant.id, 0)
+                      }
+                      className="remove"
+                    >
+                      REMOVE
+                    </button>
                   </div>
                 </div>
               </div>
