@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 //should we have a class method to calculate total on the front end as items are added?
 //or should this logic be done on the backend? is it "business logic" ?
 // if no items in cart, display alternate message 'there are no items in cart, etc' <return to shopping>
-//
+//need button to remove item from cart
 
 const cart = {
   plants: [
@@ -53,9 +53,13 @@ export const Cart = (props) => {
                     </Link>
                   </div>
                   <div>
-                    <span>- </span>
+                    <strong>
+                      <span>- </span>
+                    </strong>
                     <input defaultValue={1} readOnly={true} type="number" />
-                    <span>+ </span>
+                    <strong>
+                      <span>+ </span>
+                    </strong>
                   </div>
                 </div>
                 <div>${plant.price.toFixed(2)}</div>
@@ -68,6 +72,9 @@ export const Cart = (props) => {
               <span>Order Subtotal: </span>
             </strong>
             <span>${cart.total.toFixed(2)}</span>
+          </div>
+          <div className="checkout">
+            <button>CHECKOUT</button>
           </div>
         </div>
       </div>
