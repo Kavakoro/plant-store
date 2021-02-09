@@ -3,13 +3,14 @@ import { cartObj } from "../components/Cart";
 
 //action creators
 
-const SET_CART = 'SET_CART';
-const DELETE_ITEM = 'DELETE_ITEM';
-
+const SET_CART = "SET_CART";
+const DELETE_ITEM = "DELETE_ITEM";
+const ADD_CART = "ADD_CART";
 
 //action creators //
 const setCart = (cart) => ({ type: SET_CART, cart });
 const deletePlant = (plantId) => ({ type: DELETE_ITEM }, plantId);
+const addCart = (plantId) => ({ type: ADD_CART }, plantId);
 //thunk creator
 export const fetchCart = (orderId) => {
   return async (dispatch) => {
@@ -40,6 +41,14 @@ export const deleteItem = (orderId, plantId) => {
   return async (dispatch) => {
     await axios.delete(`/api/cart/${orderId}/${plantId}`);
     dispatch(deletePlant(plantId));
+  };
+};
+
+export const addToCart = (orderId, plantId) => {
+  return async (dispatch) => {
+    const plant = (await axios.post(`/api/cart/${orderId}/${plantId}`)).data;
+    console.log(plant);
+    // dispatch(addCart(plant));
   };
 };
 
