@@ -11,7 +11,7 @@ class SinglePlant extends React.Component {
   }
   async componentDidMount() {
     this.props.setPlant(this.props.match.params.plantId * 1);
-    console.log(this.props.match.params.plantId * 1);
+    // console.log(this.props.match.params.plantId * 1);
   }
 
   render() {

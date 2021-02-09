@@ -1,9 +1,9 @@
-import React from 'react';
-import '../../public/Cart.css';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { fetchCart, updateCart, createCart } from '../store/cart';
-import auth from '../store/auth';
+import React from "react";
+import "../../public/Cart.css";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchCart, updateCart, createCart } from "../store/cart";
+import auth from "../store/auth";
 
 //cart will be held in state (redux store) in an object. THe cart will
 //reflect the cart of hhe specific user using the site, so it should be an object
@@ -18,15 +18,15 @@ export const cartObj = {
   plants: [
     {
       id: 1,
-      name: 'Fern',
-      img: 'https://www.loremflickr.com/220/200/houseplant',
+      name: "Fern",
+      img: "https://www.loremflickr.com/220/200/houseplant",
       price: 120,
       amount: 1,
     },
     {
       id: 2,
-      name: 'Cactus',
-      img: 'https://www.loremflickr.com/220/200/houseplant?random=1',
+      name: "Cactus",
+      img: "https://www.loremflickr.com/220/200/houseplant?random=1",
       price: 100,
       amount: 1,
     },
@@ -112,7 +112,7 @@ class Cart extends React.Component {
                             )
                           }
                         >
-                          -{' '}
+                          -{" "}
                         </span>
                       </strong>
                       <input
@@ -130,7 +130,7 @@ class Cart extends React.Component {
                             )
                           }
                         >
-                          +{' '}
+                          +{" "}
                         </span>
                       </strong>
                     </div>
