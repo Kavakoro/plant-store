@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "../../public/SinglePlant.css";
 import { setPlant } from "../store/singlePlant";
 import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart";
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class SinglePlant extends React.Component {
               <li>{plant.size}</li>
               <li>{plant.price}</li>
             </ul>
-            <button>Add To Cart</button>
+            <AddToCart />
           </div>
         </div>
       );

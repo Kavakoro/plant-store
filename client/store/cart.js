@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { cartObj } from '../components/Cart';
+import axios from "axios";
+import { cartObj } from "../components/Cart";
 
 //action creators
-const SET_CART = 'SET_CART';
+const SET_CART = "SET_CART";
 
 //action creators //
 const setCart = (cart) => ({ type: SET_CART, cart });
@@ -12,7 +12,7 @@ export const fetchCart = (orderId) => {
   return async (dispatch) => {
     const cart = cartObj;
     // const cart = (await axios.get(`/api/cart/${orderId}`)).data;
-    console.log(cart, 'cart in redux store');
+    console.log(cart, "cart in redux store");
     dispatch(setCart(cart));
   };
 };
@@ -20,7 +20,10 @@ export const updateCart = (orderId, plantId, quantity) => {
   return async (dispatch) => {
     const cart = (await axios.put(`api/cart/${orderId}`, { plantId, quantity }))
       .data;
-    dispatch(setCart(cart));
+
+    // i still need to hook this up
+    console.log("Add To Cart");
+    // dispatch(setCart(cart));
   };
 };
 
