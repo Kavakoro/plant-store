@@ -20,22 +20,17 @@ export const cartObj = {
       id: 1,
       name: 'Fern',
       img: 'https://www.loremflickr.com/220/200/houseplant',
-      price: 127,
+      price: 120,
+      amount: 1,
     },
     {
       id: 2,
       name: 'Cactus',
       img: 'https://www.loremflickr.com/220/200/houseplant?random=1',
-      price: 150,
+      price: 100,
+      amount: 1,
     },
   ],
-  //total can be calcuated in api logic?
-  total: 287,
-  //quantities can be calculate in api logic and attached to cart obj before being sent back
-  quantities: {
-    Fern: 1,
-    Cactus: 1,
-  },
 };
 
 const id = 1; // hard-coded data for testing
@@ -43,6 +38,15 @@ const id = 1; // hard-coded data for testing
 class Cart extends React.Component {
   constructor(props) {
     super(props);
+    this.getSubtotal = this.getSubtotal.bind(this);
+  }
+  getSubtotal() {
+    // const { plants } = this.props.cart; //this.props.cart.plants - the plants in the cart held in state
+    const plants = cartObj.plants;
+    return plants
+      .map((plant) => plant.price)
+      .reduce((a, b) => a + b)
+      .toFixed(2);
   }
 
   componentDidMount() {
@@ -50,16 +54,20 @@ class Cart extends React.Component {
     // no plants, etc
     //if guest/user in localStorage, query db for that user's cart, etc)
     // const { id } = this.props.auth;
-    // global state has orderId - then fetch cart
+
+    const { orderId } = this.props;
+
+    // if global state has orderId - then fetch cart
+
     if (orderId) {
       this.props.getCart(orderId);
     }
   }
 
   render() {
-    // const { plants } = cartObj; //hard-coded data for now
-    const { cart } = this.props;
-    const { plants, quantities, orderId } = cart;
+    const { plants } = cartObj; //hard-coded data for now
+    // const { cart } = this.props;
+    // const { plants, orderId } = cart;
 
     if (!plants) {
       return (
@@ -90,7 +98,7 @@ class Cart extends React.Component {
                             this.props.updateCart(
                               orderId,
                               plant.id,
-                              quantities[plant.name]--
+                              plant.amount--
                             )
                           }
                         >
@@ -98,7 +106,7 @@ class Cart extends React.Component {
                         </span>
                       </strong>
                       <input
-                        value={quantities[plant.name]}
+                        value={plant.amount}
                         readOnly={true}
                         type="number"
                       />
@@ -108,7 +116,7 @@ class Cart extends React.Component {
                             this.props.updateCart(
                               orderId,
                               plant.id,
-                              quantities[plant.name]++
+                              plant.amount++
                             )
                           }
                         >
@@ -136,7 +144,7 @@ class Cart extends React.Component {
               <strong>
                 <span>Order Subtotal: </span>
               </strong>
-              <span>${cart.total.toFixed(2)}</span>
+              <span>${this.getSubtotal()}</span>
             </div>
             <div className="checkout">
               <button>CHECKOUT</button>
