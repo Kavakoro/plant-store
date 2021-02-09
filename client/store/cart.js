@@ -11,8 +11,11 @@ const setCart = (cart) => ({ type: SET_CART, cart });
 export const fetchCart = (orderId) => {
   return async (dispatch) => {
     //get cart object returned --all logic done in api
+
     const cart = cartObj;
     // const cart = (await axios.get(`/api/cart/${orderId}`)).data;
+
+ 
     console.log(cart, 'cart in redux store');
     dispatch(setCart(cart));
   };
