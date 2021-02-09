@@ -5,15 +5,15 @@ const db = require("./db");
 const User = require("./models/User");
 const Plant = require("./models/Plant");
 const Order = require("./models/Order");
-const Ledger = require("./models/Ledger");
+const LineItem = require("./models/LineItem");
 
 //associations could go here!
 
 User.hasMany(Order);
 Order.belongsTo(User);
 
-Order.belongsToMany(Plant, { through: Ledger, foreignKey: "orderId" });
-Plant.belongsToMany(Order, { through: Ledger, foreignKey: "plantId" });
+Order.belongsToMany(Plant, { through: LineItem, foreignKey: "orderId" });
+Plant.belongsToMany(Order, { through: LineItem, foreignKey: "plantId" });
 
 Plant.belongsTo(User);
 User.hasMany(Plant);
@@ -435,6 +435,6 @@ module.exports = {
 		User,
 		Plant,
 		Order,
-		Ledger,
+		LineItem,
 	},
 };

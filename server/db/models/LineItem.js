@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 const { DataTypes } = Sequelize;
 
-const Ledger = db.define("ledger", {
+const LineItem = db.define("lineitem", {
 	amount: {
 		type: DataTypes.INTEGER,
 		defaultValue: 1,
@@ -10,4 +10,4 @@ const Ledger = db.define("ledger", {
 	},
 });
 
-module.exports = Ledger;
+module.exports = LineItem;
