@@ -24,6 +24,13 @@ export const updateCart = (orderId, plantId, quantity) => {
   };
 };
 
+export const createCart = (userId) => {
+  return async (dispatch) => {
+    const cart = (await axios.post(`/api/cart/`, { userId })).data;
+    dispatch(setCart(cart));
+  };
+};
+
 //cart reducer
 export function cartReducer(state = {}, action) {
   if (action.type === SET_CART) {

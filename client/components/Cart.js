@@ -2,7 +2,7 @@ import React from 'react';
 import '../../public/Cart.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCart, updateCart } from '../store/cart';
+import { fetchCart, updateCart, createCart } from '../store/cart';
 import auth from '../store/auth';
 
 //cart will be held in state (redux store) in an object. THe cart will
@@ -57,10 +57,18 @@ class Cart extends React.Component {
     //if orderId in localStorage, fetch the order/cart associated with that orderId- set in state and localStorage
     //if NO orderId in localStorage, if LoggedIn, await creation of order + cart with userId. If NOT logged in await creating of order
     //and cart with userId = null; store resulting orderId in local storage for when user returns to site
-    const { orderId } = this.props;
 
-    // if global state has orderId - then fetch cart
+    // const orderId = localStorage.getItem('orderId');
+    // if (!orderId) {
+    //     let userId = this.props.auth.id ? auth.id : null
+    //     const cart = await this.props.createCart(userId)
+    //     const {orderId} = cart
+    //     window.localStorage.setItem('orderId', orderId)
+    // } else {
+    //     this.props.getCart(orderId)
+    // }
 
+    const { orderId } = this.props.cart;
     if (orderId) {
       this.props.getCart(orderId);
     }
@@ -168,6 +176,7 @@ const mapDispatch = (dispatch) => {
     getCart: (id) => dispatch(fetchCart(id)),
     updateCart: (orderId, plantId, quantity) =>
       dispatch(updateCart(orderId, plantId, quantity)),
+    createCart: (userId) => dispatch(createCart(userId)),
   };
 };
 
