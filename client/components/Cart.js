@@ -44,15 +44,18 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     //make call to fetch cart here -  (if user known to us, api will return their cart; if not, api can return a cart object with
     // no plants, etc
     //if guest/user in localStorage, query db for that user's cart, etc)
     // const { id } = this.props.auth;
-    if (id) {
-      this.props.getCart(id);
+    // global state has orderId - then fetch cart
+    if (orderId) {
+      this.props.getCart(orderId);
     }
   }
+
   render() {
     // const { plants } = cartObj; //hard-coded data for now
     const { cart } = this.props;
