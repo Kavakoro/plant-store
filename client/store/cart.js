@@ -10,21 +10,16 @@ const setCart = (cart) => ({ type: SET_CART, cart });
 //thunk creator
 export const fetchCart = (orderId) => {
   return async (dispatch) => {
-    //get cart object returned --all logic done in api
-
     const cart = cartObj;
     // const cart = (await axios.get(`/api/cart/${orderId}`)).data;
-
- 
     console.log(cart, 'cart in redux store');
     dispatch(setCart(cart));
   };
 };
-export const updateCart = ({ orderId, plantId, quantity }) => {
+export const updateCart = (orderId, plantId, quantity) => {
   return async (dispatch) => {
-    const cart = (
-      await axios.put(`api/cart/${orderId}`, { orderId, plantId, quantity })
-    ).data;
+    const cart = (await axios.put(`api/cart/${orderId}`, { plantId, quantity }))
+      .data;
     dispatch(setCart(cart));
   };
 };

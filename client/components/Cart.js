@@ -50,11 +50,13 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    //make call to fetch cart here -  (if user known to us, api will return their cart; if not, api can return a cart object with
-    // no plants, etc
-    //if guest/user in localStorage, query db for that user's cart, etc)
-    // const { id } = this.props.auth;
-
+    //make call to fetch cart here -
+    //If there is an orderId in state, it will have been set in localStorage - so check localStorage (not state.. because what
+    //if a user is returning to the site for the first time since navigating away - this will
+    //protect with hard reloads as well ...?)
+    //if orderId in localStorage, fetch the order/cart associated with that orderId- set in state and localStorage
+    //if NO orderId in localStorage, if LoggedIn, await creation of order + cart with userId. If NOT logged in await creating of order
+    //and cart with userId = null; store resulting orderId in local storage for when user returns to site
     const { orderId } = this.props;
 
     // if global state has orderId - then fetch cart
