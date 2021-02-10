@@ -165,7 +165,7 @@ class Cart extends React.Component {
   }
 }
 
-// const mapState = (state) => {
+// const mapState = (state, otherProps) => {
 //   const { auth } = state;
 //   return { auth };
 // };
