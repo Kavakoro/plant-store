@@ -22,12 +22,10 @@ export const fetchCart = (orderId) => {
 };
 export const updateCart = (orderId, plantId, quantity) => {
   return async (dispatch) => {
-    const cart = (await axios.put(`api/cart/${orderId}`, { plantId, quantity }))
-      .data;
-
-    // i still need to hook this up
-    console.log('Add To Cart');
-    // dispatch(setCart(cart));
+    const cart = (
+      await axios.put(`api/cart/${orderId}/${plantId}`, { quantity })
+    ).data;
+    dispatch(setCart(cart));
   };
 };
 
@@ -48,7 +46,7 @@ export const addToCart = (orderId, plantId) => {
   return async (dispatch) => {
     const plant = (await axios.post(`/api/cart/${orderId}/${plantId}`)).data;
     console.log(plant);
-    // dispatch(addCart(plant));
+    dispatch(addCart(plant));
   };
 };
 

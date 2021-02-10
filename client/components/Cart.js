@@ -173,8 +173,8 @@ class Cart extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     getCart: (id) => dispatch(fetchCart(id)),
-    updateCart: (orderId, plantId, quantity) =>
-      dispatch(updateCart(orderId, plantId, quantity)),
+    updateCart: (orderId, plantId, amount) =>
+      dispatch(updateCart(orderId, plantId, amount)),
     createCart: (userId) => dispatch(createCart(userId)),
     deleteItem: (orderId, plantId) => dispatch(deleteItem(orderId, plantId)),
   };
