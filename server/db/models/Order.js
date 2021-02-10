@@ -8,6 +8,11 @@ const Order = db.define("order", {
 		defaultValue: Sequelize.UUIDV4,
 		primaryKey: true,
 	},
+	fulfilled: {
+		type: DataTypes.BOOLEAN,
+		defaultValue: false,
+		allowNull: false,
+	},
 });
 
 module.exports = Order;
