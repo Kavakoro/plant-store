@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../../public/AllPlants.css';
 import { fetchPlants } from '../store/plants';
 import { Link } from 'react-router-dom';
+import AddToCart from './AddToCart';
 
 /* export const plants = [
   {
@@ -90,7 +91,7 @@ class AllPlants extends React.Component {
         <div id="all-plants">
           {plants.map((plant, idx) => (
             <div key={idx}>
-              <button>Add To Cart</button>
+              <AddToCart />
               <Link to={`/plants/${plant.id}`}>
                 <div id="plant-div">
                   <img src={plant.img} />
