@@ -3,14 +3,25 @@ const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const { STRING, INTEGER, UUID, UUIDV4 } = Sequelize;
 
 const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
+  //do we want Users to have a UUID???
+  id: {
+    type: UUID,
+    defaultValue: UUIDV4,
+    primaryKey: true,
+  },
   email: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
+    //I added the validation this way instead, however, I think itll become an issue with Guests in the future when we try making roles (Admin/Guest)??
     allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
     // validate: {
     //   EmptyField: function () {
     //     if (!User.email || !User.password) {
@@ -20,10 +31,14 @@ const User = db.define('user', {
     // },
   },
   password: {
-    type: Sequelize.STRING,
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   githubId: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
   },
 });
 
