@@ -2,9 +2,10 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
+/* a {
+  /* text-decoration: none; */
+/* color: yellow; */
+/* } */
 
 label {
   display: block;
@@ -16,6 +17,6 @@ nav a {
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+  margin: 0.5em;
+  display: inline-flex;
 }
