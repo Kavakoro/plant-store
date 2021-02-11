@@ -10,7 +10,7 @@ const UPDATE_CART = 'UPDATE_CART';
 //action creators //
 const setCart = (cart) => ({ type: SET_CART, cart });
 const deletePlant = (plantId) => ({ type: DELETE_ITEM, plantId });
-const _addToCart = (cart) => ({ type: ADD_TO_CART, cart });
+const _addToCart = (plants) => ({ type: ADD_TO_CART, plants });
 const _updateCart = (cart) => ({ type: UPDATE_CART, cart });
 
 //thunk creators//
@@ -44,10 +44,9 @@ export const deleteItem = (orderId, plantId) => {
 
 export const addToCart = (orderId, plantId) => {
   return async (dispatch) => {
-    console.log(plantId, 'plantId on front end');
-    console.log(orderId, 'orderId on frotn end in store');
-    const cart = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
-    dispatch(_addToCart(cart));
+    console.log(orderId, plantId, 'order Id and plantId');
+    const plants = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
+    dispatch(_addToCart(plants));
   };
 };
 
@@ -67,7 +66,7 @@ export function cartReducer(state = { id: '', plants: [] }, action) {
     return action.cart;
   }
   if (action.type === ADD_TO_CART) {
-    return action.cart;
+    return { ...state, plants: action.plants };
   }
   return state;
 }

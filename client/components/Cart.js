@@ -42,14 +42,13 @@ class Cart extends React.Component {
     const { plants } = this.props.cart;
     if (plants.length) {
       return plants
-        .map((plant) => plant.price)
+        .map((plant) => plant.price * plant.lineitem.amount)
         .reduce((a, b) => a + b)
         .toFixed(2);
     }
   }
 
   componentDidMount() {
-    //make call to fetch cart here -
     //If there is an orderId in state, it will have been set in localStorage - so check localStorage (not state.. because what
     //if a user is returning to the site for the first time since navigating away - this will
     //protect with hard reloads as well ...?)
@@ -78,7 +77,6 @@ class Cart extends React.Component {
   render() {
     const { cart } = this.props;
     const { plants, id } = cart;
-    console.log(plants, 'plants');
 
     if (!plants.length) {
       return (
