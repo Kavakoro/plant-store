@@ -22,6 +22,66 @@ router.get("/:orderId", async (req, res, next) => {
 	}
 });
 
+router.post("/:orderId", async (req, res, next) => {
+	try {
+		const orderId = req.params.orderId;
+		const plantId = req.body.plantId;
+
+		const order = await Order.findByPk(orderId);
+		const plant = await Plant.findByPk(plantId);
+
+		await order.addPlant(plant);
+
+		const response = await order.getPlants();
+		res.status(201).send(response);
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.delete("/:orderId", async (req, res, next) => {
+	try {
+		const orderId = req.params.orderId;
+		const plantId = req.body.plantId;
+
+		const order = await Order.findByPk(orderId);
+		const plant = await Plant.findByPk(plantId);
+
+		await order.removePlant(plant);
+
+		const response = await order.getPlants();
+		res.status(201).send(response);
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.put("/:orderId", async (req, res, next) => {
+	try {
+		const orderId = req.params.orderId;
+		const plantId = req.body.plantId;
+		const amount = req.body.amount;
+
+		const order = await Order.findByPk(orderId);
+
+		const lineItem = await LineItem.findOne({
+			where: {
+				orderId: orderId,
+				plantId: plantId,
+			},
+		});
+
+		lineItem.amount = amount;
+		await lineItem.save();
+
+		const response = await order.getPlants();
+		res.status(201).send(response);
+	} catch (err) {
+		next(err);
+	}
+});
+
+/*
 router.put("/:orderId/:plantId/add", async (req, res, next) => {
 	try {
 		const orderId = req.params.orderId;
@@ -96,3 +156,4 @@ router.put("/:orderId/:plantId/remove", async (req, res, next) => {
 		next(err);
 	}
 });
+*/
