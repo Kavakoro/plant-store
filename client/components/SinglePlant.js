@@ -15,10 +15,10 @@ class SinglePlant extends React.Component {
   }
 
   render() {
-    const { toggleButton } = this;
     const { plant } = this.props;
-    // const { id } = this;
-    // console.log(plant);
+    const orderId = this.props.cart.id;
+    console.log(orderId, 'orderId');
+
     if (!this.props.plant) {
       return null;
     } else {
@@ -37,7 +37,7 @@ class SinglePlant extends React.Component {
               <li>{plant.size}</li>
               <li>{plant.price}</li>
             </ul>
-            <AddToCart />
+            <AddToCart orderId={orderId} plantId={plant.id} />
           </div>
         </div>
       );

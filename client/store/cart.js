@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { cartObj } from '../components/Cart';
 
 //action creators
 
@@ -11,7 +10,7 @@ const UPDATE_CART = 'UPDATE_CART';
 //action creators //
 const setCart = (cart) => ({ type: SET_CART, cart });
 const deletePlant = (plantId) => ({ type: DELETE_ITEM, plantId });
-const _addToCart = (plantId) => ({ type: ADD_CART, plantId });
+const _addToCart = (plants) => ({ type: ADD_TO_CART, plants });
 const _updateCart = (cart) => ({ type: UPDATE_CART, cart });
 
 //thunk creators//
@@ -38,7 +37,6 @@ export const createCart = (userId) => {
 };
 export const deleteItem = (orderId, plantId) => {
   return async (dispatch) => {
-    console.log(plantId, 'plantId on front end before api call');
     await axios.delete(`/api/cart/${orderId}`, { data: { plantId } });
     dispatch(deletePlant(plantId));
   };
@@ -46,9 +44,9 @@ export const deleteItem = (orderId, plantId) => {
 
 export const addToCart = (orderId, plantId) => {
   return async (dispatch) => {
-    const plant = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
-    console.log(plant);
-    dispatch(_addToCart(plant));
+    console.log(orderId, plantId, 'order Id and plantId');
+    const plants = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
+    dispatch(_addToCart(plants));
   };
 };
 
@@ -68,7 +66,7 @@ export function cartReducer(state = { id: '', plants: [] }, action) {
     return action.cart;
   }
   if (action.type === ADD_TO_CART) {
-    return { ...state, plants: [...state.plants, action.plant] };
+    return { ...state, plants: action.plants };
   }
   return state;
 }

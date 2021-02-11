@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addToCart } from "../store/cart";
-import Button from "@material-ui/core/Button";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addToCart } from '../store/cart';
+import Button from '@material-ui/core/Button';
 
 //this button works just, calls updateCart on cart redux but not hooked up yet.
 
@@ -25,22 +25,20 @@ export const cartObj = {
   plants: [
     {
       id: 1,
-      name: "Fern",
-      img: "https://www.loremflickr.com/220/200/houseplant",
+      name: 'Fern',
+      img: 'https://www.loremflickr.com/220/200/houseplant',
       price: 120,
       amount: 1,
     },
     {
       id: 2,
-      name: "Cactus",
-      img: "https://www.loremflickr.com/220/200/houseplant?random=1",
+      name: 'Cactus',
+      img: 'https://www.loremflickr.com/220/200/houseplant?random=1',
       price: 100,
       amount: 1,
     },
   ],
 };
-
-const id = 1;
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -48,19 +46,16 @@ class AddToCart extends React.Component {
   }
 
   render() {
-    const { plants, orderId, plantId } = cartObj;
-    const { addToCart } = this.props;
+    const { cart, plantId, addToCart } = this.props;
+    const orderId = cart.id;
     return (
-      <Button
-        variant="contained"
-        onClick={() => this.props.addToCart(orderId, plantId)}
-      >
+      <Button variant="contained" onClick={() => addToCart(orderId, plantId)}>
         Add To Cart
       </Button>
     );
   }
 }
-const mapDispatch = (dispatch, orderId, plantId) => {
+const mapDispatch = (dispatch) => {
   return {
     addToCart: (orderId, plantId) => dispatch(addToCart(orderId, plantId)),
   };

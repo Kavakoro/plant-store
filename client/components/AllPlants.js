@@ -82,8 +82,8 @@ class AllPlants extends React.Component {
   }
 
   render() {
-    const { toggleButton } = this;
     const { plants } = this.props;
+    const orderId = this.props.cart.id;
     if (!this.props.plants) {
       return null;
     } else {
@@ -91,7 +91,7 @@ class AllPlants extends React.Component {
         <div id="all-plants">
           {plants.map((plant, idx) => (
             <div key={idx}>
-              <AddToCart />
+              <AddToCart orderId={orderId} plantId={plant.id} />
               <Link to={`/plants/${plant.id}`}>
                 <div id="plant-div">
                   <img src={plant.img} />
