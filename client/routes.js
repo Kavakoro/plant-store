@@ -8,6 +8,7 @@ import {
   AllPlants,
   SinglePlant,
   Cart,
+  UpdatePlant,
 } from './components';
 // import AllPlants from './components/AllPlants';
 import { me } from './store';
@@ -42,6 +43,7 @@ class Routes extends Component {
         <Route exact path="/login" component={AllPlants} />
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
       </div>
     );
   }

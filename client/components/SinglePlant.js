@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import "../../public/SinglePlant.css";
-import { setPlant } from "../store/singlePlant";
-import { Link } from "react-router-dom";
-import AddToCart from "./AddToCart";
+import React from 'react';
+import { connect } from 'react-redux';
+import '../../public/SinglePlant.css';
+import { setPlant } from '../store/singlePlant';
+import { Link } from 'react-router-dom';
+import AddToCart from './AddToCart';
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -25,6 +25,9 @@ class SinglePlant extends React.Component {
       return (
         <div id="single-plant">
           <h1>{plant.name}</h1>
+          <p>
+            <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
+          </p>
           <div id="plant-div">
             <img src={plant.img} />
           </div>
