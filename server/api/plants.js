@@ -23,7 +23,8 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+//ive messes with this and also tried /:id
+router.put('/:id/update', async (req, res, next) => {
   try {
     const plant = await Plant.findByPk(req.params.id);
     res.send(await plant.update(req.body));

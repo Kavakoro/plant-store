@@ -31,8 +31,8 @@ class UpdatePlant extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   //not sure if i should be mounting the state or if this is correct?
-  componentDidMount() {
-    this.props.setPlant(this.props.match.params.plantId * 1);
+  async componentDidMount() {
+    await this.props.setPlant(this.props.match.params.plantId * 1);
     console.log(this.props.match.params.plantId * 1);
   }
 

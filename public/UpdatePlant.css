@@ -25,6 +25,6 @@ button {
   visibility: visible;
 } */
 
-#all-plants button:hover {
+button:hover {
   background-color: #fcf9f3;
 }
