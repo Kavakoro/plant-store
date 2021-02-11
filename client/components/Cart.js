@@ -41,12 +41,13 @@ class Cart extends React.Component {
     this.getSubtotal = this.getSubtotal.bind(this);
   }
   getSubtotal() {
-    // const { plants } = this.props.cart; //this.props.cart.plants - the plants in the cart held in state
-    const plants = cartObj.plants;
-    return plants
-      .map((plant) => plant.price)
-      .reduce((a, b) => a + b)
-      .toFixed(2);
+    const { plants } = this.props.cart;
+    if (plants.length) {
+      return plants
+        .map((plant) => plant.price)
+        .reduce((a, b) => a + b)
+        .toFixed(2);
+    }
   }
 
   componentDidMount() {
@@ -68,19 +69,20 @@ class Cart extends React.Component {
     // } else {
     //     this.props.getCart(orderId)
     // }
-
-    const { orderId } = this.props.cart;
-    if (orderId) {
-      this.props.getCart(orderId);
+    const id = '29b1f574-9664-42a9-8037-b66f645e394d';
+    // const { id } = this.props.cart;
+    console.log(this.props, 'this.props');
+    if (id) {
+      this.props.getCart(id);
     }
   }
 
   render() {
-    const { plants } = cartObj; //hard-coded data for now
-    // const { cart } = this.props;
-    // const { plants, orderId } = cart;
+    const { cart } = this.props;
+    const { plants, id } = cart;
+    console.log(plants, 'plants');
 
-    if (!plants) {
+    if (!plants.length) {
       return (
         <div id="cart">
           <p>Your cart is empty!</p>
@@ -107,9 +109,9 @@ class Cart extends React.Component {
                         <span
                           onClick={() =>
                             this.props.updateCart(
-                              orderId,
+                              id,
                               plant.id,
-                              plant.amount--
+                              plant.lineitem.amount - 1
                             )
                           }
                         >
@@ -117,17 +119,17 @@ class Cart extends React.Component {
                         </span>
                       </strong>
                       <input
-                        value={plant.amount}
                         readOnly={true}
+                        value={plant.lineitem.amount}
                         type="number"
                       />
                       <strong>
                         <span
                           onClick={() =>
                             this.props.updateCart(
-                              orderId,
+                              id,
                               plant.id,
-                              plant.amount++
+                              plant.lineitem.amount + 1
                             )
                           }
                         >
@@ -139,7 +141,7 @@ class Cart extends React.Component {
                   <div className="column space-between">
                     <span>${plant.price.toFixed(2)}</span>
                     <button
-                      onClick={() => this.props.deleteItem(orderId, plant.id)}
+                      onClick={() => this.props.deleteItem(id, plant.id)}
                       className="remove"
                     >
                       REMOVE
@@ -173,8 +175,8 @@ class Cart extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     getCart: (id) => dispatch(fetchCart(id)),
-    updateCart: (orderId, plantId, amount) =>
-      dispatch(updateCart(orderId, plantId, amount)),
+    updateCart: (id, plantId, amount) =>
+      dispatch(updateCart(id, plantId, amount)),
     createCart: (userId) => dispatch(createCart(userId)),
     deleteItem: (orderId, plantId) => dispatch(deleteItem(orderId, plantId)),
   };
