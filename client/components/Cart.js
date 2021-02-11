@@ -2,7 +2,7 @@ import React from 'react';
 import '../../public/Cart.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCart, updateCart, createCart } from '../store/cart';
+import { fetchCart, updateCart, createCart, deleteItem } from '../store/cart';
 import auth from '../store/auth';
 
 //cart will be held in state (redux store) in an object. THe cart will
@@ -58,6 +58,7 @@ class Cart extends React.Component {
     //if NO orderId in localStorage, if LoggedIn, await creation of order + cart with userId. If NOT logged in await creating of order
     //and cart with userId = null; store resulting orderId in local storage for when user returns to site
 
+    // THIS LOGIC MAYy HAVE TO BE AT A HIGHER LEVEL IN THE APP IF WE WANT TO KNOW A USER'S CART AS SOON AS THEY VISIT THE SITE...?
     // const orderId = localStorage.getItem('orderId');
     // if (!orderId) {
     //     let userId = this.props.auth.id ? auth.id : null
@@ -138,9 +139,7 @@ class Cart extends React.Component {
                   <div className="column space-between">
                     <span>${plant.price.toFixed(2)}</span>
                     <button
-                      onClick={() =>
-                        this.props.updateCart(orderId, plant.id, 0)
-                      }
+                      onClick={() => this.props.deleteItem(orderId, plant.id)}
                       className="remove"
                     >
                       REMOVE
@@ -166,7 +165,7 @@ class Cart extends React.Component {
   }
 }
 
-// const mapState = (state) => {
+// const mapState = (state, otherProps) => {
 //   const { auth } = state;
 //   return { auth };
 // };
@@ -174,9 +173,10 @@ class Cart extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     getCart: (id) => dispatch(fetchCart(id)),
-    updateCart: (orderId, plantId, quantity) =>
-      dispatch(updateCart(orderId, plantId, quantity)),
+    updateCart: (orderId, plantId, amount) =>
+      dispatch(updateCart(orderId, plantId, amount)),
     createCart: (userId) => dispatch(createCart(userId)),
+    deleteItem: (orderId, plantId) => dispatch(deleteItem(orderId, plantId)),
   };
 };
 

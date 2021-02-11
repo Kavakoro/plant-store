@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-const { STRING, INTEGER } = Sequelize;
+const { STRING, INTEGER, BOOLEAN } = Sequelize;
 
 const Plant = db.define('plant', {
   name: {
@@ -25,8 +25,22 @@ const Plant = db.define('plant', {
       notEmpty: true,
     },
   },
+  sizeFilter: {
+    type: INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   light: {
     type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  lightFilter: {
+    type: INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -39,8 +53,22 @@ const Plant = db.define('plant', {
       notEmpty: true,
     },
   },
+  difficultyFilter: {
+    type: INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   petFriendly: {
     type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  petFilter: {
+    type: BOOLEAN,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -58,6 +86,13 @@ const Plant = db.define('plant', {
     defaultValue: 'yellowcan',
   },
   price: {
+    type: INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  inventory: {
     type: INTEGER,
     allowNull: false,
     validate: {
