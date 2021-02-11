@@ -33,8 +33,6 @@ export const cartObj = {
   ],
 };
 
-const id = 1; // hard-coded data for testing
-
 class Cart extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +67,7 @@ class Cart extends React.Component {
     // } else {
     //     this.props.getCart(orderId)
     // }
-    const id = '29b1f574-9664-42a9-8037-b66f645e394d';
+    const id = `294d059e-78b6-4bb6-b76d-aa51f61a5be9`;
     // const { id } = this.props.cart;
     console.log(this.props, 'this.props');
     if (id) {
