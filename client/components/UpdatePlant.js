@@ -31,8 +31,8 @@ class UpdatePlant extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   //not sure if i should be mounting the state or if this is correct?
-  async componentDidMount() {
-    await this.props.setPlant(this.props.match.params.plantId * 1);
+  componentDidMount() {
+    this.props.setPlant(this.props.match.params.plantId * 1);
     console.log(this.props.match.params.plantId * 1);
   }
 
@@ -118,7 +118,7 @@ class UpdatePlant extends Component {
     const { onChange, onSubmit } = this;
 
     return (
-      <form id="update-plant" onSubmit={onSubmit}>
+      <form id="update" onSubmit={onSubmit}>
         <p>
           <label>Plant Name</label>
           <input name="name" value={name} onChange={onChange} />
@@ -127,7 +127,7 @@ class UpdatePlant extends Component {
           <label>Plant Description</label>
           <input name="description" value={description} onChange={onChange} />
         </p>
-        <div>
+        <div id="update">
           <p>
             <label>Plant Size</label>
             <input name="size" value={size} onChange={onChange} />
@@ -137,7 +137,7 @@ class UpdatePlant extends Component {
             <input name="sizeFilter" value={sizeFilter} onChange={onChange} />
           </p>
         </div>
-        <div>
+        <div id="update">
           <p>
             <label>Plant Lighting</label>
             <input name="light" value={light} onChange={onChange} />
@@ -147,7 +147,7 @@ class UpdatePlant extends Component {
             <input name="lightFilter" value={lightFilter} onChange={onChange} />
           </p>
         </div>
-        <div>
+        <div id="update">
           <p>
             <label>Plant Difficulty</label>
             <input name="difficulty" value={difficulty} onChange={onChange} />
@@ -161,7 +161,7 @@ class UpdatePlant extends Component {
             />
           </p>
         </div>
-        <div>
+        <div id="update">
           <p>
             <label>Plant's Pet Friendliness</label>
             <input name="petFriendly" value={petFriendly} onChange={onChange} />
@@ -189,7 +189,7 @@ class UpdatePlant extends Component {
           <input name="inventory" value={inventory} onChange={onChange} />
         </p>
 
-        <button>Save Changes</button>
+        <button id="update">Save Changes</button>
       </form>
     );
   }
@@ -252,14 +252,3 @@ const mapToDispatch = (dispatch, { history }) => {
 };
 
 export default connect(((state) => state, mapToDispatch))(UpdatePlant);
-
-{
-  /* <pre>
-  {
-    /* this pre tag will organize your object error message to be neater, but you dont really want this ugly messgae to show, so then you would want to actually write a special type of message for each error (havent learned this yet) */
-  /* if there is an error, the not not will turn it into a boolean value*/
-  //  !!error && JSON.stringify(error, null, 2)
-}
-{
-  /* </pre> */
-}
