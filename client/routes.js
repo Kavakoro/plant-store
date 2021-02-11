@@ -8,9 +8,10 @@ import {
   AllPlants,
   SinglePlant,
   Cart,
+  PlantAdmin,
   UpdatePlant,
+  AdminPanel,
 } from './components';
-// import AllPlants from './components/AllPlants';
 import { me } from './store';
 /**
  * COMPONENT
@@ -33,13 +34,12 @@ class Routes extends Component {
         )}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-
         <Route exact path="/home" component={AllPlants} />
-        {/* <Route exact path="/login" component={AllPlants} /> */}
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
-        {/* <Redirect to="/home" /> */}
+        <Route path="/admin" component={AdminPanel} />
+        <Route path="/admin/Plants" component={PlantAdmin} />
       </div>
     );
   }
