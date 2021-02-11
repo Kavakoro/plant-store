@@ -1,13 +1,13 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios';
+import history from '../history';
 
 const storage = () => window.localStorage;
-const TOKEN = "token";
+const TOKEN = 'token';
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = "SET_AUTH";
+const SET_AUTH = 'SET_AUTH';
 
 /**
  * ACTION CREATORS
@@ -20,11 +20,12 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const me = () => async (dispatch) => {
   const token = storage().getItem(TOKEN);
   if (token) {
-    const res = await axios.get("/auth/me", {
+    const res = await axios.get('/auth/me', {
       headers: {
         authorization: token,
       },
     });
+    history.push('/home');
     return dispatch(setAuth(res.data));
   }
 };
@@ -42,7 +43,7 @@ export const authenticate = (email, password, method) => async (dispatch) => {
 
 export const logout = () => {
   storage().removeItem(TOKEN);
-  history.push("/login");
+  history.push('/home');
   return {
     type: SET_AUTH,
     auth: {},
