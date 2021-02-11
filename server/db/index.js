@@ -513,6 +513,15 @@ const syncAndSeed = async () => {
   await kokko.addOrders([order2, order3]);
   await rommel.addOrder([order4]);
 
+  // const lineItem1 = await LineItem.findOne({
+  //   where: {
+  //     orderId: order1.id,
+  //     plantId: BirdofParadise.id
+  //   }
+  // });
+  // lineItem1.amount = 2;
+  // await LineItem.save();
+
   return {
     users: {
       cody,
