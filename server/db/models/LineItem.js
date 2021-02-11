@@ -2,12 +2,18 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 const { INTEGER } = Sequelize;
 
-const LineItem = db.define('lineitem', {
-  amount: {
-    type: INTEGER,
-    defaultValue: 1,
-    allowNull: false,
-  },
+const LineItem = db.define("lineitem", {
+	id: {
+		type: DataTypes.UUID,
+		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+		primaryKey: true,
+	},
+	amount: {
+		type: DataTypes.INTEGER,
+		defaultValue: 1,
+		allowNull: false,
+	},
 });
 
 module.exports = LineItem;
