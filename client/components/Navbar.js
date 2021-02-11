@@ -1,33 +1,62 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import AppBar from "@material-ui/core/AppBar";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import AppBar from '@material-ui/core/AppBar';
+import '../../public/Navbar.css';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>KaVaKoRo's Plants</h1>
     <AppBar position="static" color="primary">
-      <nav>
-        {isLoggedIn ? (
+      {/* <nav>
+        <div id="navbar">
           <div>
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
+            <h1>KaVaKoRo's Plants</h1>
           </div>
-        ) : (
+          <div id="nav-links"></div>
+          {isLoggedIn ? (
+            <>
+              <Link to="/home">Home</Link>
+              <a href="/home" onClick={handleClick}>
+                Logout
+              </a>
+            </>
+          ) : (
+            <div>
+              Returning customer?
+              <Link to="/login">Login</Link>
+            </div>
+          )}
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/cart">Cart</Link>
+        </div>
+      </nav> */}
+      <nav>
+        <div id="navbar">
           <div>
-            {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
+            <Link to="/home">
+              <h1>Kavakoro's Plants</h1>
+            </Link>
+          </div>
+          <div id="nav-links">
+            {/* <Link to="/home">Home</Link> */}
+            {isLoggedIn ? (
+              <a href="/home" onClick={handleClick}>
+                Logout
+              </a>
+            ) : (
+              <div>
+                Returning customer?
+                <Link to="/login">Login</Link>
+              </div>
+            )}
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">Cart</Link>
           </div>
-        )}
+        </div>
       </nav>
+      <hr></hr>
     </AppBar>
-    <hr />
   </div>
 );
 

@@ -25,25 +25,21 @@ class Routes extends Component {
 
     return (
       <div>
-        <div>
-          {isLoggedIn ? (
-            <Switch>
-              <Route path="/home" component={Home} />
-              <Redirect to="/home" />
-            </Switch>
-          ) : (
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              {/* <Redirect to="/login" /> */}
-            </Switch>
-          )}
-        </div>
-        <Route exact path="/" component={AllPlants} />
-        <Route exact path="/login" component={AllPlants} />
+        {isLoggedIn ? (
+          // all this does is say, "hello!, email!"
+          <Route exact path="/home" component={Home} />
+        ) : (
+          ''
+        )}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+
+        <Route exact path="/home" component={AllPlants} />
+        {/* <Route exact path="/login" component={AllPlants} /> */}
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
+        {/* <Redirect to="/home" /> */}
       </div>
     );
   }

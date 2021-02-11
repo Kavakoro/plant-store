@@ -42,11 +42,11 @@ router.post('/:orderId', async (req, res, next) => {
       await order.addPlant(plant);
     }
     const plants = await order.getPlants();
-    const cart = {
-      id: orderId,
-      plants,
-    };
-    res.status(201).send(cart);
+    // const cart = {
+    //   id: orderId,
+    //   plants,
+    // };
+    res.status(201).send(plants);
   } catch (err) {
     next(err);
   }

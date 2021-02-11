@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../../public/Home.css';
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
-  console.log(props, 'props in Home component');
   const { email } = props;
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
+    <div id="welcome">
+      <h3>Welcome, {email}!</h3>
     </div>
   );
 };

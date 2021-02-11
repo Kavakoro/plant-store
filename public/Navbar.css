@@ -1,3 +1,24 @@
-#navbar {
+/* #navbar {
   display: inline-block;
+} */
+
+#navbar {
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  color: white;
+}
+
+#nav-links {
+  display: flex;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.MuiAppBar-colorPrimary {
+  background-color: #6c9e70;
 }
