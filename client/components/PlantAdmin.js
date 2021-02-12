@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import '../../public/PlantAdmin.css';
+import { Link } from 'react-router-dom';
 
 export class PlantAdmin extends React.Component {
   constructor() {
@@ -38,7 +39,7 @@ export class PlantAdmin extends React.Component {
               <th>Pet-Friendly</th>
               <th className="filter">Pet Filter</th>
               <th>Air Cleaner</th>
-              <th>Image Source</th>
+              <th>Img Src</th>
               <th>Inventory</th>
             </tr>
           </thead>
@@ -49,20 +50,21 @@ export class PlantAdmin extends React.Component {
                 <td>{plant.name}</td>
                 <td>{plant.description}</td>
                 <td>{plant.size}</td>
-                <td>{plant.sizeFilter}</td>
-                <td>{plant.price}</td>
+                <td className="filter">{plant.sizeFilter}</td>
+                <td className="price">{plant.price}</td>
                 <td>{plant.light}</td>
-                <td>{plant.lightFilter}</td>
+                <td className="filter">{plant.lightFilter}</td>
                 <td>{plant.difficulty}</td>
-                <td>{plant.difficultyFilter}</td>
+                <td className="filter">{plant.difficultyFilter}</td>
                 <td>{plant.petFriendly}</td>
-                <td>{plant.petFilter}</td>
+                <td className="filter">{plant.petFilter}</td>
                 <td>{plant.airCleaner}</td>
                 <td>{plant.img}</td>
-                <td>{plant.inventory}</td>
-
+                <td className="inventory">{plant.inventory}</td>
                 <td>
-                  <button>Edit</button>
+                  <Link to={`/admin/Plants/${plant.id}`}>
+                    <button>Edit</button>
+                  </Link>
                 </td>
               </tr>
             ))}

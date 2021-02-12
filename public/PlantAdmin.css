@@ -6,10 +6,6 @@ table {
 }
 
 td {
-  text-align: center;
-}
-
-td {
   overflow: scroll;
   text-overflow: ellipsis;
   margin: 0 1rem;
@@ -19,7 +15,10 @@ td {
 th.name {
   width: 8%;
 }
-
+th {
+  font-size: 1rem;
+  margin: 1rem;
+}
 th.description {
   width: 15%;
   margin: 0 1rem;
@@ -30,4 +29,10 @@ th.description {
   color: white;
   background-color: rgb(148, 28, 28);
   border-style: none;
+}
+
+td.filter,
+td.inventory,
+td.price {
+  text-align: center;
 }
