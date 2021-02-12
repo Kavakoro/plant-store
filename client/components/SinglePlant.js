@@ -1,9 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import '../../public/SinglePlant.css';
-import { setPlant } from '../store/singlePlant';
-import { Link } from 'react-router-dom';
-import AddToCart from './AddToCart';
+import React from "react";
+import { connect } from "react-redux";
+import "../../public/SinglePlant.css";
+import { setPlant } from "../store/singlePlant";
+// import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart";
+import Button from "@material-ui/core/Button";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { green } from "@material-ui/core/colors";
+
+// const buttonTheme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       // Purple and green play nicely together.
+//       main: green[900],
+//     },
+//   },
+// });
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -17,19 +30,16 @@ class SinglePlant extends React.Component {
   render() {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
-    console.log(orderId, 'orderId');
+    console.log(orderId, "orderId");
 
     if (!this.props.plant) {
       return null;
     } else {
       return (
         <div id="single-plant">
-          <h1>{plant.name}</h1>
-          <p>
-            <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
-          </p>
           <div id="plant-div">
             <img src={plant.img} />
+            <h1>{plant.name}</h1>
           </div>
           <div>
             <p>{plant.description}</p>
@@ -37,7 +47,18 @@ class SinglePlant extends React.Component {
               <li>{plant.size}</li>
               <li>{plant.price}</li>
             </ul>
-            <AddToCart orderId={orderId} plantId={plant.id} />
+            <p>
+              <AddToCart orderId={orderId} plantId={plant.id} />
+            </p>
+            <p>
+              <Button
+                variant="contained"
+                type="submit"
+                href={`/plants/${plant.id}/update`}
+              >
+                Update Plant
+              </Button>
+            </p>
           </div>
         </div>
       );
