@@ -30,32 +30,49 @@ class UpdatePlant extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  //not sure if i should be mounting the state or if this is correct?
-  componentDidMount() {
-    this.props.setPlant(this.props.match.params.plantId * 1);
-    console.log(this.props.match.params.plantId * 1);
+  // not sure if i should be mounting the state or if this is correct?
+  async componentDidMount() {
+    await this.props.setPlant(this.props.match.params.plantId * 1);
+    this.setState({
+      name: this.props.plant.name,
+      description: this.props.plant.description,
+      size: this.props.plant.size,
+      sizeFilter: this.props.plant.sizeFilter,
+      light: this.props.plant.light,
+      lightFilter: this.props.plant.lightFilter,
+      difficulty: this.props.plant.difficulty,
+      difficultyFilter: this.props.plant.difficultyFilter,
+      petFriendly: this.props.plant.petFriendly,
+      petFilter: this.props.plant.petFilter,
+      airCleaner: this.props.plant.airCleaner,
+      img: this.props.plant.img,
+      price: this.props.plant.price,
+      inventory: this.props.plant.inventory,
+    });
+    console.log('id', this.props.match.params.plantId * 1);
   }
 
   componentDidUpdate(prevProps) {
     console.log('is this running');
 
     if (!prevProps.plant.id && this.props.plant.id) {
-      this.setState(
-        { name: this.props.plant.name },
-        { description: this.props.plant.description },
-        { size: this.props.plant.size },
-        { sizeFilter: this.props.plant.sizeFilter },
-        { light: this.props.plant.light },
-        { lightFilter: this.props.plant.lightFilter },
-        { difficulty: this.props.plant.difficulty },
-        { difficultyFilter: this.props.plant.difficultyFilter },
-        { petFriendly: this.props.plant.petFriendly },
-        { petFilter: this.props.plant.petFilter },
-        { airCleaner: this.props.plant.airCleaner },
-        { img: this.props.plant.img },
-        { price: this.props.plant.price },
-        { inventory: this.props.plant.inventory }
-      );
+      console.log('if statement');
+      this.setState({
+        name: this.props.plant.name,
+        description: this.props.plant.description,
+        size: this.props.plant.size,
+        sizeFilter: this.props.plant.sizeFilter,
+        light: this.props.plant.light,
+        lightFilter: this.props.plant.lightFilter,
+        difficulty: this.props.plant.difficulty,
+        difficultyFilter: this.props.plant.difficultyFilter,
+        petFriendly: this.props.plant.petFriendly,
+        petFilter: this.props.plant.petFilter,
+        airCleaner: this.props.plant.airCleaner,
+        img: this.props.plant.img,
+        price: this.props.plant.price,
+        inventory: this.props.plant.inventory,
+      });
       //console.log(this.state.name);
     }
 
@@ -66,6 +83,7 @@ class UpdatePlant extends Component {
   async onSubmit(ev) {
     ev.preventDefault();
     try {
+      console.log('onSubmit');
       //the id is this.props.plant.id and updating with the new state name
       await this.props.update(
         this.props.plant.id,
@@ -85,11 +103,11 @@ class UpdatePlant extends Component {
         this.state.inventory
       );
     } catch (er) {
-      //update error state to the below error
-      console.log('this is er', er);
+      //console.log('this is er', er);
       //this.setState({ error: er.response.data.error });
+      this.setState({ error: er });
     }
-    console.log('state', this.state);
+    //console.log('state', this.state);
   }
   onChange(ev) {
     const change = {};
@@ -113,103 +131,159 @@ class UpdatePlant extends Component {
       img,
       price,
       inventory,
-      error,
     } = this.state;
+
     const { onChange, onSubmit } = this;
 
+    //console.log(this.props);
+
     return (
-      <form id="update-plant" onSubmit={onSubmit}>
-        <p>
-          <label>Plant Name</label>
-          <input name="name" value={name} onChange={onChange} />
+      <form id="update-form" onSubmit={onSubmit}>
+        <p id="update-p">
+          <label id="form-label">Plant Name</label>
+          <input id="form-input" name="name" value={name} onChange={onChange} />
         </p>
-        <p>
-          <label>Plant Description</label>
-          <input name="description" value={description} onChange={onChange} />
+        <p id="update-p">
+          <label id="form-label">Plant Description</label>
+          <input
+            id="form-input"
+            name="description"
+            value={description}
+            onChange={onChange}
+          />
         </p>
-        <div>
+        <div id="update-div">
           <p>
-            <label>Plant Size</label>
-            <input name="size" value={size} onChange={onChange} />
-          </p>
-          <p>
-            <label>Size Filter</label>
-            <input name="sizeFilter" value={sizeFilter} onChange={onChange} />
-          </p>
-        </div>
-        <div>
-          <p>
-            <label>Plant Lighting</label>
-            <input name="light" value={light} onChange={onChange} />
-          </p>
-          <p>
-            <label>Light Filter</label>
-            <input name="lightFilter" value={lightFilter} onChange={onChange} />
-          </p>
-        </div>
-        <div>
-          <p>
-            <label>Plant Difficulty</label>
-            <input name="difficulty" value={difficulty} onChange={onChange} />
-          </p>
-          <p>
-            <label>Difficulty Filter</label>
+            <label id="form-label">Plant Size</label>
             <input
+              id="form-input"
+              name="size"
+              value={size}
+              onChange={onChange}
+            />
+          </p>
+          <p>
+            <label id="form-label">Size Filter</label>
+            <input
+              id="form-input"
+              name="sizeFilter"
+              value={sizeFilter}
+              onChange={onChange}
+            />
+          </p>
+        </div>
+        <div id="update-div">
+          <p>
+            <label id="form-label">Plant Lighting</label>
+            <input
+              id="form-input"
+              name="light"
+              value={light}
+              onChange={onChange}
+            />
+          </p>
+          <p>
+            <label id="form-label">Light Filter</label>
+            <input
+              id="form-input"
+              name="lightFilter"
+              value={lightFilter}
+              onChange={onChange}
+            />
+          </p>
+        </div>
+        <div id="update-div">
+          <p>
+            <label id="form-label">Plant Difficulty</label>
+            <input
+              id="form-input"
+              name="difficulty"
+              value={difficulty}
+              onChange={onChange}
+            />
+          </p>
+          <p>
+            <label id="form-label">Difficulty Filter</label>
+            <input
+              id="form-input"
               name="difficultyFilter"
               value={difficultyFilter}
               onChange={onChange}
             />
           </p>
         </div>
-        <div>
+        <div id="update-div">
           <p>
-            <label>Plant's Pet Friendliness</label>
-            <input name="petFriendly" value={petFriendly} onChange={onChange} />
+            <label id="form-label">Plant's Pet Friendliness</label>
+            <input
+              id="form-input"
+              name="petFriendly"
+              value={petFriendly}
+              onChange={onChange}
+            />
           </p>
           <p>
-            <label>Pet Friendly Filter</label>
-            <input name="petFilter" value={petFilter} onChange={onChange} />
+            <label id="form-label">Pet Friendly Filter</label>
+            <input
+              id="form-input"
+              name="petFilter"
+              value={petFilter}
+              onChange={onChange}
+            />
           </p>
         </div>
 
-        <p>
-          <label>Plant's Air Cleanliness</label>
-          <input name="airCleaner" value={airCleaner} onChange={onChange} />
+        <p id="update-p">
+          <label id="form-label">Plant's Air Cleanliness</label>
+          <input
+            id="form-input"
+            name="airCleaner"
+            value={airCleaner}
+            onChange={onChange}
+          />
         </p>
-        <p>
-          <label>Plant Image</label>
-          <input name="img" value={img} onChange={onChange} />
+        <p id="update-p">
+          <label id="form-label">Plant Image</label>
+          <input id="form-input" name="img" value={img} onChange={onChange} />
         </p>
-        <p>
-          <label>Plant Price</label>
-          <input name="price" value={price} onChange={onChange} />
+        <p id="update-p">
+          <label id="form-label">Plant Price</label>
+          <input
+            id="form-input"
+            name="price"
+            value={price}
+            onChange={onChange}
+          />
         </p>
-        <p>
-          <label>Plant inventory</label>
-          <input name="inventory" value={inventory} onChange={onChange} />
+        <p id="update-p">
+          <label id="form-label">Plant inventory</label>
+          <input
+            id="form-input"
+            name="inventory"
+            value={inventory}
+            onChange={onChange}
+          />
         </p>
 
-        <button>Save Changes</button>
+        <button id="update-button">Save Changes</button>
       </form>
     );
   }
 }
 
-// const mapToState = (state, otherProps) => {
-//   console.log('hi');
-//   //otherProps is helping us get the browser information to match with the user.id
-//   //if you find the id, then use it, if not return an empty object
-//   const plant =
-//     state.plants.find((plant) => plant.id === otherProps.match.params.id * 1) ||
-//     {};
-//   return { plant };
-// };
+const mapToState = (state, otherProps) => {
+  console.log('state:', state);
+  const plant = state.plant;
+  return { plant };
+};
 
 const mapToDispatch = (dispatch, { history }) => {
   console.log('this is history', history);
-  console.log('props', this.props);
+
   return {
-    setPlant: (id) => dispatch(setPlant(id)),
+    setPlant: (id) => {
+      return dispatch(setPlant(id));
+    },
     update: (
       id,
       name,
@@ -251,15 +325,4 @@ const mapToDispatch = (dispatch, { history }) => {
   };
 };
 
-export default connect(((state) => state, mapToDispatch))(UpdatePlant);
-
-{
-  /* <pre>
-  {
-    /* this pre tag will organize your object error message to be neater, but you dont really want this ugly messgae to show, so then you would want to actually write a special type of message for each error (havent learned this yet) */
-  /* if there is an error, the not not will turn it into a boolean value*/
-  //  !!error && JSON.stringify(error, null, 2)
-}
-{
-  /* </pre> */
-}
+export default connect(mapToState, mapToDispatch)(UpdatePlant);
