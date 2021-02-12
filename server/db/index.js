@@ -6,7 +6,8 @@ const User = require('./models/User');
 const Plant = require('./models/Plant');
 const Order = require('./models/Order');
 const LineItem = require('./models/LineItem');
-
+const ordersSeed = require('./orderSeed');
+const usersSeed = require('./userSeed');
 //associations could go here!
 
 User.hasMany(Order);
@@ -521,6 +522,25 @@ const syncAndSeed = async () => {
   // });
   // lineItem1.amount = 2;
   // await LineItem.save();
+
+  const newOrders = await Promise.all(
+    ordersSeed.map((order) => {
+      return Order.create(order);
+    })
+  );
+
+  const newUsers = await Promise.all(
+    usersSeed.map((user) => {
+      return User.create(user);
+    })
+  );
+
+  // newOrders.map((order) => {
+  //   return newUsers.map((user) => {
+  //     order.userId = user.id;
+  //     return order.save();
+  //   });
+  // });
 
   return {
     users: {
