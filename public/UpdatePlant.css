@@ -1,16 +1,32 @@
-#update-plant > form {
-  margin: auto;
-  flex-direction: column;
+#update-form {
+  margin: 1rem;
+  /* flex-direction: column; */
 }
 
-div {
-  margin: 2rem;
+#update-p {
+  /* margin-left: 4rem; */
+  /* padding: 1rem 1rem; */
+  text-align: center;
+}
+
+#form-label {
+  font-size: 1.5rem;
+  padding: 0 1rem 3px 1rem;
+}
+
+#form-input {
+  margin: 0 1rem;
+  font-size: 20px;
+}
+
+#update-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  text-align: center;
+  justify-content: center;
+  /* padding: 1rem 1rem; */
 }
-
-button {
+#update-button {
   background-color: rgb(252 249 243 / 65%);
   border: 1px solid rgb(6, 82, 6);
   height: 2.5rem;
@@ -20,11 +36,10 @@ button {
   left: 25%;
   width: 55%;
 }
-
 /* #all-plants button.active {
   visibility: visible;
 } */
-
-#all-plants button:hover {
+#update-button button:hover {
+  width: 30px;
   background-color: #fcf9f3;
 }

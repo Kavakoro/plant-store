@@ -37,8 +37,9 @@ export const updatePlant = (
 ) => {
   //console.log('from thunk', history);
   return async (dispatch) => {
+    //ive also messed with this and tried with/without /update at the end
     const plant = (
-      await axios.put(`/api/plants/${id}`, {
+      await axios.put(`/api/plants/${id}/update`, {
         name,
         description,
         size,
@@ -56,18 +57,17 @@ export const updatePlant = (
       })
     ).data;
     dispatch(_updatePlant(plant));
-    history.push('/plant');
+    //here too with just /plants or /plants/${id}
+    history.push(`/${id}`);
   };
 };
 
-export function singlePlantReducer(state = [], action) {
+export function singlePlantReducer(state = {}, action) {
   if (action.type === SET_PLANT) {
     return action.plant;
   }
   if (action.type === UPDATE_PLANT) {
-    state = state.map((plant) => {
-      return plant.id !== action.plant.id ? plant : action.plant;
-    });
+    return action.plant;
   }
 
   return state;
