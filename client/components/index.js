@@ -13,6 +13,8 @@ export { default as Cart } from './Cart.js';
 export { default as Checkout } from './Checkout';
 export { AdminPanel } from './AdminPanel';
 export { PlantAdmin } from './PlantAdmin';
+export { default as UpdatePlant } from './UpdatePlant';
+export { default as UpdateUser } from './UpdateUser';
 export { UserAdmin } from './UserAdmin';
 export { OrderAdmin } from './OrderAdmin';
 export { default as UpdatePlant } from './UpdatePlant';
