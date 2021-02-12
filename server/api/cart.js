@@ -105,13 +105,6 @@ router.get("/:orderId/total", async (req, res, next) => {
 
 		const order = await Order.findByPk(orderId);
 		const lineItems = await order.getPlants();
-		/* const subTotals = [];
-		lineItems.forEach((plant) => {
-			subTotals.push(plant.lineitem.amount * plant.price);
-		});
-		const orderTotal = subTotals.reduce((acc, curr) => {
-			return acc + curr;
-		}); */
 
 		const orderTotal = lineItems.reduce((acc, curr) => {
 			const plantPrice = curr.price;
@@ -122,6 +115,35 @@ router.get("/:orderId/total", async (req, res, next) => {
 		}, 0);
 
 		res.status(200).send({ totalPrice: orderTotal });
+	} catch (er) {
+		next(er);
+	}
+});
+
+router.put("/:orderId/checkout", async (req, res, next) => {
+	try {
+		const orderId = req.params.orderId;
+		const address = req.body.address;
+
+		const order = await Order.findByPk(orderId);
+
+		const lineItems = await order.getPlants();
+
+		const orderTotal = lineItems.reduce((acc, curr) => {
+			const plantPrice = curr.price;
+			const plantAmount = curr.lineitem.amount;
+			const subTotal = plantPrice * plantAmount;
+
+			return subTotal + acc;
+		}, 0);
+
+		order.fullfilled = true;
+		order.shippingAddress = address;
+		order.total = orderTotal;
+
+		await order.save();
+
+		res.status(201).send(order);
 	} catch (er) {
 		next(er);
 	}
