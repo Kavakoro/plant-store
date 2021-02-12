@@ -39,7 +39,7 @@ export const updatePlant = (
   return async (dispatch) => {
     //ive also messed with this and tried with/without /update at the end
     const plant = (
-      await axios.put(`/api/plants/${id}/update`, {
+      await Axios.put(`/api/plants/${id}/update`, {
         name,
         description,
         size,
@@ -58,7 +58,7 @@ export const updatePlant = (
     ).data;
     dispatch(_updatePlant(plant));
     //here too with just /plants or /plants/${id}
-    history.push(`/${id}`);
+    history.push(`/plants/${id}`);
   };
 };
 
