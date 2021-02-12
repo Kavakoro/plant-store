@@ -33,6 +33,7 @@ export class UserAdmin extends React.Component {
                 <td>{user.id}</td>
                 <td className="email">{user.email}</td>
                 <td>
+                  <Link to={`/admin/Users/${user.id}/update`}>
                   <Link to={`/admin/Users/update/${user.id}`}>
                     <button>Edit</button>
                   </Link>

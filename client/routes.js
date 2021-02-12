@@ -10,12 +10,14 @@ import {
   Cart,
   Checkout,
   UpdatePlant,
+  UpdateUser,
   PlantAdmin,
   AdminPanel,
   UserAdmin,
   OrderAdmin,
 } from './components';
 import { me } from './store';
+import { updateUser } from './store/singleUser';
 
 /**
  * COMPONENT
@@ -44,6 +46,10 @@ class Routes extends Component {
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
         <Route exact path="/admin" component={AdminPanel} />
+        <Route exact path="/admin/Users/:id/update" component={UpdateUser} />
+        <Route path="/admin/Plants" component={PlantAdmin} />
+        <Route exact path="/admin/Users" component={UserAdmin} />
+        <Route path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/admin/Plants" component={PlantAdmin} />
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
