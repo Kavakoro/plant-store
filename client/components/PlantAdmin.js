@@ -59,7 +59,7 @@ export class PlantAdmin extends React.Component {
                 <td>{plant.img}</td>
                 <td className="inventory">{plant.inventory}</td>
                 <td>
-                  <Link to={`/admin/Plants/${plant.id}`}>
+                  <Link to={`/admin/Plants/update/${plant.id}`}>
                     <button>Edit</button>
                   </Link>
                 </td>
