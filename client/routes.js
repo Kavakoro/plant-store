@@ -47,9 +47,6 @@ class Routes extends Component {
         <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
         <Route exact path="/admin" component={AdminPanel} />
         <Route exact path="/admin/Users/:id/update" component={UpdateUser} />
-        <Route path="/admin/Plants" component={PlantAdmin} />
-        <Route exact path="/admin/Users" component={UserAdmin} />
-        <Route path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/admin/Plants" component={PlantAdmin} />
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
