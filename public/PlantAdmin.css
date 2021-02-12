@@ -24,7 +24,14 @@ th.description {
   margin: 0 1rem;
 }
 
-#plant-admin button {
+table.users {
+  width: 70vw;
+}
+
+#admin-db {
+  text-align: center;
+}
+#admin-db button {
   padding: 0.5rem;
   color: white;
   background-color: rgb(148, 28, 28);
@@ -35,4 +42,8 @@ td.filter,
 td.inventory,
 td.price {
   text-align: center;
+}
+
+th span {
+  font-size: 0.7rem;
 }

@@ -7,22 +7,19 @@ export class PlantAdmin extends React.Component {
   constructor() {
     super();
     this.state = { plants: [] };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
     const plants = (await axios.get('/api/plants')).data;
-    console.log(plants, 'plants');
     this.setState({ plants });
   }
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+
   render() {
     const { plants } = this.state;
     if (!plants.length) return null;
     return (
-      <div id="plant-admin">
+      <div id="admin-db">
+        <h1>Plant Database</h1>
         <table>
           <thead>
             <tr>
