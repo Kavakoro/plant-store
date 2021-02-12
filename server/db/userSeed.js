@@ -1,4 +1,5 @@
 const usersSeed = [
+  { email: 'admin@gmail.com', password: 'admin', isAdmin: true },
   { email: 'bwyvill0@paginegialle.it', password: '2X3IyKNYYD' },
   { email: 'pvannacci1@hp.com', password: '1fg8hxf' },
   { email: 'llantaff2@elegantthemes.com', password: 'tzaV349J' },
