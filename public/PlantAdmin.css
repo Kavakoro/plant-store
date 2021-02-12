@@ -47,3 +47,7 @@ td.price {
 th span {
   font-size: 0.7rem;
 }
+
+td.email {
+  text-align: left;
+}
