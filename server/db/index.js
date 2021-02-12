@@ -8,6 +8,7 @@ const Order = require('./models/Order');
 const LineItem = require('./models/LineItem');
 const ordersSeed = require('./orderSeed');
 const usersSeed = require('./userSeed');
+const plantsSeed = require('./plantSeed');
 //associations could go here!
 
 User.hasMany(Order);
@@ -479,68 +480,162 @@ const syncAndSeed = async () => {
   ] = plants;
 
   //seed orders
-  const order1 = await Order.create({ shippingAddress: '123 Bloomscape St' });
-  const order2 = await Order.create({ shippingAddress: '211 nw 21 terrace' });
+  const order1 = await Order.create({
+    shippingAddress: '123 Bloomscape St',
+    fullfilled: true,
+  });
+  const order2 = await Order.create({
+    shippingAddress: '211 nw 21 terrace',
+    fullfilled: false,
+  });
   const order3 = await Order.create({
     shippingAddress: '543 Fullstack Academy Rd',
     fullfilled: true,
   });
-  const order4 = await Order.create({ shippingAddress: '777 Lucky Street' });
+  const order4 = await Order.create({
+    shippingAddress: '777 Lucky Street',
+    fullfilled: true,
+  });
+  const order5 = await Order.create({
+    shippingAddress: '5003 1st Drive',
+    fullfilled: false,
+  });
+  const order6 = await Order.create({
+    shippingAddress: '17262 Vera Way',
+    fullfilled: true,
+  });
 
   await order1.addPlant(BirdofParadise);
   await order2.addPlants([minimoney, philodendron, moonshine]);
-  //trying to add two types of a plant will cause an error because of lineItem. I think we need somesort of constraint here?
-  //how can i incrememnt the 'Amount' in a lineItem below???
-  //  original: error: duplicate key value violates unique constraint "lineitems_pkey"
-  //    detail: 'Key ("orderId", "plantId")=(f2802c6a-6357-413d-a787-3d902b1303b8, 12) already exists.',
-  //im not sure how to go around this...
-  await order3.addPlants([
-    dragonTree,
-    silver,
+  await order3.addPlants([dragonTree, silver, bamboopalm, pricklypear]);
+  await order4.addPlants([pricklypear, minimoney, BirdofParadise, moonshine]);
+  await order5.addPlants([
+    ponytail,
     bamboopalm,
-    //bamboopalm,
+    zzplant,
+    redprayerplant,
     pricklypear,
+    HedgehogAloe,
+    dragonTree,
   ]);
 
-  await order4.addPlants([
-    pricklypear,
-    minimoney,
-    BirdofParadise,
-    moonshine,
-    //moonshine,
-  ]);
+  await order6.addPlants([pineapple, bonsai, ginny, pink, zebrina]);
 
   await nes.addOrder([order1]);
   await kokko.addOrders([order2, order3]);
   await rommel.addOrder([order4]);
+  await kate.addOrders([order5, order6]);
 
-  // const lineItem1 = await LineItem.findOne({
-  //   where: {
-  //     orderId: order1.id,
-  //     plantId: BirdofParadise.id
-  //   }
-  // });
-  // lineItem1.amount = 2;
-  // await LineItem.save();
+  const lineItem1 = await LineItem.findOne({
+    where: {
+      orderId: order1.id,
+      plantId: BirdofParadise.id,
+    },
+  });
+  lineItem1.amount = 2;
+  await lineItem1.save();
 
-  const newOrders = await Promise.all(
-    ordersSeed.map((order) => {
-      return Order.create(order);
-    })
-  );
+  const lineItem2 = await LineItem.findOne({
+    where: {
+      orderId: order2.id,
+      plantId: minimoney.id,
+    },
+  });
+  lineItem2.amount = 4;
+  await lineItem2.save();
 
+  const lineItem3 = await LineItem.findOne({
+    where: {
+      orderId: order2.id,
+      plantId: philodendron.id,
+    },
+  });
+  lineItem3.amount = 6;
+  await lineItem3.save();
+
+  const lineItem4 = await LineItem.findOne({
+    where: {
+      orderId: order2.id,
+      plantId: moonshine.id,
+    },
+  });
+  lineItem4.amount = 5;
+  await lineItem4.save();
+
+  const lineItem5 = await LineItem.findOne({
+    where: {
+      orderId: order3.id,
+      plantId: pricklypear.id,
+    },
+  });
+  lineItem5.amount = 3;
+  await lineItem5.save();
+
+  const lineItem6 = await LineItem.findOne({
+    where: {
+      orderId: order3.id,
+      plantId: bamboopalm.id,
+    },
+  });
+  lineItem6.amount = 3;
+  await lineItem6.save();
+
+  const lineItem7 = await LineItem.findOne({
+    where: {
+      orderId: order4.id,
+      plantId: moonshine.id,
+    },
+  });
+  lineItem7.amount = 7;
+  await lineItem7.save();
+
+  const lineItem8 = await LineItem.findOne({
+    where: {
+      orderId: order5.id,
+      plantId: ponytail.id,
+    },
+  });
+  lineItem8.amount = 7;
+  await lineItem8.save();
+
+  const lineItem9 = await LineItem.findOne({
+    where: {
+      orderId: order6.id,
+      plantId: pineapple.id,
+    },
+  });
+  lineItem9.amount = 6;
+  await lineItem9.save();
+
+  const lineItem10 = await LineItem.findOne({
+    where: {
+      orderId: order6.id,
+      plantId: bonsai.id,
+    },
+  });
+  lineItem10.amount = 9;
+  await lineItem10.save();
+
+  //comment out below if you want to remove large USERS dummy data
   const newUsers = await Promise.all(
     usersSeed.map((user) => {
       return User.create(user);
     })
   );
 
-  // newOrders.map((order) => {
-  //   return newUsers.map((user) => {
-  //     order.userId = user.id;
-  //     return order.save();
-  //   });
-  // });
+  //comment out if you want to remove large PLANTS dummy data
+  const newPlants = await Promise.all(
+    plantsSeed.map((plant) => {
+      return Plant.create(plant);
+    })
+  );
+
+  //here is some dummy data for ORDERS but i dont think we should do large order data since it cant be tied to a userId this way
+  // const newOrders = await Promise.all(
+  //   ordersSeed.map((order) => {
+  //     return Order.create(order);
+  //   })
+  // );
 
   return {
     users: {
