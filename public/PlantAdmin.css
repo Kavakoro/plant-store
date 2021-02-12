@@ -43,3 +43,7 @@ td.inventory,
 td.price {
   text-align: center;
 }
+
+th span {
+  font-size: 0.7rem;
+}

@@ -7,16 +7,13 @@ export class UserAdmin extends React.Component {
   constructor() {
     super();
     this.state = { users: [] };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
     const users = (await axios.get('/api/users')).data;
     this.setState({ users });
   }
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+
   render() {
     const { users } = this.state;
     if (!users.length) return null;
@@ -34,7 +31,7 @@ export class UserAdmin extends React.Component {
             {users.map((user, idx) => (
               <tr key={idx}>
                 <td>{user.id}</td>
-                <td>{user.emal}</td>
+                <td>{user.email}</td>
                 <td>
                   <Link to={`/admin/Users/${user.id}`}>
                     <button>Edit</button>

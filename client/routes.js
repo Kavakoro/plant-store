@@ -13,6 +13,7 @@ import {
   PlantAdmin,
   AdminPanel,
   UserAdmin,
+  OrderAdmin,
 } from './components';
 import { me } from './store';
 
@@ -45,6 +46,7 @@ class Routes extends Component {
         <Route exact path="/admin" component={AdminPanel} />
         <Route path="/admin/Plants" component={PlantAdmin} />
         <Route path="/admin/Users" component={UserAdmin} />
+        <Route path="/admin/Orders" component={OrderAdmin} />
       </div>
     );
   }

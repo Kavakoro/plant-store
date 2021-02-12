@@ -14,4 +14,5 @@ export { default as Checkout } from './Checkout';
 export { AdminPanel } from './AdminPanel';
 export { PlantAdmin } from './PlantAdmin';
 export { UserAdmin } from './UserAdmin';
+export { OrderAdmin } from './OrderAdmin';
 export { default as UpdatePlant } from './UpdatePlant';
