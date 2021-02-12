@@ -12,6 +12,7 @@ import {
   UpdatePlant,
   PlantAdmin,
   AdminPanel,
+  UserAdmin,
 } from './components';
 import { me } from './store';
 
@@ -41,8 +42,9 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
-        <Route path="/admin" component={AdminPanel} />
+        <Route exact path="/admin" component={AdminPanel} />
         <Route path="/admin/Plants" component={PlantAdmin} />
+        <Route path="/admin/Users" component={UserAdmin} />
       </div>
     );
   }

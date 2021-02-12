@@ -12,7 +12,6 @@ export class PlantAdmin extends React.Component {
 
   async componentDidMount() {
     const plants = (await axios.get('/api/plants')).data;
-    console.log(plants, 'plants');
     this.setState({ plants });
   }
   handleChange(e) {
@@ -22,7 +21,8 @@ export class PlantAdmin extends React.Component {
     const { plants } = this.state;
     if (!plants.length) return null;
     return (
-      <div id="plant-admin">
+      <div id="admin-db">
+        <h1>Plant Database</h1>
         <table>
           <thead>
             <tr>
