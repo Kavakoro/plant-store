@@ -83,7 +83,7 @@ const Plant = db.define('plant', {
   },
   img: {
     type: STRING,
-    defaultValue: 'yellowcan',
+    defaultValue: 'yellowcan.jpeg',
   },
   price: {
     type: INTEGER,
