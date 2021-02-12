@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import { authenticate } from "../store";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { green } from "@material-ui/core/colors";
+
+const buttonTheme = createMuiTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: green[900],
+    },
+  },
+});
 
 /**
  * COMPONENT
@@ -26,9 +38,11 @@ const AuthForm = (props) => {
           </label> */}
         </div>
         <div>
-          <Button type="submit" variant="contained" color="primary">
-            {displayName}
-          </Button>
+          <ThemeProvider theme={buttonTheme}>
+            <Button type="submit" variant="contained" color="primary">
+              {displayName}
+            </Button>
+          </ThemeProvider>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>

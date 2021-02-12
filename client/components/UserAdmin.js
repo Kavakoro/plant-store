@@ -24,16 +24,17 @@ export class UserAdmin extends React.Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th className="email">Email</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, idx) => (
               <tr key={idx}>
                 <td>{user.id}</td>
-                <td>{user.email}</td>
+                <td className="email">{user.email}</td>
                 <td>
                   <Link to={`/admin/Users/${user.id}/update`}>
+                  <Link to={`/admin/Users/update/${user.id}`}>
                     <button>Edit</button>
                   </Link>
                 </td>

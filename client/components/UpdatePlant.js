@@ -1,29 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { updatePlant, setPlant } from '../store/singlePlant';
-import '../../public/UpdatePlant.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updatePlant, setPlant } from "../store/singlePlant";
+import "../../public/UpdatePlant.css";
+import Button from "@material-ui/core/Button";
 
 class UpdatePlant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.plant.id ? this.props.plant.name : '',
-      description: this.props.plant.id ? this.props.plant.description : '',
-      size: this.props.plant.id ? this.props.plant.size : '',
-      sizeFilter: this.props.plant.id ? this.props.plant.sizeFilter : '',
-      light: this.props.plant.id ? this.props.plant.light : '',
-      lightFilter: this.props.plant.id ? this.props.plant.lightFilter : '',
-      difficulty: this.props.plant.id ? this.props.plant.difficulty : '',
+      name: this.props.plant.id ? this.props.plant.name : "",
+      description: this.props.plant.id ? this.props.plant.description : "",
+      size: this.props.plant.id ? this.props.plant.size : "",
+      sizeFilter: this.props.plant.id ? this.props.plant.sizeFilter : "",
+      light: this.props.plant.id ? this.props.plant.light : "",
+      lightFilter: this.props.plant.id ? this.props.plant.lightFilter : "",
+      difficulty: this.props.plant.id ? this.props.plant.difficulty : "",
       difficultyFilter: this.props.plant.id
         ? this.props.plant.difficultyFilter
-        : '',
-      petFriendly: this.props.plant.id ? this.props.plant.petFriendly : '',
-      petFilter: this.props.plant.id ? this.props.plant.petFilter : '',
-      airCleaner: this.props.plant.id ? this.props.plant.airCleaner : '',
-      img: this.props.plant.id ? this.props.plant.img : '',
-      price: this.props.plant.id ? this.props.plant.price : '',
-      inventory: this.props.plant.id ? this.props.plant.inventory : '',
-      error: '',
+        : "",
+      petFriendly: this.props.plant.id ? this.props.plant.petFriendly : "",
+      petFilter: this.props.plant.id ? this.props.plant.petFilter : "",
+      airCleaner: this.props.plant.id ? this.props.plant.airCleaner : "",
+      img: this.props.plant.id ? this.props.plant.img : "",
+      price: this.props.plant.id ? this.props.plant.price : "",
+      inventory: this.props.plant.id ? this.props.plant.inventory : "",
+      error: "",
     };
     //check if you have props
     //console.log(this.props.plant);
@@ -49,14 +50,14 @@ class UpdatePlant extends Component {
       price: this.props.plant.price,
       inventory: this.props.plant.inventory,
     });
-    console.log('id', this.props.match.params.plantId * 1);
+    console.log("id", this.props.match.params.plantId * 1);
   }
 
   componentDidUpdate(prevProps) {
-    console.log('is this running');
+    console.log("is this running");
 
     if (!prevProps.plant.id && this.props.plant.id) {
-      console.log('if statement');
+      console.log("if statement");
       this.setState({
         name: this.props.plant.name,
         description: this.props.plant.description,
@@ -83,7 +84,7 @@ class UpdatePlant extends Component {
   async onSubmit(ev) {
     ev.preventDefault();
     try {
-      console.log('onSubmit');
+      console.log("onSubmit");
       //the id is this.props.plant.id and updating with the new state name
       await this.props.update(
         this.props.plant.id,
@@ -265,20 +266,22 @@ class UpdatePlant extends Component {
           />
         </p>
 
-        <button id="update-button">Save Changes</button>
+        <Button id="update-button" variant="contained">
+          Save Changes
+        </Button>
       </form>
     );
   }
 }
 
 const mapToState = (state, otherProps) => {
-  console.log('state:', state);
+  console.log("state:", state);
   const plant = state.plant;
   return { plant };
 };
 
 const mapToDispatch = (dispatch, { history }) => {
-  console.log('this is history', history);
+  console.log("this is history", history);
 
   return {
     setPlant: (id) => {

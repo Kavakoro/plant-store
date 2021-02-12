@@ -2,56 +2,55 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addToCart } from '../store/cart';
 import Button from '@material-ui/core/Button';
-
-//this button works just, calls updateCart on cart redux but not hooked up yet.
-
-// const AddToCart = ({ orderId, plantId }) => {
-//   console.log(orderId);
-
-//   return <button onClick={addToCart(orderId, plantId)}>Add To Cart</button>;
-// };
-
-// const mapDispatch = (dispatch, orderId, plantId) => {
-//   return {
-//     addToCart: (orderId, plantId, quantity) =>
-//       dispatch(addToCart(orderId, plantId, quantity)),
-//   };
-// };
-
-// export default connect((state) => state, mapDispatch)(AddToCart);
-
-export const cartObj = {
-  orderId: 2,
-  plants: [
-    {
-      id: 1,
-      name: 'Fern',
-      img: 'https://www.loremflickr.com/220/200/houseplant',
-      price: 120,
-      amount: 1,
-    },
-    {
-      id: 2,
-      name: 'Cactus',
-      img: 'https://www.loremflickr.com/220/200/houseplant?random=1',
-      price: 100,
-      amount: 1,
-    },
-  ],
-};
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = { open: false };
   }
-
+  handleClick() {
+    this.setState({ open: true });
+  }
+  handleClose() {
+    this.setState({ open: false });
+  }
   render() {
     const { cart, plantId, addToCart } = this.props;
     const orderId = cart.id;
+    const { open } = this.state;
+    const { handleClose, handleClick } = this;
     return (
-      <Button variant="contained" onClick={() => addToCart(orderId, plantId)}>
-        Add To Cart
-      </Button>
+      <>
+        <Button
+          variant="contained"
+          onClick={() => {
+            addToCart(orderId, plantId);
+            handleClick();
+          }}
+        >
+          Add To Cart
+        </Button>
+        <Snackbar
+          style={{ padding: '2rem' }}
+          anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+          open={open}
+          message="Plant added to cart!"
+          autoHideDuration={2000}
+        >
+          <Alert
+            variant="filled"
+            open={open}
+            onClose={handleClose}
+            severity="success"
+          >
+            Plant added to cart!
+          </Alert>
+        </Snackbar>
+      </>
     );
   }
 }

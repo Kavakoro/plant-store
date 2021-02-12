@@ -39,7 +39,7 @@ export class OrderAdmin extends React.Component {
                 <td>{order.fulfilled}</td>
                 <td>{order.total}</td>
                 <td>
-                  <Link to={`/admin/Orders/${order.id}`}>
+                  <Link to={`/admin/Orders/update/${order.id}`}>
                     <button>Edit</button>
                   </Link>
                 </td>
