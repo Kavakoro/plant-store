@@ -47,7 +47,10 @@ class AddToCart extends React.Component {
 
   render() {
     const { cart, plantId, addToCart } = this.props;
+    console.log(cart, 'cart');
+    console.log(plantId, 'plantId');
     const orderId = cart.id;
+    console.log(orderId, 'orderID');
     return (
       <Button variant="contained" onClick={() => addToCart(orderId, plantId)}>
         Add To Cart
