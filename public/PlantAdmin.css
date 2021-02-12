@@ -1,0 +1,38 @@
+table {
+  width: 100vw;
+  margin: 0 auto;
+  table-layout: fixed;
+  white-space: nowrap;
+}
+
+td {
+  overflow: scroll;
+  text-overflow: ellipsis;
+  margin: 0 1rem;
+  white-space: nowrap;
+}
+
+th.name {
+  width: 8%;
+}
+th {
+  font-size: 1rem;
+  margin: 1rem;
+}
+th.description {
+  width: 15%;
+  margin: 0 1rem;
+}
+
+#plant-admin button {
+  padding: 0.5rem;
+  color: white;
+  background-color: rgb(148, 28, 28);
+  border-style: none;
+}
+
+td.filter,
+td.inventory,
+td.price {
+  text-align: center;
+}

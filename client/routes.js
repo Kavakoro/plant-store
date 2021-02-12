@@ -2,17 +2,20 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import {
-	Login,
-	Signup,
-	Home,
-	AllPlants,
-	SinglePlant,
-	Cart,
-	Checkout,
-	UpdatePlant,
-} from "./components";
-// import AllPlants from './components/AllPlants';
-import { me } from "./store";
+
+  Login,
+  Signup,
+  Home,
+  AllPlants,
+  SinglePlant,
+  Cart,
+  Checkout,
+  UpdatePlant,
+  PlantAdmin,
+  AdminPanel,
+} from './components';
+import { me } from './store';
+
 /**
  * COMPONENT
  */
@@ -24,28 +27,27 @@ class Routes extends Component {
 	render() {
 		const { isLoggedIn } = this.props;
 
-		return (
-			<div>
-				{isLoggedIn ? (
-					// all this does is say, "hello!, email!"
-					<Route exact path="/home" component={Home} />
-				) : (
-					""
-				)}
-				<Route path="/login" component={Login} />
-				<Route path="/signup" component={Signup} />
+    return (
+      <div>
+        {isLoggedIn ? (
+          // all this does is say, "hello!, email!"
+          <Route exact path="/home" component={Home} />
+        ) : (
+          ''
+        )}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route exact path="/home" component={AllPlants} />
+        <Route exact path="/plants/:plantId" component={SinglePlant} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart/checkout" component={Checkout} />
+        <Route exact path="/plants/:plantId/update" component={UpdatePlant} />
+        <Route path="/admin" component={AdminPanel} />
+        <Route path="/admin/Plants" component={PlantAdmin} />
+      </div>
+    );
+  }
 
-				<Route exact path="/home" component={AllPlants} />
-				{/* <Route exact path="/login" component={AllPlants} /> */}
-				<Route exact path="/plants/:plantId" component={SinglePlant} />
-				<Route exact path="/cart" component={Cart} />
-				<Route exact path="/cart/checkout" component={Checkout} />
-				<Route exact path="/plants/:plantId/update" component={UpdatePlant} />
-				{/* <Redirect to="/home" /> */}
-			</div>
-		);
-	}
-}
 
 /**
  * CONTAINER

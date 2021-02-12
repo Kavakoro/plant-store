@@ -1,0 +1,16 @@
+#admin-panel > div {
+  display: flex;
+  justify-content: center;
+}
+
+#admin-panel button {
+  padding: 2rem;
+  height: 1.5rem;
+  background: dodgerblue;
+  margin: 2rem;
+  color: white;
+}
+
+#admin-panel h1 {
+  text-align: center;
+}

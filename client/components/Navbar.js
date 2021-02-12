@@ -56,6 +56,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         </div>
       </nav>
       <hr></hr>
+      <Link to="/admin">Admin</Link>
     </AppBar>
   </div>
 );
