@@ -33,8 +33,8 @@ class Routes extends Component {
         )}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-
         <Route exact path="/home" component={AllPlants} />
+        {/*we need a path ='/' to show all components*/}
         {/* <Route exact path="/login" component={AllPlants} /> */}
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
