@@ -12,7 +12,6 @@ class UpdateUser extends Component {
       email: this.props.user.id ? this.props.user.email : '',
       error: '',
     };
-    //check if you have props
     console.log('props', this.props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -26,7 +25,7 @@ class UpdateUser extends Component {
       email: this.props.user.email,
     });
     const id = this.props.match.params.id;
-    console.log('id:', typeof id * 1);
+    console.log('id:', typeof id);
   }
 
   componentDidUpdate(prevProps) {
@@ -95,7 +94,9 @@ class UpdateUser extends Component {
             onChange={onChange}
           />
         </p>
-        <Button id="userUpdate-button">Save Changes</Button>
+        <Button type="submit" id="userUpdate-button">
+          Save Changes
+        </Button>
       </form>
     );
   }
