@@ -1,39 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateUser, setUser } from '../store/singleUser';
-import axios from 'axios';
 import '../../public/UpdateUser.css';
+import Button from '@material-ui/core/Button';
 
 class UpdateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: this.props.user.id ? this.props.user.username : '',
+      // username: this.props.user.id ? this.props.user.username : '',
       email: this.props.user.id ? this.props.user.email : '',
       error: '',
     };
     //check if you have props
-    //console.log(this.props.plant);
+    console.log('props', this.props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   // not sure if i should be mounting the state or if this is correct?
   async componentDidMount() {
-    await this.props.setUser(this.props.match.params.id * 1);
+    await console.log('props', this.props);
+    this.props.setUser(this.props.match.params.id);
     this.setState({
-      username: this.props.user.username,
+      //username: this.props.user.username,
       email: this.props.user.email,
     });
-    console.log('id', this.props.match.params.id * 1);
+    const id = this.props.match.params.id;
+    console.log('id:', typeof id * 1);
   }
 
   componentDidUpdate(prevProps) {
-    console.log('is this running');
+    console.log('component updating is running');
 
     if (!prevProps.user.id && this.props.user.id) {
-      console.log('if statement');
+      console.log('if statement running');
       this.setState({
-        username: this.props.user.username,
+        // username: this.props.user.username,
         email: this.props.user.email,
       });
       //console.log(this.state.name);
@@ -50,7 +52,7 @@ class UpdateUser extends Component {
       //the id is this.props.user.id and updating with the new state name
       await this.props.update(
         this.props.user.id,
-        this.state.username,
+        //this.state.username,
         this.state.email
       );
     } catch (er) {
@@ -75,15 +77,15 @@ class UpdateUser extends Component {
 
     return (
       <form id="userUpdate-form" onSubmit={onSubmit}>
-        <p id="userUpdate-p">
-          <label id="userform-label">Username</label>
+        {/* <p id="userUpdate-p">
+          <label id="userform-label">Username:</label>
           <input
             id="userform-input"
             name="username"
             value={username}
             onChange={onChange}
           />
-        </p>
+        </p> */}
         <p id="userUpdate-p">
           <label id="userform-label">Email</label>
           <input
@@ -93,14 +95,14 @@ class UpdateUser extends Component {
             onChange={onChange}
           />
         </p>
-        <button id="userUpdate-button">Save Changes</button>
+        <Button id="userUpdate-button">Save Changes</Button>
       </form>
     );
   }
 }
 
 const mapToState = (state, otherProps) => {
-  console.log('state:', state);
+  console.log('maptostate:', state);
   const user = state.user;
   return { user };
 };
@@ -112,8 +114,8 @@ const mapToDispatch = (dispatch, { history }) => {
     setUser: (id) => {
       return dispatch(setUser(id));
     },
-    update: (id, username, email) => {
-      return dispatch(updateUser(id, username, email, history));
+    update: (id, email) => {
+      return dispatch(updateUser(id, email, history));
     },
   };
 };

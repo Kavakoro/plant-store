@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 
 //constants
 const SET_PLANT = 'SET_PLANT';
@@ -12,7 +12,7 @@ const _updatePlant = (plant) => ({ type: UPDATE_PLANT, plant });
 //thunk middleware functions
 export const setPlant = (id) => {
   return async (dispatch) => {
-    const plant = (await Axios.get(`/api/plants/${id}`)).data;
+    const plant = (await axios.get(`/api/plants/${id}`)).data;
     dispatch(_setPlant(plant));
   };
 };
@@ -35,11 +35,11 @@ export const updatePlant = (
   inventory,
   history
 ) => {
-  //console.log('from thunk', history);
+  console.log('from thunk', history);
   return async (dispatch) => {
     //ive also messed with this and tried with/without /update at the end
     const plant = (
-      await Axios.put(`/api/plants/${id}/update`, {
+      await axios.put(`/api/plants/${id}`, {
         name,
         description,
         size,
@@ -58,7 +58,7 @@ export const updatePlant = (
     ).data;
     dispatch(_updatePlant(plant));
     //here too with just /plants or /plants/${id}
-    history.push(`/plants/${id}`);
+    history.push(`/admin`);
   };
 };
 
