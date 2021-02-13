@@ -35,7 +35,7 @@ export const updatePlant = (
   inventory,
   history
 ) => {
-  console.log('from thunk', history);
+  //console.log('from thunk', history);
   return async (dispatch) => {
     //ive also messed with this and tried with/without /update at the end
     const plant = (
