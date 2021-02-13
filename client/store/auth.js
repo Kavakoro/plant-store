@@ -20,11 +20,16 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
 export const me = () => async (dispatch) => {
   const token = storage().getItem(TOKEN);
   if (token) {
+    //this response returns the user in our DB associated with the JWT token in localStorage
     const res = await axios.get('/auth/me', {
       headers: {
         authorization: token,
       },
     });
+    console.log(
+      res.data,
+      'res.data which will become auth object, which is the user object'
+    );
     history.push('/');
     return dispatch(setAuth(res.data));
   }
@@ -43,8 +48,6 @@ export const authenticate = (email, password, method) => async (dispatch) => {
 
 export const logout = (history) => {
   storage().removeItem(TOKEN);
-  console.log('in the logout function in the store');
-  console.log(history, 'history');
   history.push('/');
   return {
     type: SET_AUTH,

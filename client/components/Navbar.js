@@ -11,9 +11,8 @@ import { green } from '@material-ui/core/colors';
 // import { yellow } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 
-
 //edit orderId when every time you reseed db
-const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
+const orderId = '0b270320-7efe-4b18-9117-21e70c16e447';
 
 const navBarTheme = createMuiTheme({
   palette: {
@@ -29,7 +28,6 @@ class Navbar extends React.Component {
     super(props);
   }
   async componentDidMount() {
-
     //const orderId = window.localStorage.getItem('orderId');
     if (orderId) {
       this.props.getCart(orderId);
@@ -39,7 +37,6 @@ class Navbar extends React.Component {
     }
   }
   render() {
-    console.log('navbar rendering');
     const { handleClick, isLoggedIn } = this.props;
     return (
       <div>
