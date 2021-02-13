@@ -3,12 +3,12 @@ button {
 }
 
 #cart {
-  color: #fcf9f3;
+  color: black;
   padding: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(73, 92, 73);
+  background-color: #fcf9f3;
 }
 #cart input {
   text-align: center;
@@ -22,7 +22,7 @@ button {
   font-size: 1.3rem;
   font-weight: 400;
   text-decoration: underline;
-  color: #fcf9f3;
+  color: black;
 }
 
 #cart-items {
@@ -31,6 +31,7 @@ button {
 }
 
 #cart img {
+  height: 10rem;
   border: 1px solid black;
   border-radius: 12px;
 }
@@ -45,7 +46,7 @@ button {
   font-weight: 400;
 }
 #cart-details {
-  color: #fcf9f3;
+  color: black;
   justify-content: space-between;
   width: 75%;
   font-weight: 400;
