@@ -29,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/update/:id', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.status(201).send(await user.update(req.body));

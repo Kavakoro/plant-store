@@ -58,7 +58,7 @@ export const updatePlant = (
     ).data;
     dispatch(_updatePlant(plant));
     //here too with just /plants or /plants/${id}
-    history.push(`/admin`);
+    history.push(`/admin/Plants`);
   };
 };
 

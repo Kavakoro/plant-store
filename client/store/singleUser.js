@@ -18,7 +18,7 @@ export const setUser = (id) => {
 };
 
 export const updateUser = (id, email, history) => {
-  //console.log('from thunk', history);
+  console.log('from thunk', id, email);
   return async (dispatch) => {
     const user = (
       await axios.put(`/api/users/${id}`, {

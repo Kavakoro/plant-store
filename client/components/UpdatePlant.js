@@ -250,7 +250,7 @@ class UpdatePlant extends Component {
           />
         </p>
 
-        <Button id="update-button" variant="contained">
+        <Button type="submit" id="update-button" variant="contained">
           Save Changes
         </Button>
       </form>
