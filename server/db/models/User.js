@@ -8,13 +8,20 @@ const { STRING, INTEGER, UUID, UUIDV4 } = Sequelize;
 
 const SALT_ROUNDS = 5;
 
+//we need to add more details to a user
 const User = db.define('user', {
-  //do we want Users to have a UUID???
   id: {
     type: UUID,
     defaultValue: UUIDV4,
     primaryKey: true,
   },
+  // username: {
+  //   type: STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //   },
+  // },
   email: {
     type: STRING,
     unique: true,

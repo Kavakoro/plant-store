@@ -1,13 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import "../../public/SinglePlant.css";
-import { setPlant } from "../store/singlePlant";
+import React from 'react';
+import { connect } from 'react-redux';
+import '../../public/SinglePlant.css';
+import { setPlant } from '../store/singlePlant';
 // import { Link } from "react-router-dom";
-import AddToCart from "./AddToCart";
-import Button from "@material-ui/core/Button";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import { green } from "@material-ui/core/colors";
+import AddToCart from './AddToCart';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { green } from '@material-ui/core/colors';
 
 // const buttonTheme = createMuiTheme({
 //   palette: {
@@ -30,7 +30,7 @@ class SinglePlant extends React.Component {
   render() {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
-    console.log(orderId, "orderId");
+    console.log(orderId, 'orderId');
 
     if (!this.props.plant) {
       return null;
@@ -49,15 +49,6 @@ class SinglePlant extends React.Component {
             </ul>
             <p>
               <AddToCart orderId={orderId} plantId={plant.id} />
-            </p>
-            <p>
-              <Button
-                variant="contained"
-                type="submit"
-                href={`/plants/${plant.id}/update`}
-              >
-                Update Plant
-              </Button>
             </p>
           </div>
         </div>

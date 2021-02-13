@@ -17,17 +17,16 @@ export const setUser = (id) => {
   };
 };
 
-export const updateUser = (id, username, email, history) => {
+export const updateUser = (id, email, history) => {
   //console.log('from thunk', history);
   return async (dispatch) => {
     const user = (
-      await axios.put(`/api/users/${id}/update`, {
-        username,
+      await axios.put(`/api/users/${id}`, {
         email,
       })
     ).data;
     dispatch(_updateUser(user));
-    history.push(`/admin/Users/${id}`);
+    history.push(`/admin/Users`);
   };
 };
 
