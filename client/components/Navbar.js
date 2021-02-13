@@ -58,7 +58,9 @@ class Navbar extends React.Component {
                   </Link>
                 </div>
                 <div id="nav-links">
-                  {/* <Link to="/home">Home</Link> */}
+                  <Link to="/admin">Admin</Link>
+
+                  <Link to="/">Home</Link>
                   {isLoggedIn ? (
                     <a href="/" onClick={handleClick}>
                       Logout
@@ -73,7 +75,6 @@ class Navbar extends React.Component {
                   <Link to="/cart">
                     <img height="40" width="35" src="/images/cart.png"></img>
                   </Link>
-                  <Link to="/admin">Admin</Link>
                 </div>
               </div>
             </nav>
@@ -91,6 +92,7 @@ class Navbar extends React.Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    // isAdmin: state.auth.isAdmin
   };
 };
 
