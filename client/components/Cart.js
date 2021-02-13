@@ -49,34 +49,17 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    //If there is an orderId in state, it will have been set in localStorage - so check localStorage (not state.. because what
-    //if a user is returning to the site for the first time since navigating away - this will
-    //protect with hard reloads as well ...?)
-    //if orderId in localStorage, fetch the order/cart associated with that orderId- set in state and localStorage
-    //if NO orderId in localStorage, if LoggedIn, await creation of order + cart with userId. If NOT logged in await creating of order
-    //and cart with userId = null; store resulting orderId in local storage for when user returns to site
-
-    // THIS LOGIC MAYy HAVE TO BE AT A HIGHER LEVEL IN THE APP IF WE WANT TO KNOW A USER'S CART AS SOON AS THEY VISIT THE SITE...?
-    // const orderId = localStorage.getItem('orderId');
-    // if (!orderId) {
-    //     let userId = this.props.auth.id ? auth.id : null
-    //     const cart = await this.props.createCart(userId)
-    //     const {orderId} = cart
-    //     window.localStorage.setItem('orderId', orderId)
-    // } else {
-    //     this.props.getCart(orderId)
-    // }
-    const orderId = `000d06d4-12fc-4f71-8044-6c211bd424b9`;
-    // const { id } = this.props.cart;
-    console.log(this.props, 'this.props');
-    if (orderId) {
+    const cart = this.props.cart;
+    if (!cart) {
+      const orderId = window.localStorage.getItem('orderId');
       this.props.getCart(orderId);
     }
   }
 
   render() {
     const { cart } = this.props;
-    const { plants, orderId } = cart;
+    const { plants } = cart;
+    const orderId = cart.id;
 
     if (!plants.length) {
       return (

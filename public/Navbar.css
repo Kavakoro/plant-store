@@ -1,20 +1,32 @@
-/* #navbar {
-  display: inline-block;
-} */
-
 #navbar {
   display: flex;
   align-items: center;
   margin-right: 5rem;
   font-size: 1.2rem;
   justify-content: space-between;
-  color: #224229;
 }
 
 #nav-links {
   display: flex;
+  align-items: center;
+}
+/* 
+#nav-links a {
+  text-decoration: underline;
+} */
+#nav-links a:hover {
+  color: rgb(189, 186, 186);
 }
 
-nav a {
+nav a:visited,
+#navbar {
+  color: white;
+}
+#navbar h1 {
+  font-size: 2.8rem;
+  font-family: 'Unna';
+  letter-spacing: 0.1rem;
+}
+#home {
   text-decoration: none;
 }
