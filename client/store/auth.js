@@ -25,7 +25,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    history.push('/home');
+    history.push('/');
     return dispatch(setAuth(res.data));
   }
 };
@@ -41,9 +41,11 @@ export const authenticate = (email, password, method) => async (dispatch) => {
   }
 };
 
-export const logout = () => {
+export const logout = (history) => {
   storage().removeItem(TOKEN);
-  history.push('/home');
+  console.log('in the logout function in the store');
+  console.log(history, 'history');
+  history.push('/');
   return {
     type: SET_AUTH,
     auth: {},

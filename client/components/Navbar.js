@@ -27,7 +27,7 @@ class Navbar extends React.Component {
     super(props);
   }
   async componentDidMount() {
-    const orderId = window.localStorage.getItem('orderId');
+    // const orderId = window.localStorage.getItem('orderId');
     if (orderId) {
       this.props.getCart(orderId);
     } else {
@@ -36,6 +36,7 @@ class Navbar extends React.Component {
     }
   }
   render() {
+    console.log('navbar rendering');
     const { handleClick, isLoggedIn } = this.props;
     return (
       <div>
@@ -52,14 +53,14 @@ class Navbar extends React.Component {
             <nav>
               <div id="navbar">
                 <div>
-                  <Link id="home" to="/home">
+                  <Link id="home" to="/">
                     <h1>Kavakoro's Plants</h1>
                   </Link>
                 </div>
                 <div id="nav-links">
                   {/* <Link to="/home">Home</Link> */}
                   {isLoggedIn ? (
-                    <a href="/home" onClick={handleClick}>
+                    <a href="/" onClick={handleClick}>
                       Logout
                     </a>
                   ) : (
@@ -93,10 +94,10 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     handleClick() {
-      dispatch(logout());
+      dispatch(logout(history));
     },
     getCart: (orderId) => dispatch(fetchCart(orderId)),
   };
