@@ -19,7 +19,7 @@
 
 ### As a logged-in customer, I want to be able to:
 
-- have a persistent cart so I can revisit and pick up where I left off.
+- DONE - have a persistent cart so I can revisit and pick up where I left off.
   - _Logged-in-user across multiple devices: I'm logged in on my mobile device and add some items to my cart. When I open the browser on my laptop and log in, I want to see those items in my cart._
   - _No one else should be able to edit my cart except me._
 
@@ -34,10 +34,10 @@
 
 ### As an engineer, I want to:
 
-- have a well-seeded database so that I am able to simulate a number of different scenarios for the user stories below.
+- DONE -have a well-seeded database so that I am able to simulate a number of different scenarios for the user stories below.
   - _By doing this, you really set yourselves up to tackle many of the points throughout the tiers. In the long run, this will save you, potentially, tons of time._
-  - _For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products._
-  - _Likewise, add a bunch of users with products in their carts so editing the cart can be worked on without already having the “add to cart” functionality built out._
+  - DONE -_For example, seed hundreds of products with dummy data so that when you get to the “pagination” user story, you won’t have to worry about adding more products._
+  - DONE -_Likewise, add a bunch of users with products in their carts so editing the cart can be worked on without already having the “add to cart” functionality built out._
 - user data to be secure so that no one can unrightfully manipulate information.
 
 ## TIER 2: E-Commerce Essentials
@@ -67,7 +67,7 @@
 
 - allow customers to have a variety of payment method options in order to increase checkout conversion.
   - _Begin by integrating Stripe, and, if interested, dive into integrating PayPal, Venmo, Braintree, or Bitcoin._
-- edit products and manage users through a dashboard so I can easily make changes and assessments as necessary.
+- DONE - edit products and manage users through a dashboard so I can easily make changes and assessments as necessary.
 
 ### As an engineer, I want:
 
