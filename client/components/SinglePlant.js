@@ -24,13 +24,13 @@ class SinglePlant extends React.Component {
   }
   async componentDidMount() {
     this.props.setPlant(this.props.match.params.plantId * 1);
-    console.log(this.props.match.params.plantId * 1);
+    //console.log(this.props.match.params.plantId * 1);
   }
 
   render() {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
-    console.log(orderId, 'orderId');
+    //console.log(orderId, 'orderId');
 
     if (!this.props.plant) {
       return null;

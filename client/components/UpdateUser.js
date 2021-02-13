@@ -12,27 +12,27 @@ class UpdateUser extends Component {
       email: this.props.user.id ? this.props.user.email : '',
       error: '',
     };
-    console.log('props', this.props);
+    //console.log('props', this.props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   // not sure if i should be mounting the state or if this is correct?
-  async componentDidMount() {
-    await console.log('props', this.props);
+  componentDidMount() {
+    //console.log('props', this.props);
     this.props.setUser(this.props.match.params.id);
     this.setState({
       //username: this.props.user.username,
       email: this.props.user.email,
     });
     const id = this.props.match.params.id;
-    console.log('id:', typeof id);
+    //console.log('id:', typeof id);
   }
 
   componentDidUpdate(prevProps) {
-    console.log('component updating is running');
+    //console.log('component updating is running');
 
     if (!prevProps.user.id && this.props.user.id) {
-      console.log('if statement running');
+      //console.log('if statement running');
       this.setState({
         // username: this.props.user.username,
         email: this.props.user.email,
@@ -47,7 +47,7 @@ class UpdateUser extends Component {
   async onSubmit(ev) {
     ev.preventDefault();
     try {
-      console.log('onSubmit');
+      //console.log('onSubmit');
       //the id is this.props.user.id and updating with the new state name
       await this.props.update(
         this.props.user.id,
@@ -103,13 +103,13 @@ class UpdateUser extends Component {
 }
 
 const mapToState = (state, otherProps) => {
-  console.log('maptostate:', state);
+  //console.log('maptostate:', state);
   const user = state.user;
   return { user };
 };
 
 const mapToDispatch = (dispatch, { history }) => {
-  console.log('this is history', history);
+  //console.log('this is history', history);
 
   return {
     setUser: (id) => {
