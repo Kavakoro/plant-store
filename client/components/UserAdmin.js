@@ -15,7 +15,7 @@ export class UserAdmin extends React.Component {
   }
 
   render() {
-    console.log('state', this.state);
+    //console.log('state', this.state);
     const { users } = this.state;
     if (!users.length) return null;
     return (
