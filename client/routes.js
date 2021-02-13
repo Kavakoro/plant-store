@@ -31,15 +31,10 @@ class Routes extends Component {
 
     return (
       <div>
-        {isLoggedIn ? (
-          // all this does is say, "hello!, email!"
-          <Route exact path="/home" component={Home} />
-        ) : (
-          ''
-        )}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={AllPlants} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/home" component={AllPlants} />
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/cart/checkout" component={Checkout} />

@@ -6,11 +6,11 @@ import '../../public/Home.css';
  * COMPONENT
  */
 export const Home = (props) => {
-  const { email } = props;
+  const { email, isLoggedIn } = props;
 
   return (
     <div id="welcome">
-      <h3>Welcome, {email}!</h3>
+      {isLoggedIn ? <h3>Welcome, {email}!</h3> : <h3>Welcome!</h3>}
     </div>
   );
 };
@@ -20,6 +20,7 @@ export const Home = (props) => {
  */
 const mapState = (state) => {
   return {
+    isLoggedIn: !!state.auth.id,
     email: state.auth.email,
   };
 };

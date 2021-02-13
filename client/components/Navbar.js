@@ -11,6 +11,7 @@ import { green } from '@material-ui/core/colors';
 // import { yellow } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 
+
 //edit orderId when every time you reseed db
 const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
 
@@ -28,6 +29,7 @@ class Navbar extends React.Component {
     super(props);
   }
   async componentDidMount() {
+
     //const orderId = window.localStorage.getItem('orderId');
     if (orderId) {
       this.props.getCart(orderId);
@@ -37,6 +39,7 @@ class Navbar extends React.Component {
     }
   }
   render() {
+    console.log('navbar rendering');
     const { handleClick, isLoggedIn } = this.props;
     return (
       <div>
@@ -53,14 +56,14 @@ class Navbar extends React.Component {
             <nav>
               <div id="navbar">
                 <div>
-                  <Link id="home" to="/home">
+                  <Link id="home" to="/">
                     <h1>Kavakoro's Plants</h1>
                   </Link>
                 </div>
                 <div id="nav-links">
                   {/* <Link to="/home">Home</Link> */}
                   {isLoggedIn ? (
-                    <a href="/home" onClick={handleClick}>
+                    <a href="/" onClick={handleClick}>
                       Logout
                     </a>
                   ) : (
@@ -94,10 +97,10 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     handleClick() {
-      dispatch(logout());
+      dispatch(logout(history));
     },
     getCart: (orderId) => dispatch(fetchCart(orderId)),
   };
