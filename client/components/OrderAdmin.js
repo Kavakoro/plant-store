@@ -36,7 +36,7 @@ export class OrderAdmin extends React.Component {
               <tr key={idx}>
                 <td>{order.id}</td>
                 <td>{order.shippingAddress}</td>
-                <td>{order.fulfilled}</td>
+                <td className="status">{order.fulfilled ? 'yes' : 'no'}</td>
                 <td>{order.total}</td>
                 <td>
                   <Link to={`/admin/Orders/update/${order.id}`}>

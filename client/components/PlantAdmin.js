@@ -45,7 +45,7 @@ export class PlantAdmin extends React.Component {
           <tbody>
             {plants.map((plant, idx) => (
               <tr key={idx}>
-                <td>{plant.id}</td>
+                <td className="id">{plant.id}</td>
                 <td>{plant.name}</td>
                 <td>{plant.description}</td>
                 <td>{plant.size}</td>
@@ -56,7 +56,7 @@ export class PlantAdmin extends React.Component {
                 <td>{plant.difficulty}</td>
                 <td className="filter">{plant.difficultyFilter}</td>
                 <td>{plant.petFriendly}</td>
-                <td className="filter">{plant.petFilter}</td>
+                <td className="filter">{plant.petFilter ? 'yes' : 'false'}</td>
                 <td>{plant.airCleaner}</td>
                 <td>{plant.img}</td>
                 <td className="inventory">{plant.inventory}</td>

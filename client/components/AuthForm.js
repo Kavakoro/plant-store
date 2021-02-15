@@ -1,11 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import { authenticate } from "../store";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import { green } from "@material-ui/core/colors";
+import React from 'react';
+import { connect } from 'react-redux';
+import { authenticate } from '../store';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { green } from '@material-ui/core/colors';
+import '../../public/AuthForm.css';
 
 const buttonTheme = createMuiTheme({
   palette: {
@@ -23,7 +24,7 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
+    <div id="authForm">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <TextField label="Email" margin="normal" name="email" type="text" />
@@ -62,16 +63,16 @@ const AuthForm = (props) => {
  */
 const mapLogin = (state) => {
   return {
-    name: "login",
-    displayName: "Login",
+    name: 'login',
+    displayName: 'Login',
     error: state.auth.error,
   };
 };
 
 const mapSignup = (state) => {
   return {
-    name: "signup",
-    displayName: "Sign Up",
+    name: 'signup',
+    displayName: 'Sign Up',
     error: state.auth.error,
   };
 };

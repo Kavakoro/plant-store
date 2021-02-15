@@ -93,6 +93,7 @@ class UpdatePlant extends Component {
         this.state.inventory
       );
     } catch (er) {
+      console.log(er.response.data, 'er.response.data');
       this.setState({ error: er });
     }
   }
@@ -103,7 +104,6 @@ class UpdatePlant extends Component {
   }
 
   render() {
-    console.log(this.state.error, 'this.state.error');
     const {
       name,
       description,
