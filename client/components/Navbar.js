@@ -34,7 +34,7 @@ class Navbar extends React.Component {
     //const orderId = window.localStorage.getItem('orderId');
     // testing orderId placeholder
     const orderId = (await axios.get('/api/test/cartid')).data;
-    //console.log(orderId);
+    console.log(orderId, 'orderId');
 
     if (orderId) {
       this.props.getCart(orderId);
@@ -44,8 +44,7 @@ class Navbar extends React.Component {
     }
   }
   render() {
-    //console.log("navbar rendering");
-    const { handleClick, isLoggedIn } = this.props;
+    const { handleClick, isLoggedIn, isAdmin } = this.props;
     return (
       <div>
         <ThemeProvider theme={navBarTheme}>
@@ -66,8 +65,7 @@ class Navbar extends React.Component {
                   </Link>
                 </div>
                 <div id="nav-links">
-                  <Link to="/admin">Admin</Link>
-
+                  {isAdmin ? <Link to="/admin">Admin</Link> : ''}
                   <Link to="/">Home</Link>
                   {isLoggedIn ? (
                     <a href="/" onClick={handleClick}>
@@ -100,7 +98,7 @@ class Navbar extends React.Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
-    // isAdmin: state.auth.isAdmin
+    isAdmin: state.auth.isAdmin,
   };
 };
 

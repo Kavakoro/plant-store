@@ -10,13 +10,12 @@ export class PlantAdmin extends React.Component {
   }
 
   async componentDidMount() {
-    const plants = (await axios.get('/api/plants')).data;
-
+    let plants = (await axios.get('/api/plants')).data;
+    plants = plants.sort((a, b) => a.id - b.id);
     this.setState({ plants });
   }
 
   render() {
-    //console.log('plantadmin rendering');
     const { plants } = this.state;
     //console.log(plants, 'plants');
     if (!plants.length) return null;
@@ -47,7 +46,7 @@ export class PlantAdmin extends React.Component {
           <tbody>
             {plants.map((plant, idx) => (
               <tr key={idx}>
-                <td>{plant.id}</td>
+                <td className="id">{plant.id}</td>
                 <td>{plant.name}</td>
                 <td>{plant.description}</td>
                 <td>{plant.size}</td>

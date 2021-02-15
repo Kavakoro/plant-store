@@ -34,9 +34,9 @@ export const updatePlant = (
   inventory,
   history
 ) => {
-  //console.log('from thunk', history);
   return async (dispatch) => {
-    //ive also messed with this and tried with/without /update at the end
+    const token = window.localStorage.getItem('token');
+
     const plant = (
       await axios.put(`/api/plants/${id}`, {
         name,
@@ -50,9 +50,32 @@ export const updatePlant = (
         price,
         inventory,
       })
+      await axios.put(
+        `/admin/plants/${id}`,
+        {
+          name,
+          description,
+          size,
+          sizeFilter,
+          light,
+          lightFilter,
+          difficulty,
+          difficultyFilter,
+          petFriendly,
+          petFilter,
+          airCleaner,
+          img,
+          price,
+          inventory,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      )
     ).data;
     dispatch(_updatePlant(plant));
-    //here too with just /plants or /plants/${id}
     history.push(`/admin/Plants`);
   };
 };

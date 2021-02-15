@@ -18,7 +18,6 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
  * THUNK CREATORS
  */
 export const me = () => async (dispatch) => {
-  //console.log('me function running');
   const token = storage().getItem(TOKEN);
   if (token) {
     //this response returns the user in our DB associated with the JWT token in localStorage
@@ -27,10 +26,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    //console.log(
-    //   res.data,
-    //   'res.data which will become auth object, which is the user object'
-    // );
+    console.log(res.data);
     history.push('/');
     return dispatch(setAuth(res.data));
   }
@@ -39,8 +35,6 @@ export const me = () => async (dispatch) => {
 export const authenticate = (email, password, method) => async (dispatch) => {
   let res;
   try {
-    //console.log('authenticate function running');
-
     res = await axios.post(`/auth/${method}`, { email, password });
     storage().setItem(TOKEN, res.data.token);
     dispatch(me());

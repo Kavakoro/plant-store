@@ -75,6 +75,7 @@ class UpdatePlant extends Component {
         this.state.inventory
       );
     } catch (er) {
+      console.log(er.response.data, 'er.response.data');
       this.setState({ error: er });
     }
   }

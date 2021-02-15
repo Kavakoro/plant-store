@@ -26,7 +26,9 @@ table {
 }
 
 td {
+  text-align: left;
   overflow: scroll;
+  text-overflow: scroll;
   margin: 0 1rem;
   white-space: nowrap;
 }
@@ -59,7 +61,9 @@ table.users {
 
 td.filter,
 td.inventory,
-td.price {
+td.price,
+td.id,
+td.status {
   text-align: center;
 }
 
