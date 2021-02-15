@@ -1,6 +1,26 @@
+#add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button button {
+  transition-duration: 0.04s;
+  color: rgb(76, 173, 76);
+}
+
+#add-button button:hover {
+  color: black;
+  background-color: rgb(76, 173, 76);
+  border: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  outline: black;
+}
+
 table {
   width: 100vw;
-  margin: 0 auto;
+  margin: 1rem auto;
   table-layout: fixed;
   white-space: nowrap;
 }
@@ -49,4 +69,24 @@ th span {
 
 td.email {
   text-align: left;
+}
+
+#add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-button button {
+  transition-duration: 0.04s;
+  color: rgb(76, 173, 76);
+}
+
+#add-button button:hover {
+  color: black;
+  background-color: rgb(76, 173, 76);
+  border: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  outline: black;
 }

@@ -1,68 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updatePlant, setPlant, destroyPlant } from '../store/singlePlant';
-import '../../public/UpdatePlant.css';
+import { createPlant } from '../store/singlePlant';
 import Button from '@material-ui/core/Button';
+import '../../public/UpdatePlant.css';
 
-class UpdatePlant extends Component {
-  constructor(props) {
-    super(props);
+class CreatePlant extends Component {
+  constructor() {
+    super();
     this.state = {
-      name: this.props.plant.id ? this.props.plant.name : '',
-      description: this.props.plant.id ? this.props.plant.description : '',
-      size: this.props.plant.id ? this.props.plant.size : '',
-      light: this.props.plant.id ? this.props.plant.light : '',
-      difficulty: this.props.plant.id ? this.props.plant.difficulty : '',
-      petFriendly: this.props.plant.id ? this.props.plant.petFriendly : '',
-      airCleaner: this.props.plant.id ? this.props.plant.airCleaner : '',
-      img: this.props.plant.id ? this.props.plant.img : '',
-      price: this.props.plant.id ? this.props.plant.price : '',
-      inventory: this.props.plant.id ? this.props.plant.inventory : '',
+      name: '',
+      description: '',
+      size: '',
+      light: '',
+      difficulty: '',
+      petFriendly: '',
+      airCleaner: '',
+      img: '/images/yellowcan.jpeg',
+      price: '',
+      inventory: '',
       error: '',
     };
-
+    console.log('state', this.state);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    await this.props.setPlant(this.props.match.params.plantId * 1);
-    this.setState({
-      name: this.props.plant.name,
-      description: this.props.plant.description,
-      size: this.props.plant.size,
-      light: this.props.plant.light,
-      difficulty: this.props.plant.difficulty,
-      petFriendly: this.props.plant.petFriendly,
-      airCleaner: this.props.plant.airCleaner,
-      img: this.props.plant.img,
-      price: this.props.plant.price,
-      inventory: this.props.plant.inventory,
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.plant.id && this.props.plant.id) {
-      this.setState({
-        name: this.props.plant.name,
-        description: this.props.plant.description,
-        size: this.props.plant.size,
-        light: this.props.plant.light,
-        difficulty: this.props.plant.difficulty,
-        petFriendly: this.props.plant.petFriendly,
-        airCleaner: this.props.plant.airCleaner,
-        img: this.props.plant.img,
-        price: this.props.plant.price,
-        inventory: this.props.plant.inventory,
-      });
-    }
+  onChange(ev) {
+    const change = {};
+    change[ev.target.name] = ev.target.value;
+    this.setState(change);
   }
 
   async onSubmit(ev) {
     ev.preventDefault();
+    //this stops state from refreshing?
     try {
-      await this.props.update(
-        this.props.plant.id,
+      await this.props.create(
         this.state.name,
         this.state.description,
         this.state.size,
@@ -75,15 +48,11 @@ class UpdatePlant extends Component {
         this.state.inventory
       );
     } catch (er) {
+      console.log('this is er', er);
       this.setState({ error: er });
     }
+    console.log('this is state', this.state);
   }
-  onChange(ev) {
-    const change = {};
-    change[ev.target.name] = ev.target.value;
-    this.setState(change);
-  }
-
   render() {
     const {
       name,
@@ -96,10 +65,9 @@ class UpdatePlant extends Component {
       img,
       price,
       inventory,
+      error,
     } = this.state;
 
-    //destroying is giving the error about performing a react state update on an unmounted component when we delete a plant?? i think its because of the state/props but im not sure how else to grab plants from state
-    const { destroy, plant } = this.props;
     const { onChange, onSubmit } = this;
 
     const one = 1;
@@ -109,16 +77,7 @@ class UpdatePlant extends Component {
 
     return (
       <form id="update-form" onSubmit={onSubmit}>
-        <h1 id="update-heading">Update Plant Details</h1>
-        <small id="delete-button">
-          <button
-            onClick={() => {
-              destroy(plant);
-            }}
-          >
-            Delete Plant
-          </button>
-        </small>
+        <h1 id="update-heading">Add Plant Details</h1>
         <p id="update-p">
           <label id="form-label">Plant Name</label>
           <input id="form-input" name="name" value={name} onChange={onChange} />
@@ -186,22 +145,30 @@ class UpdatePlant extends Component {
         </p>
         <p id="update-p">
           <label id="form-label">Plant's Pet Friendliness</label>
-          <input
+          <select
             id="form-input"
             name="petFriendly"
             value={petFriendly}
             onChange={onChange}
-          />
+          >
+            <option value="">--choose an option--</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
         </p>
 
         <p id="update-p">
           <label id="form-label">Plant's Air Cleanliness</label>
-          <input
+          <select
             id="form-input"
             name="airCleaner"
             value={airCleaner}
             onChange={onChange}
-          />
+          >
+            <option value="">--choose an option--</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
         </p>
         <p id="update-p">
           <label id="form-label">Plant Image</label>
@@ -227,7 +194,17 @@ class UpdatePlant extends Component {
         </p>
 
         <Button
-          disabled={(size && light && difficulty) === ''}
+          disabled={
+            (size &&
+              price &&
+              inventory &&
+              name &&
+              description &&
+              light &&
+              difficulty &&
+              petFriendly &&
+              airCleaner) === ''
+          }
           type="submit"
           id="update-button"
           variant="contained"
@@ -239,18 +216,10 @@ class UpdatePlant extends Component {
   }
 }
 
-const mapToState = (state, otherProps) => {
-  const plant = state.plant;
-  return { plant };
-};
-
-const mapToDispatch = (dispatch, { history }) => {
+export default connect(null, (dispatch, { history }) => {
+  console.log('history dispatch', history);
   return {
-    setPlant: (id) => {
-      return dispatch(setPlant(id));
-    },
-    update: (
-      id,
+    create: (
       name,
       description,
       size,
@@ -261,10 +230,9 @@ const mapToDispatch = (dispatch, { history }) => {
       img,
       price,
       inventory
-    ) => {
-      return dispatch(
-        updatePlant(
-          id,
+    ) =>
+      dispatch(
+        createPlant(
           name,
           description,
           size,
@@ -277,12 +245,6 @@ const mapToDispatch = (dispatch, { history }) => {
           inventory,
           history
         )
-      );
-    },
-    destroy: (plant) => {
-      dispatch(destroyPlant(plant, history));
-    },
+      ),
   };
-};
-mapToState;
-export default connect((state) => state, mapToDispatch)(UpdatePlant);
+})(CreatePlant);

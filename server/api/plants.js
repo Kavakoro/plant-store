@@ -34,4 +34,20 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-//router.delete route goes here for admin to delete a plant from the datbase -- needs to be secured as well
+router.post('/', async (req, res, next) => {
+  try {
+    res.status(201).send(await Plant.create(req.body));
+  } catch (er) {
+    next(er);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const plant = await Plant.findByPk(req.params.id);
+    await plant.destroy();
+    res.sendStatus(204);
+  } catch (er) {
+    next(er);
+  }
+});
