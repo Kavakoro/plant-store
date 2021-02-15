@@ -17,11 +17,14 @@ export const setUser = (id) => {
   };
 };
 
+// for now, this is the function for an ADMIN to update a user; we will need one for when a user updates his/her account info
+// also - we can pass in a variable that tells us api vs admin path and we can make the axios call depending on that
+// for example the call will be either /api//users/id or /admin/users/id
 export const updateUser = (id, email, history) => {
   //console.log('from thunk', id, email);
   return async (dispatch) => {
     const user = (
-      await axios.put(`/api/users/${id}`, {
+      await axios.put(`/admin/users/${id}`, {
         email,
       })
     ).data;
