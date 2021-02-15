@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { updateUser, setUser } from '../store/singleUser';
-import '../../public/UpdateUser.css';
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateUser, setUser } from "../store/singleUser";
+import "../../public/UpdateUser.css";
+import Button from "@material-ui/core/Button";
 
 class UpdateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // username: this.props.user.id ? this.props.user.username : '',
-      email: this.props.user.id ? this.props.user.email : '',
-      error: '',
+      email: this.props.user.id ? this.props.user.email : "",
+      error: "",
     };
     //console.log('props', this.props);
     this.onChange = this.onChange.bind(this);
@@ -72,7 +72,7 @@ class UpdateUser extends Component {
 
     const { onChange, onSubmit } = this;
 
-    //console.log(this.props);
+    console.log(email);
 
     return (
       <form id="userUpdate-form" onSubmit={onSubmit}>
