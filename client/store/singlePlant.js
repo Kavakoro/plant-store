@@ -36,7 +36,6 @@ export const updatePlant = (
 ) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
-
     const plant = (
       await axios.put(`/api/plants/${id}`, {
         name,
@@ -49,31 +48,10 @@ export const updatePlant = (
         img,
         price,
         inventory,
-      })
-      await axios.put(
-        `/admin/plants/${id}`,
-        {
-          name,
-          description,
-          size,
-          sizeFilter,
-          light,
-          lightFilter,
-          difficulty,
-          difficultyFilter,
-          petFriendly,
-          petFilter,
-          airCleaner,
-          img,
-          price,
-          inventory,
+        headers: {
+          authorization: token,
         },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      )
+      })
     ).data;
     dispatch(_updatePlant(plant));
     history.push(`/admin/Plants`);
