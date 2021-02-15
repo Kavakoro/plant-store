@@ -4,6 +4,7 @@ const usersSeed = [
     password: 'KfANtht',
     isAdmin: true,
   },
+  { email: 'admin@gmail.com', password: 'admin', isAdmin: true },
   {
     email: 'agreated1@ifeng.com',
     password: 'S10AMTY',

@@ -62,12 +62,12 @@ class Navbar extends React.Component {
 
                   <Link to="/">Home</Link>
                   {isLoggedIn ? (
-                    <a href="/" onClick={handleClick}>
+                    <a href="/" className="logout" onClick={handleClick}>
                       Logout
                     </a>
                   ) : (
                     <div>
-                      <span>Returning customer?</span>
+                      {/* <span>Returning customer?</span> */}
                       <Link to="/login">Login</Link>
                     </div>
                   )}
@@ -98,9 +98,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    handleClick() {
-      dispatch(logout(history));
-    },
+    handleClick: () => dispatch(logout(history)),
     getCart: (orderId) => dispatch(fetchCart(orderId)),
   };
 };
