@@ -11,11 +11,14 @@ export class PlantAdmin extends React.Component {
 
   async componentDidMount() {
     const plants = (await axios.get('/api/plants')).data;
+
     this.setState({ plants });
   }
 
   render() {
+    console.log('plantadmin rendering');
     const { plants } = this.state;
+    console.log(plants, 'plants');
     if (!plants.length) return null;
     return (
       <div id="admin-db">

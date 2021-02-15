@@ -84,7 +84,6 @@ class AllPlants extends React.Component {
   render() {
     const { plants } = this.props;
     const orderId = this.props.cart.id;
-    //console.log(orderId, 'orderId in allplants');
     if (!this.props.plants) {
       return null;
     } else {

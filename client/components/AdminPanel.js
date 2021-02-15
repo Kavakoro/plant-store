@@ -8,7 +8,7 @@ export class AdminPanel extends React.Component {
     super(props);
   }
   render() {
-    const models = [{ name: 'Users' }, { name: 'Plants' }, { name: 'Orders' }];
+    const models = [{ name: 'Users' }, { name: 'plants' }, { name: 'Orders' }];
     return (
       <div id="admin-panel">
         <h1>Admin Dashboard</h1>
@@ -16,10 +16,11 @@ export class AdminPanel extends React.Component {
           {models.map((model, idx) => (
             <Button
               key={idx}
+              component={Link}
+              to={`/admin/${model.name}`}
               variant="contained"
               type="submit"
               style={({ height: '3rem' }, { margin: '1rem' })}
-              href={`/admin/${model.name}`}
             >
               {model.name}
             </Button>

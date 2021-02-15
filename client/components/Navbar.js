@@ -11,11 +11,13 @@ import { green } from "@material-ui/core/colors";
 // import { yellow } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 
+
 // temporary axios import for testing
 import axios from "axios";
 
 //edit orderId when every time you reseed db
 // const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
+
 
 const navBarTheme = createMuiTheme({
 	palette: {
@@ -92,6 +94,7 @@ class Navbar extends React.Component {
 			</div>
 		);
 	}
+
 }
 
 /**
@@ -105,12 +108,14 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch, { history }) => {
+
 	return {
 		handleClick() {
 			dispatch(logout(history));
 		},
 		getCart: (orderId) => dispatch(fetchCart(orderId)),
 	};
+
 };
 
 export default connect(mapState, mapDispatch)(Navbar);
