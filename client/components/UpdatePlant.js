@@ -103,6 +103,7 @@ class UpdatePlant extends Component {
   }
 
   render() {
+    console.log(this.state.error, 'this.state.error');
     const {
       name,
       description,

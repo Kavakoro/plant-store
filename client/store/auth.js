@@ -26,10 +26,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    console.log(
-      res.data,
-      'res.data which will become auth object, which is the user object'
-    );
+    console.log(res.data);
     history.push('/');
     return dispatch(setAuth(res.data));
   }
@@ -38,8 +35,6 @@ export const me = () => async (dispatch) => {
 export const authenticate = (email, password, method) => async (dispatch) => {
   let res;
   try {
-    console.log('authenticate function running');
-
     res = await axios.post(`/auth/${method}`, { email, password });
     storage().setItem(TOKEN, res.data.token);
     dispatch(me());
