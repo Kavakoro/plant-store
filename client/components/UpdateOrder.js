@@ -70,7 +70,7 @@ class UpdateOrder extends Component {
           <input
             id="orderForm-input"
             name="shippingAddress"
-            value={shippingAddress}
+            value={shippingAddress || ""}
             onChange={onChange}
           />
         </p>
@@ -88,7 +88,7 @@ class UpdateOrder extends Component {
           <input
             id="orderForm-input"
             name="total"
-            value={total}
+            value={total || ""}
             onChange={onChange}
           />
         </p>
@@ -101,10 +101,10 @@ class UpdateOrder extends Component {
   }
 }
 
-const mapState = (state, otherProps) => {
-  const order = state.order;
-  return { order };
-};
+// const mapState = (state) => {
+//   const order = state.order;
+//   return { order };
+// };
 
 const mapToDispatch = (dispatch, { history }) => {
   return {
@@ -119,4 +119,4 @@ const mapToDispatch = (dispatch, { history }) => {
   };
 };
 
-export default connect(mapState, mapToDispatch)(UpdateOrder);
+export default connect((state) => state, mapToDispatch)(UpdateOrder);
