@@ -3,9 +3,12 @@
   /* flex-direction: column; */
 }
 
+#update-heading {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
 #update-p {
-  /* margin-left: 4rem; */
-  /* padding: 1rem 1rem; */
   text-align: center;
 }
 
@@ -17,6 +20,7 @@
 #form-input {
   margin: 0 1rem;
   font-size: 20px;
+  width: 30rem;
 }
 
 #update-div {
@@ -26,6 +30,27 @@
   justify-content: center;
   /* padding: 1rem 1rem; */
 }
+
+#delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#delete-button button {
+  transition-duration: 0.04s;
+  color: maroon;
+}
+
+#delete-button button:hover {
+  color: black;
+  background-color: rgb(207, 116, 116);
+  border: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  outline: black;
+}
+
 #update-button {
   background-color: rgb(252 249 243 / 65%);
   border: 1px solid rgb(6, 82, 6);

@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import {
   Login,
   Signup,
@@ -16,8 +16,9 @@ import {
   AdminPanel,
   UserAdmin,
   OrderAdmin,
-} from "./components";
-import { me } from "./store";
+  CreatePlant,
+} from './components';
+import { me } from './store';
 
 /**
  * COMPONENT
@@ -40,15 +41,16 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/admin" component={AdminPanel} />
-        <Route exact path="/admin/plants" component={PlantAdmin} />
+        <Route exact path="/admin/Plants" component={PlantAdmin} />
         <Route exact path="/admin/Users" component={UserAdmin} />
-        <Route exact path="/admin/Orders" component={OrderAdmin} />{" "}
+        <Route exact path="/admin/Orders" component={OrderAdmin} />
+        <Route exact path="/admin/Plants/createplant" component={CreatePlant} />
         <Route exact path="/admin/Users/update/:id" component={UpdateUser} />
         <Route
           exact
           path="/admin/Orders/update/:id"
           component={UpdateOrder}
-        />{" "}
+        />{' '}
         <Route
           exact
           path="/admin/Plants/update/:plantId"

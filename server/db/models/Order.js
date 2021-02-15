@@ -5,13 +5,32 @@ const { UUID, UUIDV4, BOOLEAN, STRING, INTEGER } = Sequelize;
 
 const Order = db.define('order', {
   id: {
-    //type: DataTypes.UUID,
-    //defaultValue: Sequelize.UUIDV4,
     type: UUID,
     defaultValue: UUIDV4,
     primaryKey: true,
   },
-  shippingAddress: {
+  streetAddress: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  city: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  state: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  zipCode: {
     type: STRING,
     allowNull: false,
     validate: {
