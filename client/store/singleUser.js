@@ -23,10 +23,19 @@ export const setUser = (id) => {
 export const updateUser = (id, email, history) => {
   //console.log('from thunk', id, email);
   return async (dispatch) => {
+    const token = window.localStorage.getItem('token');
     const user = (
-      await axios.put(`/admin/users/${id}`, {
-        email,
-      })
+      await axios.put(
+        `/admin/users/${id}`,
+        {
+          email,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      )
     ).data;
     dispatch(_updateUser(user));
     history.push(`/admin/Users`);

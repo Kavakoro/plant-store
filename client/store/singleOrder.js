@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 //constants
-const SET_ORDER = "SET_ORDER";
-const UPDATE_ORDER = "UPDATE_ORDER";
+const SET_ORDER = 'SET_ORDER';
+const UPDATE_ORDER = 'UPDATE_ORDER';
 
 //action creators
 const _setOrder = (order) => ({ type: SET_ORDER, order });
@@ -18,6 +18,7 @@ export const setOrder = (id) => {
   };
 };
 
+//this function is for admin to update an order in the database
 export const updateOrder = (
   id,
   shippingAddress,
@@ -26,12 +27,17 @@ export const updateOrder = (
   history
 ) => {
   return async (dispatch) => {
+    const token = window.localStorage.getItem('token');
     const order = (
-      await axios.put(`/api/orders/${id}`, {
-        shippingAddress,
-        fullfilled,
-        total,
-      })
+      await axios.put(
+        `/admin/orders/${id}`,
+        {
+          shippingAddress,
+          fullfilled,
+          total,
+        },
+        { headers: { authorization: token } }
+      )
     ).data;
     dispatch(_updateOrder(order));
     history.push(`/admin/Orders`);

@@ -32,7 +32,7 @@ router.put('/plants/:id', isLoggedIn, isAdmin, async (req, res, next) => {
 });
 
 //the route for an admin to delete a plant from the database
-router.delete('/plants/:id', async (req, res, next) => {
+router.delete('/plants/:id', isAdmin, async (req, res, next) => {
   try {
     const plant = Plant.findByPk(req.params.id);
     await plant.destroy();
@@ -43,10 +43,21 @@ router.delete('/plants/:id', async (req, res, next) => {
 });
 
 // the route for an admin to update a user in the database
-router.put('/users/:id', async (req, res, next) => {
+router.put('/users/:id', isAdmin, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.status(201).send(await user.update(req.body));
+  } catch (err) {
+    next(err);
+  }
+});
+
+// the route for an admin to update an order in the database
+router.put('/orders/:id', isAdmin, async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.id);
+    console.log(order, 'order');
+    res.send(await order.update(req.body));
   } catch (err) {
     next(err);
   }
