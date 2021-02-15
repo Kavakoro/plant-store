@@ -1,17 +1,17 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { User },
-} = require('../db');
+} = require("../db");
 
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email'],
+      attributes: ["id", "email"],
     });
     res.json(users);
   } catch (err) {
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const user = await User.findByPk(id);
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.status(201).send(await user.update(req.body));

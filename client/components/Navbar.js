@@ -1,25 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
-import AppBar from '@material-ui/core/AppBar';
-import '../../public/Navbar.css';
-import { fetchCart } from '../store/cart';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { green } from '@material-ui/core/colors';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
+import AppBar from "@material-ui/core/AppBar";
+import "../../public/Navbar.css";
+import { fetchCart } from "../store/cart";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { green } from "@material-ui/core/colors";
 // import { yellow } from "@material-ui/core/colors";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
+// temporary axios import for testing
+import axios from "axios";
 
 //edit orderId when every time you reseed db
-const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
+// const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
 
 const navBarTheme = createMuiTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: '#224229',
+      main: "#224229",
     },
   },
 });
@@ -29,17 +31,20 @@ class Navbar extends React.Component {
     super(props);
   }
   async componentDidMount() {
-
     //const orderId = window.localStorage.getItem('orderId');
+    // testing orderId placeholder
+    const orderId = (await axios.get("/api/test/cartid")).data;
+    console.log(orderId);
+
     if (orderId) {
       this.props.getCart(orderId);
     } else {
-      window.localStorage.setItem('orderId', orderId);
+      window.localStorage.setItem("orderId", orderId);
       this.props.getCart(orderId);
     }
   }
   render() {
-    console.log('navbar rendering');
+    console.log("navbar rendering");
     const { handleClick, isLoggedIn } = this.props;
     return (
       <div>
@@ -48,9 +53,9 @@ class Navbar extends React.Component {
             position="static"
             color="primary"
             style={{
-              height: '6rem',
-              display: 'flex',
-              justifyContent: 'center',
+              height: "6rem",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <nav>

@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 //action creators
 
-const SET_CART = 'SET_CART';
-const DELETE_ITEM = 'DELETE_ITEM';
-const ADD_TO_CART = 'ADD_TO_CART';
-const UPDATE_CART = 'UPDATE_CART';
+const SET_CART = "SET_CART";
+const DELETE_ITEM = "DELETE_ITEM";
+const ADD_TO_CART = "ADD_TO_CART";
+const UPDATE_CART = "UPDATE_CART";
 
 //action creators //
 const setCart = (cart) => ({ type: SET_CART, cart });
@@ -21,12 +21,12 @@ export const fetchCart = (orderId) => {
   };
 };
 export const updateCart = (orderId, plantId, amount) => {
-  console.log(orderId, 'orderId in put request in store');
-  console.log(plantId, 'plantId for put request in store');
+  console.log(orderId, "orderId in put request in store");
+  console.log(plantId, "plantId for put request in store");
   return async (dispatch) => {
     const cart = (await axios.put(`api/cart/${orderId}`, { plantId, amount }))
       .data;
-    console.log(cart, 'cart in redux store returned from api');
+    console.log(cart, "cart in redux store returned from api");
     dispatch(_updateCart(cart));
   };
 };
@@ -46,7 +46,6 @@ export const deleteItem = (orderId, plantId) => {
 
 export const addToCart = (orderId, plantId) => {
   return async (dispatch) => {
-    console.log(orderId, plantId, 'order Id and plantId');
     const plants = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
     dispatch(_addToCart(plants));
   };
@@ -60,7 +59,7 @@ export const checkout = (orderId, address) => {
 };
 
 //cart reducer
-export function cartReducer(state = { id: '', plants: [] }, action) {
+export function cartReducer(state = { id: "", plants: [] }, action) {
   if (action.type === SET_CART) {
     return action.cart;
   }

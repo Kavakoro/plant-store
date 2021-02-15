@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import '../../public/SinglePlant.css';
-import { setPlant } from '../store/singlePlant';
+import React from "react";
+import { connect } from "react-redux";
+import "../../public/SinglePlant.css";
+import { setPlant } from "../store/singlePlant";
 // import { Link } from "react-router-dom";
-import AddToCart from './AddToCart';
-import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { green } from '@material-ui/core/colors';
+import AddToCart from "./AddToCart";
+import Button from "@material-ui/core/Button";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { green } from "@material-ui/core/colors";
 
 // const buttonTheme = createMuiTheme({
 //   palette: {
@@ -24,13 +24,11 @@ class SinglePlant extends React.Component {
   }
   async componentDidMount() {
     this.props.setPlant(this.props.match.params.plantId * 1);
-    //console.log(this.props.match.params.plantId * 1);
   }
 
   render() {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
-    //console.log(orderId, 'orderId');
 
     if (!this.props.plant) {
       return null;

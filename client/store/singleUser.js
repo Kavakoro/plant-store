@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 //constants
-const SET_USER = 'SET_USER';
-const UPDATE_USER = 'UPDATE_USER';
+const SET_USER = "SET_USER";
+const UPDATE_USER = "UPDATE_USER";
 
 //action creators
 const _setUser = (user) => ({ type: SET_USER, user });
@@ -18,7 +18,7 @@ export const setUser = (id) => {
 };
 
 export const updateUser = (id, email, history) => {
-  //console.log('from thunk', id, email);
+  console.log("from thunk", id, email);
   return async (dispatch) => {
     const user = (
       await axios.put(`/api/users/${id}`, {

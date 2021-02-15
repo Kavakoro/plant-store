@@ -1,8 +1,8 @@
-import React from 'react';
-import '../public/App.css';
+import React from "react";
+import "../public/App.css";
 
-import { Navbar } from './components';
-import Routes from './routes';
+import { Navbar } from "./components";
+import Routes from "./routes";
 
 const App = () => {
   return (

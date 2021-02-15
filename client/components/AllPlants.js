@@ -1,9 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import '../../public/AllPlants.css';
-import { fetchPlants } from '../store/plants';
-import { Link } from 'react-router-dom';
-import AddToCart from './AddToCart';
+import React from "react";
+import { connect } from "react-redux";
+import "../../public/AllPlants.css";
+import { fetchPlants } from "../store/plants";
+import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart";
+import { createCart } from "../store/cart";
 
 /* export const plants = [
   {
@@ -78,6 +79,11 @@ class AllPlants extends React.Component {
     super(props);
   }
   async componentDidMount() {
+    // const { cart } = this.props;
+    // if (!cart.id) {
+    //   // await this.props.createCart("testUser");
+    // }
+
     await this.props.getPlants();
   }
 
@@ -110,9 +116,17 @@ class AllPlants extends React.Component {
   }
 }
 
+// const mapState = (state) => {
+//   return {
+//     cart: state.cart,
+//     plants: state.plants,
+//   };
+// };
+
 const mapDispatch = (dispatch) => {
   return {
     getPlants: () => dispatch(fetchPlants()),
+    createCart: (userId) => dispatch(createCart(userId)),
   };
 };
 

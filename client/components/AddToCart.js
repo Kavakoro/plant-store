@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { addToCart } from '../store/cart';
-import Button from '@material-ui/core/Button';
-import { Snackbar } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import React from "react";
+import { connect } from "react-redux";
+import { addToCart } from "../store/cart";
+import Button from "@material-ui/core/Button";
+import { Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class AddToCart extends React.Component {
   render() {
     const { cart, plantId, addToCart } = this.props;
     const orderId = cart.id;
+    console.log(orderId);
     const { open } = this.state;
     const { handleClose, handleClick } = this;
     return (
@@ -35,8 +36,8 @@ class AddToCart extends React.Component {
           Add To Cart
         </Button>
         <Snackbar
-          style={{ padding: '2rem' }}
-          anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+          style={{ padding: "2rem" }}
+          anchorOrigin={{ horizontal: "center", vertical: "top" }}
           open={open}
           message="Plant added to cart!"
           autoHideDuration={2000}

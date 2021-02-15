@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 //constants
-const SET_PLANT = 'SET_PLANT';
-const UPDATE_PLANT = 'UPDATE_PLANT';
+const SET_PLANT = "SET_PLANT";
+const UPDATE_PLANT = "UPDATE_PLANT";
 
 //action creators
 const _setPlant = (plant) => ({ type: SET_PLANT, plant });
@@ -35,9 +35,7 @@ export const updatePlant = (
   inventory,
   history
 ) => {
-  //console.log('from thunk', history);
   return async (dispatch) => {
-    //ive also messed with this and tried with/without /update at the end
     const plant = (
       await axios.put(`/api/plants/${id}`, {
         name,
@@ -57,7 +55,6 @@ export const updatePlant = (
       })
     ).data;
     dispatch(_updatePlant(plant));
-    //here too with just /plants or /plants/${id}
     history.push(`/admin/Plants`);
   };
 };

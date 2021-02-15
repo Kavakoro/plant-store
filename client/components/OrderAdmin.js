@@ -1,7 +1,7 @@
-import axios from 'axios';
-import React from 'react';
-import '../../public/PlantAdmin.css';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import React from "react";
+import "../../public/PlantAdmin.css";
+import { Link } from "react-router-dom";
 
 export class OrderAdmin extends React.Component {
   constructor() {
@@ -10,7 +10,7 @@ export class OrderAdmin extends React.Component {
   }
 
   async componentDidMount() {
-    const orders = (await axios.get('/api/orders')).data;
+    const orders = (await axios.get("/api/orders")).data;
     this.setState({ orders });
   }
 
