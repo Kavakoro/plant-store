@@ -39,7 +39,7 @@ export const updatePlant = (
   return async (dispatch) => {
     //ive also messed with this and tried with/without /update at the end
     const plant = (
-      await axios.put(`/api/plants/${id}`, {
+      await axios.put(`/admin/plants/${id}`, {
         name,
         description,
         size,
@@ -56,6 +56,7 @@ export const updatePlant = (
         inventory,
       })
     ).data;
+    console.log(plant, 'plant returned from /admin/plants/id put request');
     dispatch(_updatePlant(plant));
     //here too with just /plants or /plants/${id}
     history.push(`/admin/Plants`);

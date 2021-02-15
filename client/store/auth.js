@@ -18,7 +18,6 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
  * THUNK CREATORS
  */
 export const me = () => async (dispatch) => {
-  console.log('me function running');
   const token = storage().getItem(TOKEN);
   if (token) {
     //this response returns the user in our DB associated with the JWT token in localStorage

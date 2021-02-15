@@ -23,15 +23,4 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//ive messes with this and also tried /:id
-//need to secure this route for onlyl an admin to be able to access
-router.put('/:id', async (req, res, next) => {
-  try {
-    const plant = await Plant.findByPk(req.params.id);
-    res.status(201).send(await plant.update(req.body));
-  } catch (er) {
-    next(er);
-  }
-});
-
 //router.delete route goes here for admin to delete a plant from the datbase -- needs to be secured as well
