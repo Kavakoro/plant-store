@@ -38,20 +38,16 @@ class Navbar extends React.Component {
 
     //first check localstorage for an orderId
     const orderId = window.localStorage.getItem('orderId') || null;
-    console.log(orderId, 'orderId');
-    //if we have an orderId, fetch cart using orderId and pass in a userId if in state, or null if not
+    //if we have an orderId, fetch cart using orderId - pass in a userId if user logged in, or null if not
     const userId = this.props.auth.id || null;
-    console.log(userId, 'userId before fetching cart');
-
     this.props.getCart(orderId, userId);
   }
   async componentDidUpdate(prevProps) {
-    //if someone logged in from previously being not logged in
+    //if someone logs in and was previously not logged in
     if (!prevProps.auth.id && this.props.auth.id) {
       const guestPlants = this.props.cart.plants;
-      console.log(guestPlants, 'guest plants');
       //fetch cart with userId === auth.id and orderId = null,
-      //this will return a cart with items from prev order or empty cart
+      //this returns a cart with items from prev unfullfilled order if it exists, or if not, it returns an empty cart
       //this will set in localStorage a new orderId - the one associated with the loggedIn user
       await this.props.getCart(null, this.props.auth.id);
       const userPlants = this.props.cart.plants;
@@ -63,8 +59,8 @@ class Navbar extends React.Component {
           //if there is a match, update the lineitem for that user and orderId with the new plant quantity
           this.props.update(this.props.cart.id, plant.id, total);
         } else {
+          //bc of the logic in the api, had to first add the plant to the cart, then update it to avoid redoing a lot of logic
           await this.props.add(this.props.cart.id, plant.id);
-          console.log(plant.lineitem.amount, 'plant lineitem amount');
           this.props.update(
             this.props.cart.id,
             plant.id,
@@ -76,7 +72,6 @@ class Navbar extends React.Component {
   }
   render() {
     const orderId = localStorage.getItem('orderId');
-    console.log(orderId, 'order Id before navbar rendered');
     const { handleClick, isLoggedIn, isAdmin } = this.props;
     return (
       <div>
