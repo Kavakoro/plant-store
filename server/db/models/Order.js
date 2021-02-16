@@ -9,13 +9,9 @@ const Order = db.define('order', {
     defaultValue: UUIDV4,
     primaryKey: true,
   },
-  firstName: {
+  shipTo: {
     type: STRING,
     // allowNull: true,
-  },
-  lastName: {
-    type: STRING,
-    //allowNull: true,
   },
   streetAddress: {
     type: STRING,

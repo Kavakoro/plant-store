@@ -9,8 +9,7 @@ class UpdateOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: this.props.order.id ? this.props.order.firstName : '',
-      lastName: this.props.order.id ? this.props.order.lastName : '',
+      shipTo: this.props.order.id ? this.props.order.shipTo : '',
       streetAddress: this.props.order.id ? this.props.order.streetAddress : '',
       state: this.props.order.id ? this.props.order.state : '',
       city: this.props.order.id ? this.props.order.city : '',
@@ -26,8 +25,7 @@ class UpdateOrder extends Component {
   async componentDidMount() {
     await this.props.setOrder(this.props.match.params.id);
     this.setState({
-      firstName: this.props.order.firstName,
-      lastName: this.props.order.lastName,
+      shipTo: this.props.order.shipTo,
       streetAddress: this.props.order.streetAddress,
       state: this.props.order.state,
       city: this.props.order.city,
@@ -40,8 +38,7 @@ class UpdateOrder extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.order.id && this.props.order.id) {
       this.setState({
-        firstName: this.props.order.firstName,
-        lastName: this.props.order.lastName,
+        shipTo: this.props.order.shipTo,
         streetAddress: this.props.order.streetAddress,
         state: this.props.order.state,
         city: this.props.order.city,
@@ -57,8 +54,7 @@ class UpdateOrder extends Component {
     try {
       await this.props.update(
         this.props.order.id,
-        this.state.firstName,
-        this.state.lastName,
+        this.state.shipTo,
         this.state.streetAddress,
         this.state.state,
         this.state.city,
@@ -80,8 +76,7 @@ class UpdateOrder extends Component {
 
   render() {
     const {
-      firstName,
-      lastName,
+      shipTo,
       streetAddress,
       state,
       city,
@@ -96,23 +91,15 @@ class UpdateOrder extends Component {
       <form id="orderUpdate-form" onSubmit={onSubmit}>
         <h1 id="update-heading">Update Order Details</h1>
         <p id="orderUpdate-p">
-          <label id="orderForm-label">First Name</label>
+          <label id="orderForm-label">Ship To</label>
           <input
             id="orderForm-input"
-            name="firstName"
-            value={firstName}
+            name="shipTo"
+            value={shipTo}
             onChange={onChange}
           />
         </p>
-        <p id="orderUpdate-p">
-          <label id="orderForm-label">Last Name</label>
-          <input
-            id="orderForm-input"
-            name="lastName"
-            value={lastName}
-            onChange={onChange}
-          />
-        </p>
+
         <p id="orderUpdate-p">
           <label id="orderForm-label">Street Address</label>
           <input
@@ -150,7 +137,7 @@ class UpdateOrder extends Component {
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="orderForm-label">Fullfilled</label>
+          <label id="orderForm-label">Fullfilled (YES/NO) ?</label>
           <input
             id="orderForm-input"
             name="fullfilled"
@@ -188,8 +175,7 @@ const mapToDispatch = (dispatch, { history }) => {
     },
     update: (
       id,
-      firstName,
-      lastName,
+      shipTo,
       streetAddress,
       state,
       city,
@@ -200,8 +186,7 @@ const mapToDispatch = (dispatch, { history }) => {
       return dispatch(
         updateOrder(
           id,
-          firstName,
-          lastName,
+          shipTo,
           streetAddress,
           state,
           city,

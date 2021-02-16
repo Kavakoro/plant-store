@@ -6,7 +6,7 @@ const User = require('./models/User');
 const Plant = require('./models/Plant');
 const Order = require('./models/Order');
 const LineItem = require('./models/LineItem');
-const ordersSeed = require('./orderSeed');
+//const ordersSeed = require('./orderSeed');
 const usersSeed = require('./userSeed');
 const plantsSeed = require('./plantSeed');
 //associations could go here!
@@ -21,12 +21,54 @@ const syncAndSeed = async () => {
   await db.sync({ force: true });
 
   const users = await Promise.all([
-    User.create({ email: 'cody@email.com', password: '123' }),
-    User.create({ email: 'murphy@email.com', password: '4321' }),
-    User.create({ email: 'kate@gmail.com', password: 'ballislyf' }),
-    User.create({ email: 'nes@gmail.com', password: 'nesisthebest' }),
-    User.create({ email: 'kokko@gmail.com', password: 'kokkooo' }),
-    User.create({ email: 'rommel@gmail.com', password: 'password' }),
+    User.create({
+      firstName: 'Marshall',
+      lastName: 'Redmile',
+      phoneNumber: '824-191-7176',
+      birthdate: '02/03/1938',
+      email: 'cody@email.com',
+      password: '123',
+    }),
+    User.create({
+      firstName: 'Twyla',
+      lastName: 'Dunsmuir',
+      phoneNumber: '786-575-5376',
+      birthdate: '02/22/1977',
+      email: 'murphy@email.com',
+      password: '4321',
+    }),
+    User.create({
+      firstName: 'Alexandrina',
+      lastName: 'Kurton',
+      phoneNumber: '677-460-2616',
+      birthdate: '01/19/1999',
+      email: 'kate@gmail.com',
+      password: 'ballislyf',
+    }),
+    User.create({
+      firstName: 'Knox',
+      lastName: 'Fetterplace',
+      phoneNumber: '970-332-5313',
+      birthdate: '12/24/1912',
+      email: 'nes@gmail.com',
+      password: 'nesisthebest',
+    }),
+    User.create({
+      firstName: 'Sargent',
+      lastName: 'McKinnell',
+      phoneNumber: '751-859-8487',
+      birthdate: '01/19/1974',
+      email: 'kokko@gmail.com',
+      password: 'kokkooo',
+    }),
+    User.create({
+      firstName: 'Bartolemo',
+      lastName: 'Agglio',
+      phoneNumber: '356-482-1361',
+      birthdate: '05/22/1938',
+      email: 'rommel@gmail.com',
+      password: 'password',
+    }),
   ]);
 
   const [cody, murphy, kate, nes, kokko, rommel] = users;
@@ -376,63 +418,57 @@ const syncAndSeed = async () => {
 
   //seed orders
   const order1 = await Order.create({
-    firstName: 'Gail',
-    lastName: 'Wreight',
+    shipTo: 'Vanessa L',
     streetAddress: '65 Spenser Trail',
     state: 'Alabama',
     city: 'Huntsville',
     zipCode: '35805',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
   const order2 = await Order.create({
-    firstName: 'Wanda',
-    lastName: 'Willoughey',
+    shipTo: 'Kokko T',
     streetAddress: '15 Dorton Way',
     state: 'California',
     city: 'Van Nuys',
     zipCode: '91499',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
   const order3 = await Order.create({
-    firstName: 'Quintilla',
-    lastName: 'Larciere',
+    shipTo: 'Momma T',
     streetAddress: '482 Dawn Junction',
     state: 'Ohio',
     city: 'Columbus',
     zipCode: '43215',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
   const order4 = await Order.create({
-    firstName: 'Deedee',
-    lastName: 'Welbrock',
+    shipTo: 'Rommel D',
     streetAddress: '210 Upham Circle',
     state: 'Texas',
     city: 'Houston',
     zipCode: '77060',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
   const order5 = await Order.create({
-    firstName: 'Aridatha',
-    lastName: 'Lorentzen',
+    shipTo: 'Kate Q',
     streetAddress: '042 Bartelt Drive',
     state: 'West Virginia',
     city: 'Huntington',
     zipCode: '25705',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
   const order6 = await Order.create({
-    firstName: 'Kristan',
-    lastName: 'Dawney',
+    shipTo: 'Pops Q',
     streetAddress: '24 Northport Terrace',
     state: 'Florida',
     city: 'Panama City',
     zipCode: '32412',
-    fullfilled: 'no',
+    fullfilled: false,
     total: 0,
   });
 
