@@ -21,7 +21,10 @@ export const setOrder = (id) => {
 //this function is for admin to update an order in the database
 export const updateOrder = (
   id,
-  shippingAddress,
+  streetAddress,
+  state,
+  city,
+  zipCode,
   fullfilled,
   total,
   history
@@ -32,7 +35,10 @@ export const updateOrder = (
       await axios.put(
         `/admin/orders/${id}`,
         {
-          shippingAddress,
+          streetAddress,
+          state,
+          city,
+          zipCode,
           fullfilled,
           total,
         },
