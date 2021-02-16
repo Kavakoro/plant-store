@@ -19,8 +19,6 @@ router.use(async (req, res, next) => {
   }
 });
 
-//  /admin/plants/:plantId
-
 //the route for an admin to update a plant in the database
 router.put('/plants/:id', isLoggedIn, isAdmin, async (req, res, next) => {
   try {

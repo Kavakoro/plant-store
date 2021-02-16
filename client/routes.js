@@ -27,7 +27,9 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
   }
-
+  componentDidUpdate(prevProps) {
+    console.log('route component updated');
+  }
   render() {
     const { isLoggedIn } = this.props;
 
