@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const {
-  models: { Plant, Order, LineItem },
+  models: { Plant, Order, LineItem, User },
 } = require('../db');
 module.exports = router;
 
+// check if orderId has an associated userId
 router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId;
+    const user = await User.findByPk(req.body.userId);
     const order = await Order.findByPk(orderId);
     const plants = await order.getPlants();
 

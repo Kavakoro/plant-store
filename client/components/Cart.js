@@ -120,7 +120,7 @@ class Cart extends React.Component {
                   <div className="column space-between">
                     <span>${plant.price.toFixed(2)}</span>
                     <button
-                      onClick={() => this.props.deleteItem(id, plant.id)}
+                      onClick={() => this.props.deleteItem(orderId, plant.id)}
                       className="remove"
                     >
                       REMOVE

@@ -81,13 +81,20 @@ td.email {
   align-items: center;
 }
 
+#add-button a {
+  color: rgb(76, 173, 76);
+}
+#add-button a:hover {
+  color: white;
+}
 #add-button button {
+  background-color: #fcf9f3;
   transition-duration: 0.04s;
   color: rgb(76, 173, 76);
 }
 
 #add-button button:hover {
-  color: black;
+  color: white;
   background-color: rgb(76, 173, 76);
   border: black;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
