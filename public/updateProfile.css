@@ -1,0 +1,38 @@
+#accountUpdate-form {
+  margin: 1rem;
+  /* flex-direction: column; */
+}
+
+#accountUpdate-p {
+  /* margin-left: 4rem; */
+  /* padding: 1rem 1rem; */
+  text-align: center;
+}
+
+#accountform-label {
+  font-size: 1.5rem;
+  padding: 0 1rem 3px 1rem;
+}
+
+#accountform-input {
+  margin: 0 1rem;
+  font-size: 20px;
+}
+
+#accountUpdate-button {
+  background-color: rgb(252 249 243 / 65%);
+  border: 1px solid rgb(6, 82, 6);
+  height: 2.5rem;
+  position: relative;
+  top: 80%;
+  font-size: 1.1rem;
+  left: 25%;
+  width: 55%;
+}
+/* #all-plants button.active {
+  visibility: visible;
+} */
+#accountUpdate-button button:hover {
+  width: 30px;
+  background-color: #fcf9f3;
+}

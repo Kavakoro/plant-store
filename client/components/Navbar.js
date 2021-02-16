@@ -1,18 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logout } from '../store';
-import AppBar from '@material-ui/core/AppBar';
-import '../../public/Navbar.css';
-import { fetchCart, updateCart, addToCart } from '../store/cart';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { green } from '@material-ui/core/colors';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
+import AppBar from "@material-ui/core/AppBar";
+import "../../public/Navbar.css";
+import { fetchCart, updateCart, addToCart } from "../store/cart";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { green } from "@material-ui/core/colors";
 // import { yellow } from "@material-ui/core/colors";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
 // temporary axios import for testing
-import axios from 'axios';
+import axios from "axios";
 
 //edit orderId when every time you reseed db
 // const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
@@ -21,7 +21,7 @@ const navBarTheme = createMuiTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: '#224229',
+      main: "#224229",
     },
   },
 });
@@ -37,7 +37,7 @@ class Navbar extends React.Component {
     // console.log(orderId, 'orderId');
 
     //first check localstorage for an orderId
-    const orderId = window.localStorage.getItem('orderId') || null;
+    const orderId = window.localStorage.getItem("orderId") || null;
     //if we have an orderId, fetch cart using orderId - pass in a userId if user logged in, or null if not
     const userId = this.props.auth.id || null;
     this.props.getCart(orderId, userId);
@@ -71,7 +71,7 @@ class Navbar extends React.Component {
     }
   }
   render() {
-    const orderId = localStorage.getItem('orderId');
+    const orderId = localStorage.getItem("orderId");
     const { handleClick, isLoggedIn, isAdmin } = this.props;
     return (
       <div>
@@ -80,9 +80,9 @@ class Navbar extends React.Component {
             position="static"
             color="primary"
             style={{
-              height: '6rem',
-              display: 'flex',
-              justifyContent: 'center',
+              height: "6rem",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <nav>
@@ -93,12 +93,15 @@ class Navbar extends React.Component {
                   </Link>
                 </div>
                 <div id="nav-links">
-                  {isAdmin ? <Link to="/admin">Admin</Link> : ''}
+                  {isAdmin ? <Link to="/admin">Admin</Link> : ""}
                   <Link to="/">Home</Link>
                   {isLoggedIn ? (
-                    <a href="/" onClick={handleClick}>
-                      Logout
-                    </a>
+                    <div>
+                      <a href="/" onClick={handleClick}>
+                        Logout
+                      </a>
+                      <Link to="/updateprofile">Account Profile</Link>
+                    </div>
                   ) : (
                     <div>
                       <span>Returning customer?</span>

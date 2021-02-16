@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import {
   Login,
   Signup,
@@ -12,13 +12,14 @@ import {
   UpdatePlant,
   UpdateUser,
   UpdateOrder,
+  UpdateProfile,
   PlantAdmin,
   AdminPanel,
   UserAdmin,
   OrderAdmin,
   CreatePlant,
-} from './components';
-import { me } from './store';
+} from "./components";
+import { me } from "./store";
 
 /**
  * COMPONENT
@@ -28,7 +29,7 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
   componentDidUpdate(prevProps) {
-    console.log('route component updated');
+    console.log("route component updated");
   }
   render() {
     const { isLoggedIn } = this.props;
@@ -48,11 +49,12 @@ class Routes extends Component {
         <Route exact path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/admin/Plants/createplant" component={CreatePlant} />
         <Route exact path="/admin/Users/update/:id" component={UpdateUser} />
+        <Route exact path="/updateprofile" component={UpdateProfile} />
         <Route
           exact
           path="/admin/Orders/update/:id"
           component={UpdateOrder}
-        />{' '}
+        />{" "}
         <Route
           exact
           path="/admin/Plants/update/:plantId"
