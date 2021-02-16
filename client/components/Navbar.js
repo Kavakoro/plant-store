@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import AppBar from '@material-ui/core/AppBar';
 import '../../public/Navbar.css';
-import { fetchCart } from '../store/cart';
+import { fetchCart, updateCart, addToCart } from '../store/cart';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { green } from '@material-ui/core/colors';
@@ -55,11 +55,21 @@ class Navbar extends React.Component {
       console.log(guestPlants, 'guest plants');
       //fetch cart with userId === auth.id and orderId = null,
       //this will return a cart with items from prev order or empty cart
-      await this.props.getCart(null, this.props.auth.id);
-      const userCart = this.props.cart;
       //this will set in localStorage a new orderId - the one associated with the loggedIn user
-      console.log(userCart, 'users cart');
-      const userPlants = userCart.plants;
+      await this.props.getCart(null, this.props.auth.id);
+      const userPlants = this.props.cart.plants;
+      guestPlants.forEach((plant) => {
+        //see if there is a match of plants between carts
+        const match = userPlants.find((_plant) => plant.id === _plant.id);
+        if (match) {
+          let total = plant.lineitem.amount + _plant.lineitem.amount; //total quantity of that plant between guest and user cart
+          //if there is a match, update the lineitem for that user and orderId with the new plant quantity
+          this.props.update(this.props.cart.id, plant.id, total);
+        } else {
+          //the plant from guest cart is not in the userCart --  add it to the userCart
+          this.props.add(this.props.cart.id, plant.id);
+        }
+      });
     }
   }
   render() {
@@ -131,6 +141,9 @@ const mapDispatch = (dispatch) => {
       dispatch(logout());
     },
     getCart: (orderId, userId) => dispatch(fetchCart(orderId, userId)),
+    update: (orderId, plantId, amount) =>
+      dispatch(updateCart(orderId, plantId, amount)),
+    add: (orderId, plantId) => dispatch(addToCart(orderId, plantId)),
   };
 };
 
