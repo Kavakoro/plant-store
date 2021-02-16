@@ -52,7 +52,7 @@ class Cart extends React.Component {
     const cart = this.props.cart;
     if (!cart) {
       const orderId = window.localStorage.getItem('orderId');
-      this.props.getCart(orderId);
+      this.props.getCart(orderId, this.props.auth.id);
     }
   }
 
@@ -148,14 +148,9 @@ class Cart extends React.Component {
   }
 }
 
-// const mapState = (state, otherProps) => {
-//   const { auth } = state;
-//   return { auth };
-// };
-
 const mapDispatch = (dispatch) => {
   return {
-    getCart: (orderId) => dispatch(fetchCart(orderId)),
+    getCart: (orderId) => dispatch(fetchCart(orderId, userId)),
     updateCart: (orderId, plantId, amount) =>
       dispatch(updateCart(orderId, plantId, amount)),
     createCart: (userId) => dispatch(createCart(userId)),
