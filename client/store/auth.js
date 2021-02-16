@@ -26,7 +26,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    console.log(res.data);
+    //is this where we merge the cart?
     history.push('/');
     return dispatch(setAuth(res.data));
   }
@@ -44,7 +44,8 @@ export const authenticate = (email, password, method) => async (dispatch) => {
 };
 
 export const logout = () => {
-  storage().removeItem(TOKEN);
+  // storage().removeItem(TOKEN);
+  storage().clear();
   return {
     type: SET_AUTH,
     auth: {},
