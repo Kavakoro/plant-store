@@ -1,19 +1,45 @@
-import axios from 'axios';
+import axios from "axios";
 
 //constants
-const SET_USER = 'SET_USER';
-const UPDATE_USER = 'UPDATE_USER';
+const SET_USER = "SET_USER";
+const UPDATE_USER = "UPDATE_USER";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
 
-//action creators
 const _setUser = (user) => ({ type: SET_USER, user });
+const _updateProfile = (user) => ({ type: UPDATE_PROFILE, user });
 
-const _updateUser = (user) => ({ type: UPDATE_USER, user });
+// thunk middleware functions
 
-//thunk middleware functions
 export const setUser = (id) => {
+  console.log(id);
   return async (dispatch) => {
     const user = (await axios.get(`/api/users/${id}`)).data;
     dispatch(_setUser(user));
+  };
+};
+
+export const updateProfile = (
+  id,
+  firstName,
+  lastName,
+  phoneNumber,
+  birthdate,
+  email,
+  history
+) => {
+  // console.log("this is profileUpdate", id);
+  return async (dispatch) => {
+    const user = (
+      await axios.put(`/api/users/${id}`, {
+        firstName,
+        lastName,
+        phoneNumber,
+        birthdate,
+        email,
+      })
+    ).data;
+    dispatch(_updateProfile(user));
+    history.push(`/`);
   };
 };
 
@@ -32,7 +58,7 @@ export const updateUser = (
 ) => {
   //console.log('from thunk', id, email);
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = window.localStorage.getItem("token");
     const user = (
       await axios.put(`/api/users/${id}`, {
         firstName,
@@ -56,6 +82,9 @@ export function singleUserReducer(state = {}, action) {
     return action.user;
   }
   if (action.type === UPDATE_USER) {
+    return action.user;
+  }
+  if (action.type === UPDATE_PROFILE) {
     return action.user;
   }
 
