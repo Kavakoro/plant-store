@@ -46,9 +46,6 @@ class Navbar extends React.Component {
     this.props.getCart(orderId, userId);
   }
   async componentDidUpdate(prevProps) {
-    console.log(prevProps.auth.id, 'prevProps.auth.id');
-    console.log(this.props.auth.id, 'this.props.auth.id');
-
     //if someone logged in from previously being not logged in
     if (!prevProps.auth.id && this.props.auth.id) {
       const guestPlants = this.props.cart.plants;
@@ -58,7 +55,7 @@ class Navbar extends React.Component {
       //this will set in localStorage a new orderId - the one associated with the loggedIn user
       await this.props.getCart(null, this.props.auth.id);
       const userPlants = this.props.cart.plants;
-      guestPlants.forEach((plant) => {
+      guestPlants.forEach(async (plant) => {
         //see if there is a match of plants between carts
         const match = userPlants.find((_plant) => plant.id === _plant.id);
         if (match) {
@@ -66,8 +63,13 @@ class Navbar extends React.Component {
           //if there is a match, update the lineitem for that user and orderId with the new plant quantity
           this.props.update(this.props.cart.id, plant.id, total);
         } else {
-          //the plant from guest cart is not in the userCart --  add it to the userCart
-          this.props.add(this.props.cart.id, plant.id);
+          await this.props.add(this.props.cart.id, plant.id);
+          console.log(plant.lineitem.amount, 'plant lineitem amount');
+          this.props.update(
+            this.props.cart.id,
+            plant.id,
+            plant.lineitem.amount
+          );
         }
       });
     }
