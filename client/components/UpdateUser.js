@@ -96,10 +96,6 @@ class UpdateUser extends Component {
 
     const { onChange, onSubmit } = this;
 
-    const yes = true;
-    const no = false;
-    //console.log(this.props);
-
     return (
       <form id="userUpdate-form" onSubmit={onSubmit}>
         <p id="userUpdate-p">
@@ -155,9 +151,12 @@ class UpdateUser extends Component {
             value={isAdmin}
             onChange={onChange}
           >
+            <option hidden disabled selected value>
+              -- select an option --
+            </option>
             <option value={false}>--choose an option--</option>
-            <option value={false}>No</option>
             <option value={true}>Yes</option>
+            <option value={false}>No</option>
           </select>
         </p>
         <Button type="submit" id="userUpdate-button" variant="contained">

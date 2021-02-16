@@ -24,8 +24,7 @@ export class OrderAdmin extends React.Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Ship To</th>
               <th className="address">Street Address</th>
               <th className="address">City</th>
               <th>State</th>
@@ -41,8 +40,7 @@ export class OrderAdmin extends React.Component {
             {orders.map((order, idx) => (
               <tr key={idx}>
                 <td>{order.id}</td>
-                <td className="status">{order.firstName}</td>
-                <td className="status">{order.lastName}</td>
+                <td>{order.shipTo}</td>
                 <td>{order.streetAddress}</td>
                 <td className="status">{order.city}</td>
                 <td className="status">{order.state}</td>
