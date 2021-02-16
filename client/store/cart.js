@@ -16,8 +16,9 @@ const _updateCart = (cart) => ({ type: UPDATE_CART, cart });
 //thunk creators//
 export const fetchCart = (orderId, userId) => {
   return async (dispatch) => {
-    const cart = (await axios.get(`/api/cart/`, { orderId, userId })).data;
-    console.log(cart, 'cart return from api');
+    const cart = (await axios.post(`/api/cart`, { orderId, userId })).data;
+    window.localStorage.setItem('orderId', cart.id);
+    console.log(cart, 'cart returned from api');
     dispatch(setCart(cart));
   };
 };

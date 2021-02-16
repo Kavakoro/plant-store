@@ -38,11 +38,33 @@ class Navbar extends React.Component {
 
     //first check localstorage for an orderId
     const orderId = window.localStorage.getItem('orderId') || null;
+    console.log(orderId, 'orderId');
     //if we have an orderId, fetch cart using orderId and pass in a userId if in state, or null if not
     const userId = this.props.auth.id || null;
+    console.log(userId, 'userId before fetching cart');
+
     this.props.getCart(orderId, userId);
   }
+  async componentDidUpdate(prevProps) {
+    console.log(prevProps.auth.id, 'prevProps.auth.id');
+    console.log(this.props.auth.id, 'this.props.auth.id');
+
+    //if someone logged in from previously being not logged in
+    if (!prevProps.auth.id && this.props.auth.id) {
+      const guestPlants = this.props.cart.plants;
+      console.log(guestPlants, 'guest plants');
+      //fetch cart with userId === auth.id and orderId = null,
+      //this will return a cart with items from prev order or empty cart
+      await this.props.getCart(null, this.props.auth.id);
+      const userCart = this.props.cart;
+      //this will set in localStorage a new orderId - the one associated with the loggedIn user
+      console.log(userCart, 'users cart');
+      const userPlants = userCart.plants;
+    }
+  }
   render() {
+    const orderId = localStorage.getItem('orderId');
+    console.log(orderId, 'order Id before navbar rendered');
     const { handleClick, isLoggedIn, isAdmin } = this.props;
     return (
       <div>
@@ -96,6 +118,7 @@ class Navbar extends React.Component {
  */
 const mapState = (state) => {
   return {
+    cart: state.cart,
     auth: state.auth,
     isLoggedIn: !!state.auth.id,
     isAdmin: state.auth.isAdmin,

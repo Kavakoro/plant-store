@@ -42,27 +42,30 @@ const assembleCart = async (orderId) => {
   return cart;
 };
 
-router.get('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
+  console.log(req.body, 'req.body');
   try {
-    console.log('fetching cart');
     let cart;
-    const orderId = req.params.orderId;
-    const userId = req.params.userId;
+    const orderId = req.body.orderId;
+    const userId = req.body.userId;
     if (orderId) {
+      console.log(orderId, 'orderId');
       cart = await assembleCart(orderId);
     }
     if (!orderId) {
       if (userId) {
         //if a user is logged in, look in Order DB for an unfulfulled order
-        const order = Order.findOne({
-          where: { userId: userId, fulfilled: false },
+        const order = await Order.findOne({
+          where: { userId: userId, fullfilled: false },
         });
+        console.log(order, 'unfulfilled order asssociated with a user');
         //if there is an unfulfilled order, put together a cart using that orderId
         if (order) {
           cart = await assembleCart(order.id);
         } else {
           // if no unfulfilled order for that user, create a new order with that userId
           const order = await Order.create({ userId: userId });
+          console.log(order, 'new order/empty cart created with known userId');
           cart = await assembleCart(order.id);
         }
       } else {
