@@ -17,7 +17,6 @@ export class PlantAdmin extends React.Component {
 
   render() {
     const { plants } = this.state;
-    //console.log(plants, 'plants');
     if (!plants.length) return null;
     return (
       <div id="admin-db">

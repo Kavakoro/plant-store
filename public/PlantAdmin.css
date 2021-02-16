@@ -26,7 +26,6 @@ table {
 }
 
 td {
-  text-align: left;
   overflow: scroll;
   text-overflow: scroll;
   margin: 0 1rem;
@@ -45,14 +44,15 @@ th.description {
   margin: 0 1rem;
 }
 
-table.users {
-  width: 70vw;
-}
+/* table.users {
+  width: vw;
+} */
 
 #admin-db {
   text-align: center;
 }
 #admin-db button {
+  margin: 0.2rem;
   padding: 0.5rem;
   color: white;
   background-color: rgb(148, 28, 28);
@@ -63,7 +63,7 @@ td.filter,
 td.inventory,
 td.price,
 td.id,
-td.status {
+td.status td.center {
   text-align: center;
 }
 

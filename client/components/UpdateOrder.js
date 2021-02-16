@@ -138,16 +138,22 @@ class UpdateOrder extends Component {
         </p>
         <p id="orderUpdate-p">
           <label id="orderForm-label">Fullfilled (YES/NO) ?</label>
-          <input
+          <select
             id="orderForm-input"
             name="fullfilled"
             value={fullfilled}
             onChange={onChange}
-          />
+          >
+            <option></option>
+
+            <option value={false}>No</option>
+            <option value={true}>Yes</option>
+          </select>
         </p>
         <p id="orderUpdate-p">
           <label id="orderForm-label">Order Total</label>
           <input
+            placeholder="must be a valid integer"
             id="orderForm-input"
             name="total"
             value={total}
