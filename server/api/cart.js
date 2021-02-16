@@ -4,11 +4,20 @@ const {
 } = require('../db');
 module.exports = router;
 
-// check if orderId has an associated userId
+router.use(async (req, res, next) => {
+  if (!req.headers.authorization) {
+    return next();
+  }
+  const user = await User.findByToken(req.headers.authorization);
+  if (!user) {
+    const error = Error('Unauthorized user');
+    error.status = 401;
+    throw error;
+  }
+});
 router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId;
-    const user = await User.findByPk(req.body.userId);
     const order = await Order.findByPk(orderId);
     const plants = await order.getPlants();
 

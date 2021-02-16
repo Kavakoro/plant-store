@@ -37,10 +37,10 @@ class Navbar extends React.Component {
     console.log(orderId, 'orderId');
 
     if (orderId) {
-      this.props.getCart(orderId);
+      this.props.getCart(orderId, this.props.auth.id);
     } else {
       window.localStorage.setItem('orderId', orderId);
-      this.props.getCart(orderId);
+      this.props.getCart(orderId, this.props.auth.id);
     }
   }
   render() {

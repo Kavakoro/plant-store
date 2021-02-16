@@ -14,9 +14,9 @@ const _addToCart = (plants) => ({ type: ADD_TO_CART, plants });
 const _updateCart = (cart) => ({ type: UPDATE_CART, cart });
 
 //thunk creators//
-export const fetchCart = (orderId) => {
+export const fetchCart = (orderId, userId) => {
   return async (dispatch) => {
-    const cart = (await axios.get(`/api/cart/${orderId}`)).data;
+    const cart = (await axios.get(`/api/cart/${orderId}`, { userId })).data;
     dispatch(setCart(cart));
   };
 };
