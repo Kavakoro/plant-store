@@ -75,6 +75,7 @@ class UpdatePlant extends Component {
         this.state.inventory
       );
     } catch (er) {
+      console.log('this is er', er);
       console.log(er.response.data, 'er.response.data');
       this.setState({ error: er });
     }
@@ -285,5 +286,5 @@ const mapToDispatch = (dispatch, { history }) => {
     },
   };
 };
-mapToState;
+//mapToState;
 export default connect((state) => state, mapToDispatch)(UpdatePlant);

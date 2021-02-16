@@ -21,6 +21,8 @@ export const setOrder = (id) => {
 //this function is for admin to update an order in the database
 export const updateOrder = (
   id,
+  firstName,
+  lastName,
   streetAddress,
   state,
   city,
@@ -32,18 +34,17 @@ export const updateOrder = (
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
     const order = (
-      await axios.put(
-        `/admin/orders/${id}`,
-        {
-          streetAddress,
-          state,
-          city,
-          zipCode,
-          fullfilled,
-          total,
-        },
-        { headers: { authorization: token } }
-      )
+      await axios.put(`/api/orders/${id}`, {
+        firstName,
+        lastName,
+        streetAddress,
+        state,
+        city,
+        zipCode,
+        fullfilled,
+        total,
+        headers: { authorization: token },
+      })
     ).data;
     dispatch(_updateOrder(order));
     history.push(`/admin/Orders`);

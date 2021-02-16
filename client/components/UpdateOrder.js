@@ -9,13 +9,14 @@ class UpdateOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      firstName: this.props.order.id ? this.props.order.firstName : '',
+      lastName: this.props.order.id ? this.props.order.lastName : '',
       streetAddress: this.props.order.id ? this.props.order.streetAddress : '',
       state: this.props.order.id ? this.props.order.state : '',
       city: this.props.order.id ? this.props.order.city : '',
       zipCode: this.props.order.id ? this.props.order.zipCode : '',
       fullfilled: this.props.order.id ? this.props.order.fullfilled : '',
       total: this.props.order.id ? this.props.order.total : '',
-
       error: '',
     };
     this.onChange = this.onChange.bind(this);
@@ -25,6 +26,8 @@ class UpdateOrder extends Component {
   async componentDidMount() {
     await this.props.setOrder(this.props.match.params.id);
     this.setState({
+      firstName: this.props.order.firstName,
+      lastName: this.props.order.lastName,
       streetAddress: this.props.order.streetAddress,
       state: this.props.order.state,
       city: this.props.order.city,
@@ -37,6 +40,8 @@ class UpdateOrder extends Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.order.id && this.props.order.id) {
       this.setState({
+        firstName: this.props.order.firstName,
+        lastName: this.props.order.lastName,
         streetAddress: this.props.order.streetAddress,
         state: this.props.order.state,
         city: this.props.order.city,
@@ -52,6 +57,8 @@ class UpdateOrder extends Component {
     try {
       await this.props.update(
         this.props.order.id,
+        this.state.firstName,
+        this.state.lastName,
         this.state.streetAddress,
         this.state.state,
         this.state.city,
@@ -60,6 +67,7 @@ class UpdateOrder extends Component {
         this.state.total
       );
     } catch (er) {
+      console.log('this is er', er);
       this.setState({ error: er });
     }
   }
@@ -72,6 +80,8 @@ class UpdateOrder extends Component {
 
   render() {
     const {
+      firstName,
+      lastName,
       streetAddress,
       state,
       city,
@@ -79,47 +89,68 @@ class UpdateOrder extends Component {
       fullfilled,
       total,
     } = this.state;
+
     const { onChange, onSubmit } = this;
+
     return (
       <form id="orderUpdate-form" onSubmit={onSubmit}>
+        <h1 id="update-heading">Update Order Details</h1>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">Street Address</label>
+          <label id="orderForm-label">First Name</label>
+          <input
+            id="orderForm-input"
+            name="firstName"
+            value={firstName}
+            onChange={onChange}
+          />
+        </p>
+        <p id="orderUpdate-p">
+          <label id="orderForm-label">Last Name</label>
+          <input
+            id="orderForm-input"
+            name="lastName"
+            value={lastName}
+            onChange={onChange}
+          />
+        </p>
+        <p id="orderUpdate-p">
+          <label id="orderForm-label">Street Address</label>
           <input
             id="orderForm-input"
             name="streetAddress"
-            value={streetAddress || ''}
+            value={streetAddress}
             onChange={onChange}
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">State</label>
+          <label id="orderForm-label">State</label>
           <input
             id="orderForm-input"
             name="state"
-            value={state || ''}
+            value={state}
             onChange={onChange}
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">City</label>
+          <label id="orderForm-label">City</label>
           <input
             id="orderForm-input"
             name="city"
-            value={city || ''}
+            value={city}
             onChange={onChange}
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">Zip Code</label>
+          <label id="orderForm-label">Zip Code</label>
           <input
             id="orderForm-input"
             name="zipCode"
-            value={zipCode || ''}
+            value={zipCode}
             onChange={onChange}
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">Fullfilled</label>
+          <label id="orderForm-label">Fullfilled</label>
           <input
             id="orderForm-input"
             name="fullfilled"
@@ -128,16 +159,16 @@ class UpdateOrder extends Component {
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="oderForm-label">Order Total</label>
+          <label id="orderForm-label">Order Total</label>
           <input
             id="orderForm-input"
             name="total"
-            value={total || ''}
+            value={total}
             onChange={onChange}
           />
         </p>
 
-        <Button type="submit" id="orderUpdate-button">
+        <Button type="submit" id="orderUpdate-button" variant="contained">
           Save Changes
         </Button>
       </form>
@@ -145,20 +176,32 @@ class UpdateOrder extends Component {
   }
 }
 
-// const mapState = (state) => {
-//   const order = state.order;
-//   return { order };
-// };
+const mapState = (state) => {
+  const order = state.order;
+  return { order };
+};
 
 const mapToDispatch = (dispatch, { history }) => {
   return {
     setOrder: (id) => {
       return dispatch(setOrder(id));
     },
-    update: (id, streetAddress, state, city, zipCode, fullfilled, total) => {
+    update: (
+      id,
+      firstName,
+      lastName,
+      streetAddress,
+      state,
+      city,
+      zipCode,
+      fullfilled,
+      total
+    ) => {
       return dispatch(
         updateOrder(
           id,
+          firstName,
+          lastName,
           streetAddress,
           state,
           city,
