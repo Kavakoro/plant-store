@@ -48,7 +48,7 @@ const User = db.define('user', {
   },
   isAdmin: {
     type: BOOLEAN,
-    //defaultValue: false,
+    defaultValue: false,
   },
   githubId: {
     type: INTEGER,

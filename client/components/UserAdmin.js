@@ -17,6 +17,7 @@ export class UserAdmin extends React.Component {
   render() {
     //console.log('state', this.state);
     const { users } = this.state;
+    console.log(users, ' users');
     if (!users.length) return null;
     return (
       <div id="admin-db">
@@ -42,7 +43,7 @@ export class UserAdmin extends React.Component {
                 <td>{user.phoneNumber}</td>
                 <td>{user.birthdate}</td>
                 <td className="email">{user.email}</td>
-                <td>{user.isAdmin}</td>
+                <td>{user.isAdmin ? 'yes' : 'no'}</td>
                 <td>
                   <Link to={`/admin/Users/update/${user.id}`}>
                     <button>Edit</button>
