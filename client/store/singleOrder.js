@@ -21,8 +21,7 @@ export const setOrder = (id) => {
 //this function is for admin to update an order in the database
 export const updateOrder = (
   id,
-  firstName,
-  lastName,
+  shipTo,
   streetAddress,
   state,
   city,
@@ -35,8 +34,7 @@ export const updateOrder = (
     const token = window.localStorage.getItem('token');
     const order = (
       await axios.put(`/api/orders/${id}`, {
-        firstName,
-        lastName,
+        shipTo,
         streetAddress,
         state,
         city,
