@@ -9,39 +9,37 @@ const Order = db.define('order', {
     defaultValue: UUIDV4,
     primaryKey: true,
   },
+  firstName: {
+    type: STRING,
+    // allowNull: true,
+  },
+  lastName: {
+    type: STRING,
+    //allowNull: true,
+  },
   streetAddress: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: true,
   },
   city: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: true,
   },
   state: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: true,
   },
   zipCode: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: true,
   },
   fullfilled: {
     type: BOOLEAN,
     defaultValue: false,
   },
-  total: { type: INTEGER },
+  total: {
+    type: INTEGER,
+  },
 });
 
 module.exports = Order;

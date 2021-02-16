@@ -3,18 +3,22 @@
   /* flex-direction: column; */
 }
 
+#update-heading {
+  text-align: center;
+  margin-bottom: 0px;
+}
 #orderUpdate-p {
   /* margin-left: 4rem; */
   /* padding: 1rem 1rem; */
   text-align: center;
 }
 
-#orderform-label {
+#orderForm-label {
   font-size: 1.5rem;
   padding: 0 1rem 3px 1rem;
 }
 
-#orderform-input {
+#orderForm-input {
   margin: 0 1rem;
   font-size: 20px;
 }

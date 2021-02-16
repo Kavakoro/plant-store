@@ -1,10 +1,10 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
 const {
   models: { Order },
-} = require("../db");
+} = require('../db');
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const orders = await Order
       .findAll
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     const order = await Order.findByPk(id);
@@ -28,10 +28,10 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id);
-    res.send(await order.update(req.body));
+    res.status(201).send(await order.update(req.body));
   } catch (er) {
     next(er);
   }

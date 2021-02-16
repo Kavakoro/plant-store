@@ -15,28 +15,29 @@ const User = db.define('user', {
     defaultValue: UUIDV4,
     primaryKey: true,
   },
-  // username: {
-  //   type: STRING,
-  //   allowNull: false,
-  //   validate: {
-  //     notEmpty: true,
-  //   },
-  // },
+  firstName: {
+    type: STRING,
+    defaultValue: '',
+  },
+  lastName: {
+    type: STRING,
+    defaultValue: '',
+  },
+  phoneNumber: {
+    type: STRING,
+    defaultValue: '(xxx) xxx-xxxx',
+  },
+  birthdate: {
+    type: STRING,
+    defaultValue: 'MM/DD/YYYY',
+  },
   email: {
     type: STRING,
     unique: true,
-    //I added the validation this way instead, however, I think itll become an issue with Guests in the future when we try making roles (Admin/Guest)??
     allowNull: false,
     validate: {
       notEmpty: true,
     },
-    // validate: {
-    //   EmptyField: function () {
-    //     if (!User.email || !User.password) {
-    //       throw 'Username/Password cannot be empty.';
-    //     }
-    //   },
-    // },
   },
   password: {
     type: STRING,
@@ -47,7 +48,7 @@ const User = db.define('user', {
   },
   isAdmin: {
     type: BOOLEAN,
-    defaultValue: false,
+    //defaultValue: false,
   },
   githubId: {
     type: INTEGER,

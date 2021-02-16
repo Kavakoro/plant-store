@@ -25,14 +25,24 @@ export class UserAdmin extends React.Component {
           <thead>
             <tr>
               <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>D.O.B.</th>
               <th>Email</th>
+              <th>Admin?</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, idx) => (
               <tr key={idx}>
                 <td>{user.id}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.birthdate}</td>
                 <td className="email">{user.email}</td>
+                <td>{user.isAdmin}</td>
                 <td>
                   <Link to={`/admin/Users/update/${user.id}`}>
                     <button>Edit</button>
