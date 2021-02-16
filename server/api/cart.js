@@ -15,16 +15,63 @@ router.use(async (req, res, next) => {
     throw error;
   }
 });
-router.get('/:orderId', async (req, res, next) => {
-  try {
-    const orderId = req.params.orderId;
-    const order = await Order.findByPk(orderId);
-    const plants = await order.getPlants();
 
-    const cart = {
-      id: order.id,
-      plants,
-    };
+// router.get('/:orderId', async (req, res, next) => {
+//   try {
+//     const orderId = req.params.orderId;
+//     const order = await Order.findByPk(orderId);
+//     const plants = await order.getPlants();
+
+//     const cart = {
+//       id: order.id,
+//       plants,
+//     };
+//     res.status(200).send(cart);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+const assembleCart = async (orderId) => {
+  const order = await Order.findByPk(orderId);
+  const plants = await order.getPlants();
+  const cart = {
+    id: order.id,
+    plants,
+  };
+  return cart;
+};
+
+router.get('/', async (req, res, next) => {
+  try {
+    console.log('fetching cart');
+    let cart;
+    const orderId = req.params.orderId;
+    const userId = req.params.userId;
+    if (orderId) {
+      cart = await assembleCart(orderId);
+    }
+    if (!orderId) {
+      if (userId) {
+        //if a user is logged in, look in Order DB for an unfulfulled order
+        const order = Order.findOne({
+          where: { userId: userId, fulfilled: false },
+        });
+        //if there is an unfulfilled order, put together a cart using that orderId
+        if (order) {
+          cart = await assembleCart(order.id);
+        } else {
+          // if no unfulfilled order for that user, create a new order with that userId
+          const order = await Order.create({ userId: userId });
+          cart = await assembleCart(order.id);
+        }
+      } else {
+        //if there is no orderId and no userId, create a new order with no user associated with it and assemble cart
+        const order = await Order.create();
+        cart = await assembleCart(order.id);
+      }
+    }
+    console.log(cart, 'cart');
     res.status(200).send(cart);
   } catch (err) {
     next(err);
@@ -52,10 +99,6 @@ router.post('/:orderId', async (req, res, next) => {
       await order.addPlant(plant);
     }
     const plants = await order.getPlants();
-    // const cart = {
-    //   id: orderId,
-    //   plants,
-    // };
     res.status(201).send(plants);
   } catch (err) {
     next(err);

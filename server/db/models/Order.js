@@ -11,31 +11,19 @@ const Order = db.define('order', {
   },
   streetAddress: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   city: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   state: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   zipCode: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true,
   },
   fullfilled: {
     type: BOOLEAN,

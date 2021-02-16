@@ -16,13 +16,12 @@ const _updateCart = (cart) => ({ type: UPDATE_CART, cart });
 //thunk creators//
 export const fetchCart = (orderId, userId) => {
   return async (dispatch) => {
-    const cart = (await axios.get(`/api/cart/${orderId}`, { userId })).data;
+    const cart = (await axios.get(`/api/cart/`, { orderId, userId })).data;
+    console.log(cart, 'cart return from api');
     dispatch(setCart(cart));
   };
 };
 export const updateCart = (orderId, plantId, amount) => {
-  console.log(orderId, 'orderId in put request in store');
-  console.log(plantId, 'plantId for put request in store');
   return async (dispatch) => {
     const cart = (await axios.put(`api/cart/${orderId}`, { plantId, amount }))
       .data;

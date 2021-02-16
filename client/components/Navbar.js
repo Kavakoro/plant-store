@@ -33,15 +33,14 @@ class Navbar extends React.Component {
   async componentDidMount() {
     //const orderId = window.localStorage.getItem('orderId');
     // testing orderId placeholder
-    const orderId = (await axios.get('/api/test/cartid')).data;
-    console.log(orderId, 'orderId');
+    // const orderId = (await axios.get('/api/test/cartid')).data;
+    // console.log(orderId, 'orderId');
 
-    if (orderId) {
-      this.props.getCart(orderId, this.props.auth.id);
-    } else {
-      window.localStorage.setItem('orderId', orderId);
-      this.props.getCart(orderId, this.props.auth.id);
-    }
+    //first check localstorage for an orderId
+    const orderId = window.localStorage.getItem('orderId') || null;
+    //if we have an orderId, fetch cart using orderId and pass in a userId if in state, or null if not
+    const userId = this.props.auth.id || null;
+    this.props.getCart(orderId, userId);
   }
   render() {
     const { handleClick, isLoggedIn, isAdmin } = this.props;
@@ -97,17 +96,18 @@ class Navbar extends React.Component {
  */
 const mapState = (state) => {
   return {
+    auth: state.auth,
     isLoggedIn: !!state.auth.id,
     isAdmin: state.auth.isAdmin,
   };
 };
 
-const mapDispatch = (dispatch, { history }) => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout(history));
+      dispatch(logout());
     },
-    getCart: (orderId) => dispatch(fetchCart(orderId)),
+    getCart: (orderId, userId) => dispatch(fetchCart(orderId, userId)),
   };
 };
 
