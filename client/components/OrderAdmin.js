@@ -25,9 +25,13 @@ export class OrderAdmin extends React.Component {
             <tr>
               <th>ID</th>
               <th className="address">Street Address</th>
+              <th className="address">City</th>
+              <th className="status">State</th>
+              <th className="status">Zip Code</th>
               <th>Fulfilled?</th>
-              <th>
-                Order Total <span>(completed orders)</span>
+              <th className="status">
+                Order Total <br />
+                <span>(completed orders)</span>
               </th>
             </tr>
           </thead>
@@ -35,10 +39,13 @@ export class OrderAdmin extends React.Component {
             {orders.map((order, idx) => (
               <tr key={idx}>
                 <td>{order.id}</td>
-                <td>{order.shippingAddress}</td>
+                <td>{order.streetAddress}</td>
+                <td className="status">{order.city}</td>
+                <td className="status">{order.state}</td>
+                <td className="status">{order.zipCode}</td>
                 <td className="status">{order.fulfilled ? 'yes' : 'no'}</td>
-                <td>{order.total}</td>
-                <td>
+                <td className="status">${order.total}</td>
+                <td className="status">
                   <Link to={`/admin/Orders/update/${order.id}`}>
                     <button>Edit</button>
                   </Link>
