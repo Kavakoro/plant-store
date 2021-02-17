@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUser, updateProfile } from '../store/singleUser';
 import '../../public/updateProfile.css';
+import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
 
 class UpdateProfile extends Component {
@@ -72,6 +73,7 @@ class UpdateProfile extends Component {
 
     return (
       <form id="accountUpdate-form" onSubmit={onSubmit}>
+        <h1 id="update-heading">Update User Details</h1>
         <p id="userUpdate-p">
           <label id="userform-label">First Name</label>
           <input

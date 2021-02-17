@@ -137,15 +137,13 @@ class UpdateOrder extends Component {
           />
         </p>
         <p id="orderUpdate-p">
-          <label id="orderForm-label">Fullfilled (YES/NO) ?</label>
+          <label id="orderForm-label">Fullfilled (yes/no) ?</label>
           <select
             id="orderForm-input"
             name="fullfilled"
             value={fullfilled}
             onChange={onChange}
           >
-            <option></option>
-
             <option value={false}>No</option>
             <option value={true}>Yes</option>
           </select>
