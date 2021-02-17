@@ -30,7 +30,6 @@ class SinglePlant extends React.Component {
   render() {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
-    //console.log(orderId, 'orderId');
 
     if (!this.props.plant) {
       return null;

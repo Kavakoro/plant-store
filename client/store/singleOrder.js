@@ -14,7 +14,6 @@ export const setOrder = (id) => {
   return async (dispatch) => {
     const order = (await axios.get(`/api/orders/${id}`)).data;
     dispatch(_setOrder(order));
-    // console.log(order);
   };
 };
 
@@ -33,16 +32,19 @@ export const updateOrder = (
   return async (dispatch) => {
     const token = window.localStorage.getItem('token');
     const order = (
-      await axios.put(`/api/orders/${id}`, {
-        shipTo,
-        streetAddress,
-        state,
-        city,
-        zipCode,
-        fullfilled,
-        total,
-        headers: { authorization: token },
-      })
+      await axios.put(
+        `/admin/orders/${id}`,
+        {
+          shipTo,
+          streetAddress,
+          state,
+          city,
+          zipCode,
+          fullfilled,
+          total,
+        },
+        { headers: { authorization: token } }
+      )
     ).data;
     dispatch(_updateOrder(order));
     history.push(`/admin/Orders`);

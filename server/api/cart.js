@@ -43,13 +43,11 @@ const assembleCart = async (orderId) => {
 };
 
 router.post('/', async (req, res, next) => {
-  console.log(req.body, 'req.body');
   try {
     let cart;
     const orderId = req.body.orderId;
     const userId = req.body.userId;
     if (orderId) {
-      console.log(orderId, 'orderId');
       cart = await assembleCart(orderId);
     }
     if (!orderId) {
@@ -58,14 +56,12 @@ router.post('/', async (req, res, next) => {
         const order = await Order.findOne({
           where: { userId: userId, fullfilled: false },
         });
-        console.log(order, 'unfulfilled order asssociated with a user');
         //if there is an unfulfilled order, put together a cart using that orderId
         if (order) {
           cart = await assembleCart(order.id);
         } else {
           // if no unfulfilled order for that user, create a new order with that userId
           const order = await Order.create({ userId: userId });
-          console.log(order, 'new order/empty cart created with known userId');
           cart = await assembleCart(order.id);
         }
       } else {
