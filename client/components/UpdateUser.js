@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { updateUser, setUser } from "../store/singleUser";
-import "../../public/UpdateUser.css";
-import Button from "@material-ui/core/Button";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateUser, setUser } from '../store/singleUser';
+import '../../public/UpdateUser.css';
+import Button from '@material-ui/core/Button';
 
 class UpdateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: this.props.user.id ? this.props.user.firstName : "",
-      lastName: this.props.user.id ? this.props.user.lastName : "",
-      phoneNumber: this.props.user.id ? this.props.user.phoneNumber : "",
-      birthdate: this.props.user.id ? this.props.user.birthdate : "",
-      email: this.props.user.id ? this.props.user.email : "",
+      firstName: this.props.user.id ? this.props.user.firstName : '',
+      lastName: this.props.user.id ? this.props.user.lastName : '',
+      phoneNumber: this.props.user.id ? this.props.user.phoneNumber : '',
+      birthdate: this.props.user.id ? this.props.user.birthdate : '',
+      email: this.props.user.id ? this.props.user.email : '',
       isAdmin: this.props.user.id ? this.props.user.isAdmin : false,
-      error: "",
+      error: '',
     };
     //console.log('props', this.props);
     this.onChange = this.onChange.bind(this);
@@ -37,10 +37,10 @@ class UpdateUser extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("component updating is running");
+    console.log('component updating is running');
 
     if (!prevProps.user.id && this.props.user.id) {
-      console.log("if statement running");
+      console.log('if statement running');
       this.setState({
         // username: this.props.user.username,
         firstName: this.props.user.firstName,
@@ -53,13 +53,12 @@ class UpdateUser extends Component {
       //console.log(this.state.name);
     }
 
-    console.log("this is props", this.props);
+    console.log('this is props', this.props);
   }
 
   async onSubmit(ev) {
     ev.preventDefault();
     try {
-      console.log("onSubmit");
       //the id is this.props.user.id and updating with the new state name
       await this.props.update(
         this.props.user.id,
@@ -71,8 +70,8 @@ class UpdateUser extends Component {
         this.state.isAdmin
       );
     } catch (er) {
-      console.log("this is er", er);
-      console.log(er.response.data, "er.response.data");
+      console.log('this is er', er);
+      // console.log(er.response.data, "er.response.data");
       this.setState({ error: er });
     }
     //console.log('state', this.state);

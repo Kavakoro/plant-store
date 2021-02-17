@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updatePlant, setPlant, destroyPlant } from '../store/singlePlant';
+import { updatePlant, setPlant } from '../store/singlePlant';
+import { destroyPlant } from '../store/plants';
 import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
 
@@ -27,6 +28,7 @@ class UpdatePlant extends Component {
 
   async componentDidMount() {
     await this.props.setPlant(this.props.match.params.plantId * 1);
+    console.log(this.props.plant, 'this.props.plant after component mounts');
     this.setState({
       name: this.props.plant.name,
       description: this.props.plant.description,
@@ -115,7 +117,7 @@ class UpdatePlant extends Component {
         <small id="delete-button">
           <button
             onClick={() => {
-              destroy(plant);
+              destroy(plant.id);
             }}
           >
             Delete Plant
@@ -281,8 +283,8 @@ const mapToDispatch = (dispatch, { history }) => {
         )
       );
     },
-    destroy: (plant) => {
-      dispatch(destroyPlant(plant, history));
+    destroy: (id) => {
+      dispatch(destroyPlant(id, history));
     },
   };
 };

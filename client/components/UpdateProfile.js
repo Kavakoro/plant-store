@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setUser, updateProfile } from "../store/singleUser";
-import "../../public/updateProfile.css";
-import Button from "@material-ui/core/Button";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setUser, updateProfile } from '../store/singleUser';
+import '../../public/updateProfile.css';
+import Button from '@material-ui/core/Button';
 
 class UpdateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: this.props.auth.id ? this.props.auth.firstName : "",
-      lastName: this.props.auth.id ? this.props.auth.lastName : "",
-      phoneNumber: this.props.auth.id ? this.props.auth.phoneNumber : "",
-      birthdate: this.props.auth.id ? this.props.auth.birthdate : "",
-      email: this.props.auth.id ? this.props.auth.email : "",
-      error: "",
+      firstName: this.props.user.id ? this.props.user.firstName : '',
+      lastName: this.props.user.id ? this.props.user.lastName : '',
+      phoneNumber: this.props.user.id ? this.props.user.phoneNumber : '',
+      birthdate: this.props.user.id ? this.props.user.birthdate : '',
+      email: this.props.user.id ? this.props.user.email : '',
+      error: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,22 +23,22 @@ class UpdateProfile extends Component {
   async componentDidMount() {
     await this.props.setUser(this.props.auth.id);
     this.setState({
-      firstName: this.props.auth.firstName,
-      lastName: this.props.auth.lastName,
-      phoneNumber: this.props.auth.phoneNumber,
-      birthdate: this.props.auth.birthdate,
-      email: this.props.auth.email,
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName,
+      phoneNumber: this.props.user.phoneNumber,
+      birthdate: this.props.user.birthdate,
+      email: this.props.user.email,
     });
   }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.auth.id && this.props.auth.id) {
       this.setState({
-        firstName: this.props.auth.firstName,
-        lastName: this.props.auth.lastName,
-        phoneNumber: this.props.auth.phoneNumber,
-        birthdate: this.props.auth.birthdate,
-        email: this.props.auth.email,
+        firstName: this.props.user.firstName,
+        lastName: this.props.user.lastName,
+        phoneNumber: this.props.user.phoneNumber,
+        birthdate: this.props.user.birthdate,
+        email: this.props.user.email,
       });
     }
   }
@@ -65,6 +65,7 @@ class UpdateProfile extends Component {
   }
 
   render() {
+    console.log(this.state.birthdate, 'this.state.birthdate');
     const { firstName, lastName, phoneNumber, birthdate, email } = this.state;
 
     const { onChange, onSubmit } = this;
@@ -125,9 +126,9 @@ class UpdateProfile extends Component {
 }
 
 const maptToState = (state) => {
-  const auth = state.auth;
+  const { auth, user } = state;
 
-  return { auth };
+  return { auth, user };
 };
 
 const mapToDispatch = (dispatch, { history }) => {
