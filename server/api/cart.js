@@ -16,22 +16,6 @@ router.use(async (req, res, next) => {
   }
 });
 
-// router.get('/:orderId', async (req, res, next) => {
-//   try {
-//     const orderId = req.params.orderId;
-//     const order = await Order.findByPk(orderId);
-//     const plants = await order.getPlants();
-
-//     const cart = {
-//       id: order.id,
-//       plants,
-//     };
-//     res.status(200).send(cart);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 const assembleCart = async (orderId) => {
   const order = await Order.findByPk(orderId);
   const plants = await order.getPlants();
@@ -77,7 +61,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-//add to cart
+//add plant to cart
 router.post('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId;

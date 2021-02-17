@@ -23,8 +23,6 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//ive messed with this and also tried /:id
-//need to secure this route for onlyl an admin to be able to access
 router.put('/:id', async (req, res, next) => {
   try {
     const plant = await Plant.findByPk(req.params.id);
@@ -34,13 +32,13 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-  try {
-    res.status(201).send(await Plant.create(req.body));
-  } catch (er) {
-    next(er);
-  }
-});
+// router.post('/', async (req, res, next) => {
+//   try {
+//     res.status(201).send(await Plant.create(req.body));
+//   } catch (er) {
+//     next(er);
+//   }
+// });
 
 router.delete('/:id', async (req, res, next) => {
   try {

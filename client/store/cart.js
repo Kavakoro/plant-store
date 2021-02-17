@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const token = window.localStorage.getItem('token');
 //action creators
 
 const SET_CART = 'SET_CART';
@@ -18,15 +18,22 @@ export const fetchCart = (orderId, userId) => {
   return async (dispatch) => {
     const cart = (await axios.post(`/api/cart`, { orderId, userId })).data;
     window.localStorage.setItem('orderId', cart.id);
-    console.log(cart, 'cart returned from api');
     dispatch(setCart(cart));
   };
 };
 export const updateCart = (orderId, plantId, amount) => {
   return async (dispatch) => {
-    const cart = (await axios.put(`api/cart/${orderId}`, { plantId, amount }))
-      .data;
-    console.log(cart, 'cart in redux store returned from api');
+    const cart = (
+      await axios.put(
+        `api/cart/${orderId}`,
+        { plantId, amount },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      )
+    ).data;
     dispatch(_updateCart(cart));
   };
 };
@@ -37,16 +44,26 @@ export const createCart = (userId) => {
     dispatch(setCart(cart));
   };
 };
+
+//user removes a plant from the cart
 export const deleteItem = (orderId, plantId) => {
   return async (dispatch) => {
-    await axios.delete(`/api/cart/${orderId}`, { data: { plantId } });
+    await axios.delete(
+      `/api/cart/${orderId}`,
+      { data: { plantId } },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
     dispatch(deletePlant(plantId));
   };
 };
 
+// user adds a plant to the cart
 export const addToCart = (orderId, plantId) => {
   return async (dispatch) => {
-    console.log(orderId, plantId, 'order Id and plantId');
     const plants = (await axios.post(`/api/cart/${orderId}`, { plantId })).data;
     dispatch(_addToCart(plants));
   };

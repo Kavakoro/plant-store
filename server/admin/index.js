@@ -30,6 +30,15 @@ router.put('/plants/:id', isAdmin, async (req, res, next) => {
   }
 });
 
+// the route for an admin to create a plant in the database
+router.post('/plants', isAdmin, async (req, res, next) => {
+  try {
+    res.status(201).send(await Plant.create(req.body));
+  } catch (err) {
+    next(err);
+  }
+});
+
 //the route for an admin to delete a plant from the database
 router.delete('/plants/:id', isAdmin, async (req, res, next) => {
   try {

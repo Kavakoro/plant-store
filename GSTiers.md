@@ -27,7 +27,7 @@
 
 - have validated data to ensure reliability.
   - _i.e. each customer that creates an account should only be able to do so once with a single email address._
-- have full rights to make backend requests to add, edit, and remove products.
+    -DONE - have full rights to make backend requests to add, edit, and remove products.
   - _No one else should have access._
 - view user information.
   - _No one else should have access._
