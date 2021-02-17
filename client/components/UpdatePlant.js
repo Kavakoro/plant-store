@@ -4,6 +4,7 @@ import { updatePlant, setPlant } from '../store/singlePlant';
 import { destroyPlant } from '../store/plants';
 import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
+import { Divider } from '@material-ui/core';
 
 class UpdatePlant extends Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class UpdatePlant extends Component {
 
   async componentDidMount() {
     await this.props.setPlant(this.props.match.params.plantId * 1);
-    console.log(this.props.plant, 'this.props.plant after component mounts');
     this.setState({
       name: this.props.plant.name,
       description: this.props.plant.description,
@@ -112,133 +112,140 @@ class UpdatePlant extends Component {
     const four = 4;
 
     return (
-      <form id="update-form" onSubmit={onSubmit}>
-        <h1 id="update-heading">Update Plant Details</h1>
-        <small id="delete-button">
-          <button
-            onClick={() => {
-              destroy(plant.id);
-            }}
-          >
-            Delete Plant
-          </button>
-        </small>
-        <p id="update-p">
-          <label id="form-label">Plant Name</label>
-          <input id="form-input" name="name" value={name} onChange={onChange} />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Description</label>
-          <input
-            id="form-input"
-            name="description"
-            value={description}
-            onChange={onChange}
-          />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Size</label>
-          <select id="form-input" name="size" value={size} onChange={onChange}>
-            <option value="">--choose an option--</option>
-            <option value={one}>
-              1 - Small (7" - 15" tall including ecopot)
-            </option>
-            <option value={two}>
-              2 - Medium (16" - 26" tall including ecopot)
-            </option>
-            <option value={three}>
-              3 - Large (27"-40" tall including ecopot)
-            </option>
-            <option value={four}>
-              4 - Extra Large (41"-58" tall including ecopot)
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Lighting</label>
-          <select
-            id="form-input"
-            name="light"
-            value={light}
-            onChange={onChange}
-          >
-            <option value="">--choose an option--</option>
-            <option value={one}>
-              1 - 'Low to Partial — Low to bright indirect light'
-            </option>
-            <option value={two}>2 - 'Medium — Bright indirect light'</option>
-            <option value={three}>
-              3 - 'Partial to Bright — Bright indirect to full sun'
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Difficulty</label>
-          <select
-            id="form-input"
-            name="difficulty"
-            value={difficulty}
-            onChange={onChange}
-          >
-            <option value="">--choose an option--</option>
-            <option value={one}>1 - 'No-fuss — Carefree'</option>
-            <option value={two}>2 - 'Easy — Relatively low maintenance'</option>
-            <option value={three}>
-              3 - 'Moderate — Needs a bit of extra care'
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant's Pet Friendliness</label>
-          <input
-            id="form-input"
-            name="petFriendly"
-            value={petFriendly}
-            onChange={onChange}
-          />
-        </p>
+      <div>
+        <div id="delete-button">
+          <button onClick={() => destroy(plant.id)}>Delete Plant</button>
+        </div>
 
-        <p id="update-p">
-          <label id="form-label">Plant's Air Cleanliness</label>
-          <input
-            id="form-input"
-            name="airCleaner"
-            value={airCleaner}
-            onChange={onChange}
-          />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Image</label>
-          <input id="form-input" name="img" value={img} onChange={onChange} />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Price</label>
-          <input
-            id="form-input"
-            name="price"
-            value={price}
-            onChange={onChange}
-          />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant inventory</label>
-          <input
-            id="form-input"
-            name="inventory"
-            value={inventory}
-            onChange={onChange}
-          />
-        </p>
-
-        <Button
-          disabled={(size && light && difficulty) === ''}
-          type="submit"
-          id="update-button"
-          variant="contained"
-        >
-          Save Changes
-        </Button>
-      </form>
+        <form id="update-form" onSubmit={onSubmit}>
+          <h1 id="update-heading">Update Plant Details</h1>
+          <p id="update-p">
+            <label id="form-label">Plant Name</label>
+            <input
+              id="form-input"
+              name="name"
+              value={name}
+              onChange={onChange}
+            />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Description</label>
+            <input
+              id="form-input"
+              name="description"
+              value={description}
+              onChange={onChange}
+            />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Size</label>
+            <select
+              id="form-input"
+              name="size"
+              value={size}
+              onChange={onChange}
+            >
+              <option value="">--choose an option--</option>
+              <option value={one}>
+                1 - Small (7" - 15" tall including ecopot)
+              </option>
+              <option value={two}>
+                2 - Medium (16" - 26" tall including ecopot)
+              </option>
+              <option value={three}>
+                3 - Large (27"-40" tall including ecopot)
+              </option>
+              <option value={four}>
+                4 - Extra Large (41"-58" tall including ecopot)
+              </option>
+            </select>
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Lighting</label>
+            <select
+              id="form-input"
+              name="light"
+              value={light}
+              onChange={onChange}
+            >
+              <option value="">--choose an option--</option>
+              <option value={one}>
+                1 - 'Low to Partial — Low to bright indirect light'
+              </option>
+              <option value={two}>2 - 'Medium — Bright indirect light'</option>
+              <option value={three}>
+                3 - 'Partial to Bright — Bright indirect to full sun'
+              </option>
+            </select>
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Difficulty</label>
+            <select
+              id="form-input"
+              name="difficulty"
+              value={difficulty}
+              onChange={onChange}
+            >
+              <option value="">--choose an option--</option>
+              <option value={one}>1 - 'No-fuss — Carefree'</option>
+              <option value={two}>
+                2 - 'Easy — Relatively low maintenance'
+              </option>
+              <option value={three}>
+                3 - 'Moderate — Needs a bit of extra care'
+              </option>
+            </select>
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant's Pet Friendliness</label>
+            <input
+              id="form-input"
+              name="petFriendly"
+              value={petFriendly}
+              onChange={onChange}
+            />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant's Air Cleanliness</label>
+            <input
+              id="form-input"
+              name="airCleaner"
+              value={airCleaner}
+              onChange={onChange}
+            />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Image</label>
+            <input id="form-input" name="img" value={img} onChange={onChange} />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant Price</label>
+            <input
+              id="form-input"
+              name="price"
+              value={price}
+              onChange={onChange}
+            />
+          </p>
+          <p id="update-p">
+            <label id="form-label">Plant inventory</label>
+            <input
+              id="form-input"
+              name="inventory"
+              value={inventory}
+              onChange={onChange}
+            />
+          </p>
+          <Button
+            disabled={(size && light && difficulty) === ''}
+            type="submit"
+            id="update-button"
+            variant="contained"
+          >
+            Save Changes
+          </Button>
+        </form>
+      </div>
     );
   }
 }
