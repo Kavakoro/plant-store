@@ -62,40 +62,6 @@ export const updatePlant = (
   };
 };
 
-//admin can create a plant in the database
-// export const createPlant = (
-//   name,
-//   description,
-//   size,
-//   light,
-//   difficulty,
-//   petFriendly,
-//   airCleaner,
-//   img,
-//   price,
-//   inventory,
-//   history
-// ) => {
-//   return async (dispatch) => {
-//     const plant = (
-//       await axios.post(`/admin/plants/`, {
-//         name,
-//         description,
-//         size,
-//         light,
-//         difficulty,
-//         petFriendly,
-//         airCleaner,
-//         img,
-//         price,
-//         inventory,
-//       })
-//     ).data;
-//     dispatch(_createPlant(plant));
-//     history.push(`/admin/Plants`);
-//   };
-// };
-
 export function singlePlantReducer(state = {}, action) {
   if (action.type === SET_PLANT) {
     return action.plant;

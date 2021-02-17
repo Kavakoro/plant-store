@@ -1,11 +1,10 @@
 import axios from 'axios';
+const token = window.localStorage.getItem('token');
 
 //constants
 const SET_USER = 'SET_USER';
 const UPDATE_USER = 'UPDATE_USER';
 const UPDATE_PROFILE = 'UPDATE_PROFILE';
-
-const token = window.localStorage.getItem('token');
 
 const _setUser = (user) => ({ type: SET_USER, user });
 const _updateProfile = (user) => ({ type: UPDATE_PROFILE, user });

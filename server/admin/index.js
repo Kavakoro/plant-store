@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {
   models: { Plant, Order, User },
 } = require('../db');
-const { isLoggedIn, isAdmin } = require('../middleware');
+const { isAdmin } = require('../middleware');
 
 /** these routes are mounted at /admin **/
 
