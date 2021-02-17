@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import {
   Login,
   Signup,
@@ -18,8 +18,8 @@ import {
   UserAdmin,
   OrderAdmin,
   CreatePlant,
-} from "./components";
-import { me } from "./store";
+} from './components';
+import { me } from './store';
 
 /**
  * COMPONENT
@@ -29,7 +29,7 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
   componentDidUpdate(prevProps) {
-    console.log("route component updated");
+    console.log('route component updated');
   }
   render() {
     const { isLoggedIn } = this.props;
@@ -43,10 +43,10 @@ class Routes extends Component {
         <Route exact path="/plants/:plantId" component={SinglePlant} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/cart/checkout" component={Checkout} />
-        <Route exact path="/admin" component={AdminPanel} />
-        <Route exact path="/admin/Plants" component={PlantAdmin} />
-        <Route exact path="/admin/Users" component={UserAdmin} />
-        <Route exact path="/admin/Orders" component={OrderAdmin} />
+        <Route path="/admin" component={AdminPanel} />
+        <Route path="/admin/Plants" component={PlantAdmin} />
+        <Route path="/admin/Users" component={UserAdmin} />
+        <Route path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/admin/Plants/createplant" component={CreatePlant} />
         <Route exact path="/admin/Users/update/:id" component={UpdateUser} />
         <Route exact path="/updateprofile" component={UpdateProfile} />
@@ -54,7 +54,7 @@ class Routes extends Component {
           exact
           path="/admin/Orders/update/:id"
           component={UpdateOrder}
-        />{" "}
+        />{' '}
         <Route
           exact
           path="/admin/Plants/update/:plantId"
