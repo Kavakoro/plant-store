@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateUser, setUser } from '../store/singleUser';
 import '../../public/UpdateUser.css';
+import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
 
 class UpdateUser extends Component {
@@ -97,6 +98,7 @@ class UpdateUser extends Component {
 
     return (
       <form id="userUpdate-form" onSubmit={onSubmit}>
+        <h1 id="update-heading">Update User Details</h1>
         <p id="userUpdate-p">
           <label id="userform-label">First Name</label>
           <input
@@ -150,15 +152,21 @@ class UpdateUser extends Component {
             value={isAdmin}
             onChange={onChange}
           >
-            <option hidden disabled selected value>
+            {/* <option hidden disabled selected value>
               -- select an option --
-            </option>
-            <option value={false}>--choose an option--</option>
+            </option> */}
+            <option value={''}>--choose an option--</option>
             <option value={true}>Yes</option>
             <option value={false}>No</option>
           </select>
         </p>
-        <Button type="submit" id="userUpdate-button" variant="contained">
+
+        <Button
+          disabled={isAdmin === ''}
+          type="submit"
+          id="userUpdate-button"
+          variant="contained"
+        >
           Save Changes
         </Button>
       </form>
