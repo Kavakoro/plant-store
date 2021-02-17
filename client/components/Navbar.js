@@ -1,27 +1,24 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import AppBar from "@material-ui/core/AppBar";
-import "../../public/Navbar.css";
-import { fetchCart, updateCart, addToCart } from "../store/cart";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import { green } from "@material-ui/core/colors";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import AppBar from '@material-ui/core/AppBar';
+import '../../public/Navbar.css';
+import { fetchCart, updateCart, addToCart } from '../store/cart';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { green } from '@material-ui/core/colors';
 // import { yellow } from "@material-ui/core/colors";
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 // temporary axios import for testing
-import axios from "axios";
-
-//edit orderId when every time you reseed db
-// const orderId = '0492fecf-7ab8-4990-900c-62c97af4b84d';
+import axios from 'axios';
 
 const navBarTheme = createMuiTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: "#224229",
+      main: '#224229',
     },
   },
 });
@@ -31,13 +28,8 @@ class Navbar extends React.Component {
     super(props);
   }
   async componentDidMount() {
-    //const orderId = window.localStorage.getItem('orderId');
-    // testing orderId placeholder
-    // const orderId = (await axios.get('/api/test/cartid')).data;
-    // console.log(orderId, 'orderId');
-
     //first check localstorage for an orderId
-    const orderId = window.localStorage.getItem("orderId") || null;
+    const orderId = window.localStorage.getItem('orderId') || null;
     //if we have an orderId, fetch cart using orderId - pass in a userId if user logged in, or null if not
     const userId = this.props.auth.id || null;
     this.props.getCart(orderId, userId);
@@ -55,11 +47,11 @@ class Navbar extends React.Component {
         //see if there is a match of plants between carts
         const match = userPlants.find((_plant) => plant.id === _plant.id);
         if (match) {
-          let total = plant.lineitem.amount + _plant.lineitem.amount; //total quantity of that plant between guest and user cart
+          let total = plant.lineitem.amount + _plant.lineitem.amount; //total quantity of that plant between guest and user carts
           //if there is a match, update the lineitem for that user and orderId with the new plant quantity
           this.props.update(this.props.cart.id, plant.id, total);
         } else {
-          //bc of the logic in the api, had to first add the plant to the cart, then update it to avoid redoing a lot of logic
+          //bc of the logic in the api, had to first add the plant to the cart, then update it
           await this.props.add(this.props.cart.id, plant.id);
           this.props.update(
             this.props.cart.id,
@@ -71,7 +63,6 @@ class Navbar extends React.Component {
     }
   }
   render() {
-    const orderId = localStorage.getItem("orderId");
     const { handleClick, isLoggedIn, isAdmin } = this.props;
     return (
       <div>
@@ -80,9 +71,9 @@ class Navbar extends React.Component {
             position="static"
             color="primary"
             style={{
-              height: "6rem",
-              display: "flex",
-              justifyContent: "center",
+              height: '6rem',
+              display: 'flex',
+              justifyContent: 'center',
             }}
           >
             <nav>
@@ -93,7 +84,7 @@ class Navbar extends React.Component {
                   </Link>
                 </div>
                 <div id="nav-links">
-                  {isAdmin ? <Link to="/admin">Admin</Link> : ""}
+                  {isAdmin ? <Link to="/admin">Admin</Link> : ''}
                   <Link to="/">Home</Link>
                   {isLoggedIn ? (
                     <div>

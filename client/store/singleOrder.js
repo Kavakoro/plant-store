@@ -1,4 +1,5 @@
 import axios from 'axios';
+const token = window.localStorage.getItem('token');
 
 //constants
 const SET_ORDER = 'SET_ORDER';
@@ -17,7 +18,7 @@ export const setOrder = (id) => {
   };
 };
 
-//this function is for admin to update an order in the database
+//admin updates an order in the database
 export const updateOrder = (
   id,
   shipTo,
@@ -30,7 +31,6 @@ export const updateOrder = (
   history
 ) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
     const order = (
       await axios.put(
         `/admin/orders/${id}`,

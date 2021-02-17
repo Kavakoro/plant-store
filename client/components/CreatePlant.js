@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPlant } from '../store/singlePlant';
+import { createPlant } from '../store/plants';
 import Button from '@material-ui/core/Button';
 import '../../public/UpdatePlant.css';
 

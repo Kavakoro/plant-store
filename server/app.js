@@ -21,23 +21,22 @@ app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
 app.use('/admin', require('./admin'));
 
-const githubURL = process.env.GITHUB_CLIENT_ID
-  ? `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
-  : null;
-
 // app.use(async (req, res, next) => {
 //   if (!req.headers.authorization) {
 //     return next();
 //   }
 //   try {
 //     const user = await User.findByToken(req.headers.authorization);
-//     console.log(user, 'user in app.use');
 //     req.user = user;
 //     next();
 //   } catch (err) {
 //     next(err);
 //   }
 // });
+const githubURL = process.env.GITHUB_CLIENT_ID
+  ? `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
+  : null;
+
 app.get('/', (req, res) =>
   res.render(path.join(__dirname, '..', 'public/index.html'), { githubURL })
 );

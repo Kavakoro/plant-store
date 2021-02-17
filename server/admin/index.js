@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {
   models: { Plant, Order, User },
 } = require('../db');
-const { isLoggedIn, isAdmin } = require('../middleware');
+const { isAdmin } = require('../middleware');
 
 /** these routes are mounted at /admin **/
 
@@ -25,6 +25,15 @@ router.put('/plants/:id', isAdmin, async (req, res, next) => {
     const plant = await Plant.findByPk(req.params.id);
     await plant.update(req.body);
     res.status(201).send(plant);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// the route for an admin to create a plant in the database
+router.post('/plants', isAdmin, async (req, res, next) => {
+  try {
+    res.status(201).send(await Plant.create(req.body));
   } catch (err) {
     next(err);
   }
