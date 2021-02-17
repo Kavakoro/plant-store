@@ -91,7 +91,7 @@ class Navbar extends React.Component {
                       <a href="/" onClick={handleClick}>
                         Logout
                       </a>
-                      <Link to="/updateprofile">Account Profile</Link>
+                      <Link to="/account">Account</Link>
                     </div>
                   ) : (
                     <div>

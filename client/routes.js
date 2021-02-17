@@ -18,6 +18,8 @@ import {
   UserAdmin,
   OrderAdmin,
   CreatePlant,
+  PastOrders,
+  Account,
 } from './components';
 import { me } from './store';
 
@@ -28,9 +30,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
   }
-  componentDidUpdate(prevProps) {
-    console.log('route component updated');
-  }
+  componentDidUpdate(prevProps) {}
   render() {
     const { isLoggedIn } = this.props;
 
@@ -47,13 +47,16 @@ class Routes extends Component {
         <Route exact path="/admin/Plants" component={PlantAdmin} />
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
-        <Route exact path="/updateprofile" component={UpdateProfile} />
+        <Route exact path="/account" component={Account} />
+        <Route exact path ="/account/orders" component={PastOrders} />
+        <Route exact path="/account/updateprofile" component={UpdateProfile} />
         <Switch>
           <Route path="/admin/Plants/createplant" component={CreatePlant} />
           <Route path="/admin/Users/update/:id" component={UpdateUser} />
           <Route path="/admin/Orders/update/:id" component={UpdateOrder} />
           <Route path="/admin/Plants/update/:plantId" component={UpdatePlant} />
         </Switch>
+
       </div>
     );
   }

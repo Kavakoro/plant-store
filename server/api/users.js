@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User },
+  models: { User, Order },
 } = require('../db');
 
 const { isLoggedIn } = require('../middleware');
@@ -58,5 +58,23 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
     res.status(201).send(await user.update(req.body));
   } catch (er) {
     next(er);
+  }
+});
+
+// route for a USER to get his/her past fulfilled orders
+router.get('/:id/orders', isLoggedIn, async (req, res, next) => {
+  // find all orders for our user where the status is fulfilled
+
+  try {
+    const orders = Order.findAll({
+      where: {
+        userId: req.params.id,
+        fullfilled: true,
+      },
+    });
+    console.log(orders, 'users past fulfilled orders');
+    res.status(200).send(orders);
+  } catch (err) {
+    next(err);
   }
 });
