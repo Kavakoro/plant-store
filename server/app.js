@@ -16,23 +16,22 @@ app.use(express.json());
 //use ejs renderer in order to pass data html files
 app.engine('html', require('ejs').renderFile);
 
+// app.use(async (req, res, next) => {
+//   if (!req.headers.authorization) {
+//     return next();
+//   }
+//   const user = await User.findByToken(req.headers.authorization);
+//   if (!user) {
+//     const error = Error('Unauthorized user');
+//     error.status = 401;
+//     throw error;
+//   }
+// });
 // auth, api and admin routes
 app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
 app.use('/admin', require('./admin'));
 
-// app.use(async (req, res, next) => {
-//   if (!req.headers.authorization) {
-//     return next();
-//   }
-//   try {
-//     const user = await User.findByToken(req.headers.authorization);
-//     req.user = user;
-//     next();
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 const githubURL = process.env.GITHUB_CLIENT_ID
   ? `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
   : null;

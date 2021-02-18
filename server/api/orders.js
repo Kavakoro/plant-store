@@ -6,11 +6,10 @@ const {
 
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Order
-      .findAll
-      // attributes: ["id", "shippingAddress"],
-      ();
+    const orders = await Order.findAll();
+    // attributes: ["id", "shippingAddress"],
     // res.json(orders);
+    console.log(orders, 'orders');
     res.status(200).send(orders);
   } catch (err) {
     next(err);

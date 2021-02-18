@@ -66,7 +66,8 @@ router.get('/:id/orders', isLoggedIn, async (req, res, next) => {
   // find all orders for our user where the status is fulfilled
 
   try {
-    const orders = Order.findAll({
+    console.log(req.params.id, 'req.params.id');
+    const orders = await Order.findAll({
       where: {
         userId: req.params.id,
         fullfilled: true,
