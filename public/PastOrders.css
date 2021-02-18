@@ -5,6 +5,9 @@
   align-items: center;
   text-align: center;
 }
+ul {
+  list-style-type: none;
+}
 
 #single-past-order table {
   width: 70vw;
