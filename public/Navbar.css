@@ -2,7 +2,6 @@
   font-family: 'Unna', serif;
   display: flex;
   align-items: center;
-  margin-right: 5rem;
   font-size: 1.4rem;
   justify-content: space-between;
 }
@@ -10,6 +9,7 @@
 #nav-links {
   display: flex;
   align-items: center;
+  color: white;
 }
 
 #nav-links a:hover {

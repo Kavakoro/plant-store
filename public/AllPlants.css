@@ -15,8 +15,8 @@
   height: 26rem;
   width: 21rem;
 }
-a,
-a:visited {
+#all-plants a,
+#all-plants a:visited {
   color: black;
 }
 

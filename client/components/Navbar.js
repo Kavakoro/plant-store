@@ -1,24 +1,24 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
-import AppBar from "@material-ui/core/AppBar";
-import "../../public/Navbar.css";
-import { fetchCart, updateCart, addToCart } from "../store/cart";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import { green } from "@material-ui/core/colors";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import AppBar from '@material-ui/core/AppBar';
+import '../../public/Navbar.css';
+import { fetchCart, updateCart, addToCart } from '../store/cart';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { green } from '@material-ui/core/colors';
 // import { yellow } from "@material-ui/core/colors";
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 // temporary axios import for testing
-import axios from "axios";
+import axios from 'axios';
 
 const navBarTheme = createMuiTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: "#224229",
+      main: '#224229',
     },
   },
 });
@@ -29,7 +29,7 @@ class Navbar extends React.Component {
   }
   async componentDidMount() {
     //first check localstorage for an orderId
-    const orderId = window.localStorage.getItem("orderId") || null;
+    const orderId = window.localStorage.getItem('orderId') || null;
     //if we have an orderId, fetch cart using orderId - pass in a userId if user logged in, or null if not
     const userId = this.props.auth.id || null;
     this.props.getCart(orderId, userId);
@@ -76,9 +76,9 @@ class Navbar extends React.Component {
             position="static"
             color="primary"
             style={{
-              height: "6rem",
-              display: "flex",
-              justifyContent: "center",
+              height: '6rem',
+              display: 'flex',
+              justifyContent: 'center',
             }}
           >
             <nav>
@@ -89,7 +89,7 @@ class Navbar extends React.Component {
                   </Link>
                 </div>
                 <div id="nav-links">
-                  {isAdmin ? <Link to="/admin">Admin</Link> : ""}
+                  {isAdmin ? <Link to="/admin">Admin</Link> : ''}
                   <Link to="/">Home</Link>
                   {isLoggedIn ? (
                     <div>
@@ -105,15 +105,13 @@ class Navbar extends React.Component {
                     </div>
                   )}
                   <Link to="/signup">Sign Up</Link>
+                  <Link to="/about">About</Link>
 
                   <Link className="cart" to="/cart">
                     <div className="column cart">
                       <img height="40" width="35" src="/images/cart.png"></img>
                       <span className="total">{`(${totalItems})`}</span>
                     </div>
-
-                  <Link to="/about">About</Link>
-
                   </Link>
                 </div>
               </div>
