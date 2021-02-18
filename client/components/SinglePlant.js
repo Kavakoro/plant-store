@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import "../../public/SinglePlant.css";
-import { setPlant } from "../store/singlePlant";
+import React from 'react';
+import { connect } from 'react-redux';
+import '../../public/SinglePlant.css';
+import { setPlant } from '../store/singlePlant';
 // import { Link } from "react-router-dom";
-import AddToCart from "./AddToCart";
+import AddToCart from './AddToCart';
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -26,14 +26,12 @@ class SinglePlant extends React.Component {
           <div id="plant-div">
             <h1>{plant.name}</h1>
 
-
             <img src={plant.img} />
 
             <p>${plant.price}</p>
             <p>
               <b>Free shipping on orders over $75.</b>
             </p>
-
           </div>
           <div>
             <h2>Description</h2>
@@ -42,7 +40,7 @@ class SinglePlant extends React.Component {
               <h2>Details & Care</h2>
               <ul>
                 <li>
-                  PANT SIZE: <b>{plant.size}</b>{" "}
+                  PLANT SIZE: <b>{plant.size}</b>{' '}
                 </li>
                 <li>
                   DIFFICULTY: <b>{plant.difficulty}</b>
@@ -62,7 +60,7 @@ class SinglePlant extends React.Component {
               <h2>What's Included</h2>
               <ul>
                 <li>Healthy plant pre-potted with premium soil</li>
-                <li>Ecopots pot and saucerks for expert-level care</li>
+                <li>Ecopots pot and saucers for expert-level care</li>
               </ul>
             </div>
             <div id="guranteed">

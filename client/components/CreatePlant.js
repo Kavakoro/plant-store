@@ -4,6 +4,9 @@ import { createPlant } from '../store/plants';
 import Button from '@material-ui/core/Button';
 import '../../public/UpdatePlant.css';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class CreatePlant extends Component {
   constructor() {
@@ -21,7 +24,6 @@ class CreatePlant extends Component {
       inventory: '',
       error: '',
     };
-    console.log('state', this.state);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -76,142 +78,156 @@ class CreatePlant extends Component {
     const four = 4;
 
     return (
-      <form id="update-form" onSubmit={onSubmit}>
-        <h1 id="update-heading">Add Plant Details</h1>
-        <p id="update-p">
-          <label id="form-label">Plant Name</label>
-          <input id="form-input" name="name" value={name} onChange={onChange} />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Description</label>
-          <input
-            id="form-input"
+      <div id="update">
+        <form id="update-form" onSubmit={onSubmit}>
+          <h1 id="update-heading">Add Plant Details</h1>
+          <TextField
+            id="standard-basic"
+            name="name"
+            label="Plant Name"
+            value={name}
+            variant="outlined"
+            onChange={onChange}
+          ></TextField>
+          <TextField
+            id="standard-basic"
             name="description"
+            label="Plant Description"
             value={description}
+            variant="outlined"
             onChange={onChange}
-          />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Size</label>
-          <select id="form-input" name="size" value={size} onChange={onChange}>
-            <option value="">--choose an option--</option>
-            <option value={one}>
+          ></TextField>
+          <InputLabel id="plant-size">Plant Size</InputLabel>
+          <Select
+            labelId="plant-size"
+            value={size}
+            id="plant-size-select"
+            name="size"
+            onChange={onChange}
+          >
+            <MenuItem value={one}>
               1 - Small (7" - 15" tall including ecopot)
-            </option>
-            <option value={two}>
+            </MenuItem>
+            <MenuItem value={two}>
               2 - Medium (16" - 26" tall including ecopot)
-            </option>
-            <option value={three}>
+            </MenuItem>
+            <MenuItem value={three}>
               3 - Large (27"-40" tall including ecopot)
-            </option>
-            <option value={four}>
+            </MenuItem>
+            <MenuItem value={four}>
               4 - Extra Large (41"-58" tall including ecopot)
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Lighting</label>
-          <select
-            id="form-input"
-            name="light"
-            value={light}
-            onChange={onChange}
-          >
-            <option value="">--choose an option--</option>
-            <option value={one}>
-              1 - 'Low to Partial — Low to bright indirect light'
-            </option>
-            <option value={two}>2 - 'Medium — Bright indirect light'</option>
-            <option value={three}>
-              3 - 'Partial to Bright — Bright indirect to full sun'
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Difficulty</label>
-          <select
-            id="form-input"
-            name="difficulty"
-            value={difficulty}
-            onChange={onChange}
-          >
-            <option value="">--choose an option--</option>
-            <option value={one}>1 - 'No-fuss — Carefree'</option>
-            <option value={two}>2 - 'Easy — Relatively low maintenance'</option>
-            <option value={three}>
-              3 - 'Moderate — Needs a bit of extra care'
-            </option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant's Pet Friendliness</label>
-          <select
-            id="form-input"
-            name="petFriendly"
-            value={petFriendly}
-            onChange={onChange}
-          >
-            <option value="">--choose an option--</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </p>
+            </MenuItem>
+          </Select>
 
-        <p id="update-p">
-          <label id="form-label">Plant's Air Cleanliness</label>
-          <select
-            id="form-input"
-            name="airCleaner"
-            value={airCleaner}
+          <InputLabel id="plant-lighting">Plant Lighting</InputLabel>
+          <Select
+            labelId="plant-lighting"
+            value={light}
+            id="plant-lighting-select"
+            name="light"
             onChange={onChange}
           >
-            <option value="">--choose an option--</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Image</label>
-          <input id="form-input" name="img" value={img} onChange={onChange} />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant Price</label>
-          <input
-            id="form-input"
+            <MenuItem value={one}>
+              1 - 'Low to Partial — Low to bright indirect light'
+            </MenuItem>
+            <MenuItem value={two}>
+              2 - 'Medium — Bright indirect light'
+            </MenuItem>
+            <MenuItem value={three}>
+              3 - 'Partial to Bright — Bright indirect to full sun'
+            </MenuItem>
+          </Select>
+          <InputLabel id="plant-difficulty">Plant Difficulty</InputLabel>
+          <Select
+            labelId="plant-difficulty"
+            value={difficulty}
+            id="plant-difficulty-select"
+            name="difficulty"
+            onChange={onChange}
+          >
+            <MenuItem value={one}>1 - 'No-fuss — Carefree'</MenuItem>
+            <MenuItem value={two}>
+              2 - 'Easy — Relatively low maintenance'
+            </MenuItem>
+            <MenuItem value={three}>
+              3 - 'Moderate — Needs a bit of extra care'
+            </MenuItem>
+          </Select>
+          <InputLabel id="pet-friendliness">Pet Friendly?</InputLabel>
+          <Select
+            labelId="pet-friendliness"
+            value={petFriendly}
+            id="pet-friendly-select"
+            name="petFriendly"
+            onChange={onChange}
+          >
+            <MenuItem value="Yes">Yes</MenuItem>
+            <MenuItem value="No">No</MenuItem>
+          </Select>
+          <InputLabel id="air-cleanliness">Air Cleaner?</InputLabel>
+          <Select
+            labelId="air-cleanliness"
+            value={airCleaner}
+            id="air-cleanliness"
+            name="airCleaner"
+            onChange={onChange}
+          >
+            <MenuItem value="Yes">Yes</MenuItem>
+            <MenuItem value="No">No</MenuItem>
+          </Select>
+          <InputLabel id="plant-image">Plant Image Source</InputLabel>
+
+          <TextField
+            id="plant-image"
+            name="img"
+            value={img}
+            onChange={onChange}
+          ></TextField>
+
+          <InputLabel id="plant-price">Plant Price</InputLabel>
+
+          <TextField
+            id="plant-price"
             name="price"
             value={price}
             onChange={onChange}
-          />
-        </p>
-        <p id="update-p">
-          <label id="form-label">Plant inventory</label>
-          <input
-            id="form-input"
+          ></TextField>
+
+          <InputLabel id="inventory">Plant Inventory</InputLabel>
+
+          <TextField
+            id="inventory"
             name="inventory"
             value={inventory}
             onChange={onChange}
-          />
-        </p>
+          ></TextField>
 
-        <Button
-          disabled={
-            (size &&
-              price &&
-              inventory &&
-              name &&
-              description &&
-              light &&
-              difficulty &&
-              petFriendly &&
-              airCleaner) === ''
-          }
-          type="submit"
-          id="update-button"
-          variant="contained"
-        >
-          Save Changes
-        </Button>
-      </form>
+          <Button
+            disabled={
+              (size &&
+                price &&
+                inventory &&
+                name &&
+                description &&
+                light &&
+                difficulty &&
+                petFriendly &&
+                airCleaner) === ''
+            }
+            type="submit"
+            id="update-button"
+            variant="contained"
+            style={
+              ({ height: '2em' },
+              { width: '5rem' },
+              { margin: '3rem' },
+              { backgroundColor: '#abd4a8' })
+            }
+          >
+            Save Changes
+          </Button>
+        </form>
+      </div>
     );
   }
 }
