@@ -14,11 +14,26 @@
   padding: 0 1rem 3px 1rem;
 }
 
+#admin {
+  padding: '.5rem';
+
+  width: 8rem;
+  /* margin: 2rem; */
+}
 #userform-input {
   margin: 0 1rem;
   font-size: 20px;
 }
-
+.row {
+  display: flex;
+  flex-direction: row;
+}
+div.admin {
+  margin-bottom: 2rem;
+}
+.submit {
+  margin-top: 2rem;
+}
 #userUpdate-button {
   background-color: rgb(252 249 243 / 65%);
   border: 1px solid rgb(6, 82, 6);

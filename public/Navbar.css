@@ -1,21 +1,22 @@
 #navbar {
+  font-family: 'Unna', serif;
   display: flex;
   align-items: center;
-  margin-right: 5rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   justify-content: space-between;
 }
 
 #nav-links {
   display: flex;
   align-items: center;
+  color: white;
 }
-/* 
-#nav-links a {
-  text-decoration: underline;
-} */
+
 #nav-links a:hover {
   color: rgb(189, 186, 186);
+}
+#nav-links img {
+  margin-top: 0.5rem;
 }
 
 nav a:visited,
@@ -29,4 +30,16 @@ nav a:visited,
 }
 #home {
   text-decoration: none;
+}
+
+.column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+a.cart {
+  text-decoration: none;
+}
+span.total {
+  font-size: 0.8rem;
 }

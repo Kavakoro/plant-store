@@ -27,8 +27,8 @@
   height: 26rem;
   width: 21rem;
 }
-a,
-a:visited {
+#all-plants a,
+#all-plants a:visited {
   color: black;
 }
 
@@ -47,9 +47,6 @@ a:hover {
   width: 55%;
 }
 
-/* #all-plants button.active {
-  visibility: visible;
-} */
 #all-plants button:hover {
   background-color: #fcf9f3;
 }

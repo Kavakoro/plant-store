@@ -113,12 +113,23 @@ class UpdatePlant extends Component {
 
     return (
       <div>
-        <div id="delete-button">
-          <button onClick={() => destroy(plant.id)}>Delete Plant</button>
+        <div className="heading row">
+          <h1>Update Plant Details</h1>
+          <button
+            id="delete-button"
+            onClick={() => {
+              const result = confirm(
+                'Are you sure you want to delete this plant? Information will be deleted from database.'
+              );
+              if (result) {
+                destroy(plant.id);
+              }
+            }}
+          >
+            Delete
+          </button>
         </div>
-
         <form id="update-form" onSubmit={onSubmit}>
-          <h1 id="update-heading">Update Plant Details</h1>
           <p id="update-p">
             <label id="form-label">Plant Name</label>
             <input

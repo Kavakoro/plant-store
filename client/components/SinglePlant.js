@@ -4,19 +4,6 @@ import '../../public/SinglePlant.css';
 import { setPlant } from '../store/singlePlant';
 // import { Link } from "react-router-dom";
 import AddToCart from './AddToCart';
-import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { green } from '@material-ui/core/colors';
-
-// const buttonTheme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       // Purple and green play nicely together.
-//       main: green[900],
-//     },
-//   },
-// });
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -37,15 +24,51 @@ class SinglePlant extends React.Component {
       return (
         <div id="single-plant">
           <div id="plant-div">
-            <img src={plant.img} />
             <h1>{plant.name}</h1>
+
+            <img src={plant.img} />
+
+            <p>${plant.price}</p>
+            <p>
+              <b>Free shipping on orders over $75.</b>
+            </p>
           </div>
           <div>
+            <h2>Description</h2>
             <p>{plant.description}</p>
-            <ul>
-              <li>{plant.size}</li>
-              <li>{plant.price}</li>
-            </ul>
+            <div id="details">
+              <h2>Details & Care</h2>
+              <ul>
+                <li>
+                  PLANT SIZE: <b>{plant.size}</b>{' '}
+                </li>
+                <li>
+                  DIFFICULTY: <b>{plant.difficulty}</b>
+                </li>
+                <li>
+                  LIGHT: <b>{plant.light}</b>
+                </li>
+                <li>
+                  PET FRIENDLY: <b>{plant.petFriendly}</b>
+                </li>
+                <li>
+                  AIR CLEANER: <b>{plant.airCleaner}</b>
+                </li>
+              </ul>
+            </div>
+            <div id="included">
+              <h2>What's Included</h2>
+              <ul>
+                <li>Healthy plant pre-potted with premium soil</li>
+                <li>Ecopots pot and saucers for expert-level care</li>
+              </ul>
+            </div>
+            <div id="guranteed">
+              <h2>Guranteed</h2>
+              <p>
+                If your plant dies within 30 days, we’ll replace it for free.
+              </p>
+            </div>
             <p>
               <AddToCart orderId={orderId} plantId={plant.id} />
             </p>

@@ -6,11 +6,10 @@ const {
 
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Order
-      .findAll
-      // attributes: ["id", "shippingAddress"],
-      ();
+    const orders = await Order.findAll();
+    // attributes: ["id", "shippingAddress"],
     // res.json(orders);
+    console.log(orders, 'orders');
     res.status(200).send(orders);
   } catch (err) {
     next(err);
@@ -31,6 +30,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id);
+    console.log(order, 'order');
     res.status(201).send(await order.update(req.body));
   } catch (er) {
     next(er);
