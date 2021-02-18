@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* a {
@@ -19,4 +21,9 @@ nav a {
 form div {
   margin: 0.5em;
   display: inline-flex;
+}
+
+div {
+  margin: 0;
+  padding: 0;
 }

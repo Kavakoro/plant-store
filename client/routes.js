@@ -48,7 +48,7 @@ class Routes extends Component {
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/account" component={Account} />
-        <Route exact path ="/account/orders" component={PastOrders} />
+        <Route exact path="/account/orders" component={PastOrders} />
         <Route exact path="/account/updateprofile" component={UpdateProfile} />
         <Switch>
           <Route path="/admin/Plants/createplant" component={CreatePlant} />
@@ -56,7 +56,6 @@ class Routes extends Component {
           <Route path="/admin/Orders/update/:id" component={UpdateOrder} />
           <Route path="/admin/Plants/update/:plantId" component={UpdatePlant} />
         </Switch>
-
       </div>
     );
   }
