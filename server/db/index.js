@@ -459,8 +459,8 @@ const syncAndSeed = async () => {
     state: 'West Virginia',
     city: 'Huntington',
     zipCode: '25705',
-    fullfilled: false,
-    total: 0,
+    fullfilled: true,
+    total: 25,
   });
   const order6 = await Order.create({
     shipTo: 'Pops Q',
@@ -468,8 +468,8 @@ const syncAndSeed = async () => {
     state: 'Florida',
     city: 'Panama City',
     zipCode: '32412',
-    fullfilled: false,
-    total: 0,
+    fullfilled: true,
+    total: 200,
   });
 
   await order1.addPlant(BirdofParadise);

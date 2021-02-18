@@ -1,4 +1,35 @@
 #orders {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#single-past-order table {
+  width: 70vw;
+}
+
+#single-past-order td {
+  text-align: center;
+}
+
+#single-past-order img {
+  height: 5rem;
+  width: 5rem;
+}
+#single-past-order {
+  text-align: center;
+}
+#plants {
+  margin-bottom: 2rem;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+}
+
+#plants div.column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

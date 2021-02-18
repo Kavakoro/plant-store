@@ -62,18 +62,26 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
 });
 
 // route for a USER to get his/her past fulfilled orders
-router.get('/:id/orders', isLoggedIn, async (req, res, next) => {
-  // find all orders for our user where the status is fulfilled
-
+router.get('/:userId/orders', isLoggedIn, async (req, res, next) => {
   try {
-    const orders = Order.findAll({
+    // find all orders for our user where the status is fulfilled
+    const orders = await Order.findAll({
       where: {
-        userId: req.params.id,
+        userId: req.params.userId,
         fullfilled: true,
       },
     });
-    console.log(orders, 'users past fulfilled orders');
     res.status(200).send(orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/pastorders/:orderId', isLoggedIn, async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId);
+    const plants = await order.getPlants();
+    res.status(200).send(plants);
   } catch (err) {
     next(err);
   }

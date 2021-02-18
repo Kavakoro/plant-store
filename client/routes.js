@@ -20,6 +20,7 @@ import {
   CreatePlant,
   PastOrders,
   Account,
+  SinglePastOrder,
 } from './components';
 import { me } from './store';
 
@@ -32,8 +33,6 @@ class Routes extends Component {
   }
   componentDidUpdate(prevProps) {}
   render() {
-    const { isLoggedIn } = this.props;
-
     return (
       <div>
         <Route exact path="/" component={Home} />
@@ -48,15 +47,19 @@ class Routes extends Component {
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/account" component={Account} />
-        <Route exact path ="/account/orders" component={PastOrders} />
+        <Route exact path="/account/orders" component={PastOrders} />
         <Route exact path="/account/updateprofile" component={UpdateProfile} />
+        <Route
+          exact
+          path="/account/orders/:orderId"
+          component={SinglePastOrder}
+        />
         <Switch>
           <Route path="/admin/Plants/createplant" component={CreatePlant} />
           <Route path="/admin/Users/update/:id" component={UpdateUser} />
           <Route path="/admin/Orders/update/:id" component={UpdateOrder} />
           <Route path="/admin/Plants/update/:plantId" component={UpdatePlant} />
         </Switch>
-
       </div>
     );
   }

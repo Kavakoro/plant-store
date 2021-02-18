@@ -22,3 +22,4 @@ export { default as CreatePlant } from './CreatePlant';
 export { default as UpdateProfile } from './UpdateProfile';
 export { PastOrders } from './PastOrders';
 export { Account } from './Account';
+export { SinglePastOrder } from './SinglePastOrder';
