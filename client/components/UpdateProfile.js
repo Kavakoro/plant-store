@@ -4,6 +4,7 @@ import { setUser, updateProfile } from '../store/singleUser';
 import '../../public/updateProfile.css';
 import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 class UpdateProfile extends Component {
   constructor(props) {
@@ -75,53 +76,68 @@ class UpdateProfile extends Component {
       <form id="accountUpdate-form" onSubmit={onSubmit}>
         <h1 id="update-heading">Update User Details</h1>
         <p id="userUpdate-p">
-          <label id="userform-label">First Name</label>
-          <input
-            id="userform-input"
+          <TextField
+            id="standard-basic"
             name="firstName"
             value={firstName}
             onChange={onChange}
-          />
+            label="First Name"
+            variant="outlined"
+          ></TextField>
         </p>
         <p id="userUpdate-p">
-          <label id="userform-label">Last Name</label>
-          <input
-            id="userform-input"
-            name="lastName"
+          <TextField
             value={lastName}
             onChange={onChange}
-          />
+            id="standard-basic"
+            label="Last Name"
+            name="lastName"
+            variant="outlined"
+          ></TextField>
         </p>
         <p id="userUpdate-p">
-          <label id="userform-label">Phone Number</label>
-          <input
-            id="userform-input"
+          <TextField
+            id="standard-basic"
             name="phoneNumber"
             value={phoneNumber}
+            label="Phone Number"
             onChange={onChange}
-          />
+            variant="outlined"
+          ></TextField>
         </p>
         <p id="userUpdate-p">
-          <label id="userform-label">Date of Birth</label>
-          <input
-            id="userform-input"
+          <TextField
             name="birthdate"
             value={birthdate}
             onChange={onChange}
-          />
+            label="Date of Birth"
+            id="standard-basic"
+            variant="outlined"
+          ></TextField>
         </p>
         <p id="accountUpdate-p">
-          <label id="accountform-label">Email</label>
-          <input
-            id="accountform-input"
+          <TextField
             name="email"
             value={email}
+            label="Email"
             onChange={onChange}
-          />
+            id="standard-basic"
+            variant="outlined"
+          ></TextField>
         </p>
-        <Button type="submit" id="accountUpdate-button">
-          Save Changes
-        </Button>
+        <div className="submit">
+          <Button
+            variant="contained"
+            type="submit"
+            style={
+              ({ height: '2em' },
+              { margin: '3rem' },
+              { backgroundColor: '#abd4a8' })
+            }
+          >
+            Save Changes
+          </Button>
+        </div>
       </form>
     );
   }

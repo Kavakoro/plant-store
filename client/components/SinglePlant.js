@@ -24,15 +24,19 @@ class SinglePlant extends React.Component {
       return (
         <div id="single-plant">
           <div id="plant-div">
-            <img src={plant.img} />
             <h1>{plant.name}</h1>
+
+
+            <img src={plant.img} />
+
             <p>${plant.price}</p>
             <p>
               <b>Free shipping on orders over $75.</b>
             </p>
+
           </div>
           <div>
-            <h2>Descrition</h2>
+            <h2>Description</h2>
             <p>{plant.description}</p>
             <div id="details">
               <h2>Details & Care</h2>

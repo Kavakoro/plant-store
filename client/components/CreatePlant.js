@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createPlant } from '../store/plants';
 import Button from '@material-ui/core/Button';
 import '../../public/UpdatePlant.css';
+import Select from '@material-ui/core/Select';
 
 class CreatePlant extends Component {
   constructor() {
@@ -51,7 +52,6 @@ class CreatePlant extends Component {
       console.log('this is er', er);
       this.setState({ error: er });
     }
-    console.log('this is state', this.state);
   }
   render() {
     const {

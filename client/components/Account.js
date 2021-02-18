@@ -8,19 +8,21 @@ export const Account = (props) => {
   return (
     <div id="account">
       <h1>Your Account</h1>
-      <Button
-        component={Link}
-        to="/account/updateprofile"
-        variant="contained"
-        type="submit"
-        style={
-          ({ height: '3rem' },
-          { margin: '1rem' },
-          { backgroundColor: 'rgb(208, 236, 208)' })
-        }
-      >
-        Update Profile
-      </Button>
+      <div id="account-info">
+        <Button
+          component={Link}
+          to="/account/updateprofile"
+          variant="contained"
+          type="submit"
+          style={
+            ({ height: '3rem' },
+            { margin: '1rem' },
+            { backgroundColor: 'rgb(208, 236, 208)' })
+          }
+        >
+          Update Profile
+        </Button>
+      </div>
       <Button
         component={Link}
         to="/account/orders"

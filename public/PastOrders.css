@@ -1,19 +1,30 @@
 #orders {
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+ul {
+  list-style-type: none;
+}
 
 #single-past-order table {
   width: 70vw;
 }
-
+#single-order {
+  font-size: 1.1rem;
+  text-align: left;
+  text-decoration: underline;
+}
 #single-past-order td {
   text-align: center;
 }
 
+#orders button {
+  margin-top: 2rem;
+}
 #single-past-order img {
   height: 5rem;
   width: 5rem;

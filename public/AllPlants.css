@@ -35,9 +35,6 @@ a:hover {
   width: 55%;
 }
 
-/* #all-plants button.active {
-  visibility: visible;
-} */
 #all-plants button:hover {
   background-color: #fcf9f3;
 }

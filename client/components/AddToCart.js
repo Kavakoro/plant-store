@@ -40,15 +40,17 @@ class AddToCart extends React.Component {
           open={open}
           message="Plant added to cart!"
           autoHideDuration={2000}
+          onClose={handleClose}
+          style={{ backgroundColor: '#ffccaa' }}
         >
-          <Alert
+          {/* <Alert
             variant="filled"
             open={open}
             onClose={handleClose}
             severity="success"
           >
             Plant added to cart!
-          </Alert>
+          </Alert> */}
         </Snackbar>
       </>
     );

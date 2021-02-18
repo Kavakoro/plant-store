@@ -15,7 +15,7 @@ export class OrderAdmin extends React.Component {
   }
 
   render() {
-    const { orders } = this.state;
+    let orders = this.state.orders.sort((a, b) => a.id.localeCompare(b.id));
     if (!orders.length) return null;
     return (
       <div id="admin-db">
@@ -45,7 +45,7 @@ export class OrderAdmin extends React.Component {
                 <td className="status">{order.city}</td>
                 <td className="status">{order.state}</td>
                 <td className="status">{order.zipCode}</td>
-                <td className="status">{order.fulfilled ? 'yes' : 'no'}</td>
+                <td className="status">{order.fullfilled ? 'yes' : 'no'}</td>
                 <td className="status">${order.total}</td>
                 <td className="status">
                   <Link to={`/admin/Orders/update/${order.id}`}>
