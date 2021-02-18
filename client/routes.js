@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import {
   Login,
   Signup,
@@ -20,8 +20,9 @@ import {
   CreatePlant,
   PastOrders,
   Account,
-} from './components';
-import { me } from './store';
+  About,
+} from "./components";
+import { me } from "./store";
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
 
     return (
       <div>
+        <Route exact path="/about" component={About} name="rommel demano" />
         <Route exact path="/" component={Home} />
         <Route exact path="/" component={AllPlants} />
         <Route path="/login" component={Login} />
@@ -48,7 +50,7 @@ class Routes extends Component {
         <Route exact path="/admin/Users" component={UserAdmin} />
         <Route exact path="/admin/Orders" component={OrderAdmin} />
         <Route exact path="/account" component={Account} />
-        <Route exact path ="/account/orders" component={PastOrders} />
+        <Route exact path="/account/orders" component={PastOrders} />
         <Route exact path="/account/updateprofile" component={UpdateProfile} />
         <Switch>
           <Route path="/admin/Plants/createplant" component={CreatePlant} />
@@ -56,7 +58,6 @@ class Routes extends Component {
           <Route path="/admin/Orders/update/:id" component={UpdateOrder} />
           <Route path="/admin/Plants/update/:plantId" component={UpdatePlant} />
         </Switch>
-
       </div>
     );
   }

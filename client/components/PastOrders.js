@@ -1,8 +1,8 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import '../../public/PastOrders.css';
-const token = window.localStorage.getItem('token');
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import "../../public/PastOrders.css";
+const token = window.localStorage.getItem("token");
 
 const _PastOrders = (props) => {
   const [orders, setOrders] = useState([]);
@@ -13,6 +13,7 @@ const _PastOrders = (props) => {
       },
     });
   };
+
   useEffect(() => {
     const orders = getOrders();
     setOrders(orders);
