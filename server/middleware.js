@@ -1,5 +1,4 @@
 const isLoggedIn = (req, res, next) => {
-  console.log(req.user, 'req.user');
   if (req.user) {
     return next();
   }
@@ -9,7 +8,6 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  console.log(req.user, 'req.user');
   if (req.user.isAdmin) {
     return next();
   }

@@ -30,6 +30,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const order = await Order.findByPk(req.params.id);
+    console.log(order, 'order');
     res.status(201).send(await order.update(req.body));
   } catch (er) {
     next(er);
