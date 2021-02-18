@@ -4,6 +4,13 @@ import { updateUser, setUser } from '../store/singleUser';
 import '../../public/UpdateUser.css';
 import '../../public/UpdatePlant.css';
 import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 class UpdateUser extends Component {
   constructor(props) {
@@ -38,10 +45,7 @@ class UpdateUser extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('component updating is running');
-
     if (!prevProps.user.id && this.props.user.id) {
-      console.log('if statement running');
       this.setState({
         // username: this.props.user.username,
         firstName: this.props.user.firstName,
@@ -51,10 +55,7 @@ class UpdateUser extends Component {
         email: this.props.user.email,
         isAdmin: this.props.user.isAdmin,
       });
-      //console.log(this.state.name);
     }
-
-    console.log('this is props', this.props);
   }
 
   async onSubmit(ev) {
@@ -75,10 +76,8 @@ class UpdateUser extends Component {
       // console.log(er.response.data, "er.response.data");
       this.setState({ error: er });
     }
-    //console.log('state', this.state);
   }
   onChange(ev) {
-    //this.setState({ [ev.target.name]: ev.target.value });
     const change = {};
     change[ev.target.name] = ev.target.value;
     this.setState(change);
@@ -97,85 +96,90 @@ class UpdateUser extends Component {
     const { onChange, onSubmit } = this;
 
     return (
-      <form id="userUpdate-form" onSubmit={onSubmit}>
+      <div id="update">
         <h1 id="update-heading">Update User Details</h1>
-        <p id="userUpdate-p">
-          <label id="userform-label">First Name</label>
-          <input
-            id="userform-input"
+
+        <form id="update-form" onSubmit={onSubmit}>
+          <InputLabel id="first-name">First Name</InputLabel>
+          <TextField
             name="firstName"
             value={firstName}
+            id="first-name"
             onChange={onChange}
-          />
-        </p>
-        <p id="userUpdate-p">
-          <label id="userform-label">Last Name</label>
-          <input
-            id="userform-input"
+            variant="outlined"
+          ></TextField>
+
+          <InputLabel id="last-name">Last Name</InputLabel>
+          <TextField
             name="lastName"
             value={lastName}
+            id="last-name"
             onChange={onChange}
-          />
-        </p>
-        <p id="userUpdate-p">
-          <label id="userform-label">Phone Number</label>
-          <input
-            id="userform-input"
+            variant="outlined"
+          ></TextField>
+
+          <InputLabel id="phone-number">Phone Number</InputLabel>
+          <TextField
             name="phoneNumber"
             value={phoneNumber}
+            id="phone-number"
             onChange={onChange}
-          />
-        </p>
-        <p id="userUpdate-p">
-          <label id="userform-label">Date of Birth</label>
-          <input
-            id="userform-input"
-            name="birthdate"
+            variant="outlined"
+          ></TextField>
+
+          <InputLabel id="dob">Date of Birth</InputLabel>
+          <TextField
+            name="birthday"
             value={birthdate}
             onChange={onChange}
-          />
-        </p>
-        <p id="userUpdate-p">
-          <label id="userform-label">Email</label>
-          <input
-            id="userform-input"
+            id="dob"
+            variant="outlined"
+          ></TextField>
+
+          <InputLabel id="email">Email</InputLabel>
+          <TextField
             name="email"
             value={email}
             onChange={onChange}
-          />
-        </p>
-        <p id="userUpdate-p">
-          <label id="userform-label">Make Admin?</label>
-          <select
-            id="userform-input"
-            name="isAdmin"
-            value={isAdmin}
-            onChange={onChange}
-          >
-            {/* <option hidden disabled selected value>
-              -- select an option --
-            </option> */}
-            <option value={''}>--choose an option--</option>
-            <option value={true}>Yes</option>
-            <option value={false}>No</option>
-          </select>
-        </p>
+            id="email"
+            variant="outlined"
+          ></TextField>
 
-        <Button
-          disabled={isAdmin === ''}
-          type="submit"
-          id="userUpdate-button"
-          variant="contained"
-        >
-          Save Changes
-        </Button>
-      </form>
+          <InputLabel>Role</InputLabel>
+          <div className=" admin row">
+            <Select
+              style={{ margin: 'auto' }}
+              value={isAdmin}
+              name="isAdmin"
+              id="admin"
+              onChange={onChange}
+            >
+              <MenuItem value={false}>user </MenuItem>
+
+              <MenuItem value={true}> admin </MenuItem>
+            </Select>
+          </div>
+          <Button
+            disabled={isAdmin === ''}
+            type="submit"
+            id="userUpdate-button"
+            variant="contained"
+            style={
+              ({ height: '2em' },
+              { width: '10rem' },
+              { margin: '3rem' },
+              { backgroundColor: '#abd4a8' })
+            }
+          >
+            Save Changes
+          </Button>
+        </form>
+      </div>
     );
   }
 }
 
 const mapToState = (state, otherProps) => {
-  //console.log('maptostate:', state);
   const user = state.user;
   return { user };
 };

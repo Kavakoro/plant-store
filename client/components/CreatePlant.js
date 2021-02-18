@@ -78,7 +78,7 @@ class CreatePlant extends Component {
     const four = 4;
 
     return (
-      <div id="update-plant">
+      <div id="update">
         <form id="update-form" onSubmit={onSubmit}>
           <h1 id="update-heading">Add Plant Details</h1>
           <TextField

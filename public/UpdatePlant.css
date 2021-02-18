@@ -1,9 +1,11 @@
-#update-plant {
+#update {
   text-align: center;
 }
-
+label {
+  text-align: center;
+}
 #update-form {
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   width: 30vw;
   flex-direction: column;
