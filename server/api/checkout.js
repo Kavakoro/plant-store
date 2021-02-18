@@ -4,15 +4,14 @@ const {
 } = require("../db");
 module.exports = router;
 
-const { stripeSecretKey } = require("../../secrets");
+const bodyParser = require("body-parser");
 
-/* const stripe = require("stripe")(
-	"sk_test_51IKvwUChsJVQ70ih6fsb1mJTZfAeY67EQhAj91kfZM6mGE7UgJB0448s6DSUmvPkzgTrCESraG2QqdfjuvlmfQj700HvZUgJdz"
-); */
+const { stripeSecretKey } = require("../../secrets");
+const endpointSecret = "whsec_01zvkW88xuwsN7wlVggkK8O9JKsXzWSE";
 
 const stripe = require("stripe")(stripeSecretKey);
 
-//add to cart
+// create stripe session
 router.post("/create-stripe-session", async (req, res, next) => {
 	const order = await Order.findByPk(req.body.cartId);
 	const lineItems = await order.getPlants();
@@ -38,25 +37,21 @@ router.post("/create-stripe-session", async (req, res, next) => {
 		cancel_url: `http://localhost:8080?cancelled=true`,
 	});
 
-	/* const session = await stripe.checkout.sessions.create({
-		payment_method_types: ["card"],
-		line_items: [
-			{
-				price_data: {
-					currency: "usd",
-					product_data: {
-						name: "Stubborn Attachments",
-						images: ["https://i.imgur.com/EHyR2nP.png"],
-					},
-					unit_amount: 2000,
-				},
-				quantity: 1,
-			},
-		],
-		mode: "payment",
-		success_url: `http://localhost:8080`,
-		cancel_url: `http://localhost:8080`,
-	}); */
-
 	res.status(201).send({ id: session.id });
+});
+
+// create stripe event handler
+router.post("/create-stripe-webhook", (req, res) => {
+	const payload = req.body;
+	const sig = request.headers["stripe-signature"];
+
+	let event;
+
+	try {
+		event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+	} catch (err) {
+		return response.status(400).send(`Webhook Error: ${err.message}`);
+	}
+
+	res.status(200);
 });
