@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import '../../public/PastOrders.css';
 const token = window.localStorage.getItem('token');
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 class _PastOrders extends React.Component {
   constructor(props) {
@@ -11,7 +12,6 @@ class _PastOrders extends React.Component {
     this.state = { orders: [] };
   }
   async componentDidMount() {
-    console.log(this.props, 'this.props');
     const orders = (
       await axios.get(`/api/users/${this.props.auth.id}/orders`, {
         headers: {
@@ -23,7 +23,6 @@ class _PastOrders extends React.Component {
   }
   render() {
     const { orders } = this.state;
-    console.log(orders, 'orders');
     if (!orders.length) {
       return (
         <div id="orders">
@@ -45,6 +44,17 @@ class _PastOrders extends React.Component {
               </ul>
             </div>
           ))}
+          <Button
+            component={Link}
+            to={`/account`}
+            variant="contained"
+            type="submit"
+            style={
+              ({ height: '2em' },
+              { margin: '3rem' },
+              { backgroundColor: '#abd4a8' })
+            }
+          >{`<< Back to account`}</Button>
         </div>
       );
     }
@@ -59,17 +69,9 @@ class _PastOrders extends React.Component {
 //       },
 //     })
 //   ).data;
-//   const orders = (
-//     await axios.get(`/api/orders`, {
-//       headers: {
-//         authorization: token,
-//       },
-//     })
-//   ).data;
-//   return orders;
-// };
+//return orders
+//}
 //     getOrders().then((orders) => setOrders(orders));
-//     console.log(orders, 'orders');
 //   }, []);
 
 export const PastOrders = connect((state) => state)(_PastOrders);
