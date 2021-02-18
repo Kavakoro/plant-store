@@ -51,7 +51,6 @@ class CreatePlant extends Component {
       console.log('this is er', er);
       this.setState({ error: er });
     }
-    console.log('this is state', this.state);
   }
   render() {
     const {

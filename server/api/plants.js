@@ -32,7 +32,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// router.post('/', async (req, res, next) => {
+// router.post('/',  async (req, res, next) => {
 //   try {
 //     res.status(201).send(await Plant.create(req.body));
 //   } catch (er) {
