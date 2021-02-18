@@ -37,8 +37,9 @@ class SinglePlant extends React.Component {
       return (
         <div id="single-plant">
           <div id="plant-div">
-            <img src={plant.img} />
             <h1>{plant.name}</h1>
+
+            <img src={plant.img} />
           </div>
           <div>
             <p>{plant.description}</p>

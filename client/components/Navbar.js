@@ -63,7 +63,12 @@ class Navbar extends React.Component {
     }
   }
   render() {
-    const { handleClick, isLoggedIn, isAdmin } = this.props;
+    const { handleClick, isLoggedIn, isAdmin, cart } = this.props;
+    let totalItems = 0;
+    cart.plants.forEach((plant) => {
+      totalItems += plant.lineitem.amount;
+    });
+    console.log(totalItems, 'totalItems');
     return (
       <div>
         <ThemeProvider theme={navBarTheme}>
@@ -100,8 +105,11 @@ class Navbar extends React.Component {
                     </div>
                   )}
                   <Link to="/signup">Sign Up</Link>
-                  <Link to="/cart">
-                    <img height="40" width="35" src="/images/cart.png"></img>
+                  <Link className="cart" to="/cart">
+                    <div className="column cart">
+                      <img height="40" width="35" src="/images/cart.png"></img>
+                      <span className="total">{`(${totalItems})`}</span>
+                    </div>
                   </Link>
                 </div>
               </div>
