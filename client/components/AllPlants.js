@@ -12,19 +12,11 @@ class AllPlants extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //filteredPlants: [],
-      sizeFilterSmall: '',
-      sizeFilterMedium: '',
-      sizeFilterLarge: '',
-      sizeFilterExtraLarge: '',
-      lightFilterLow: '',
-      lightFilterMedium: '',
-      lightFilterBright: '',
-      difficultyFilterNoFuss: '',
-      difficultyFilterEasy: '',
-      difficultyFilterModerate: '',
-      priceFilterLow: '',
-      priceFilterHigh: '',
+      // filteredPlants: [],
+      sizeFilters: [],
+      lightFilters: [],
+      difficultyFilters: [],
+      priceSort: [],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -35,104 +27,36 @@ class AllPlants extends React.Component {
     // this.setState({
     //   filteredPlants: this.props.plants,
     // });
-    console.log('props', this.props);
+    // console.log('props', this.props);
   }
 
   onChange(ev) {
-    let change = {};
-    change[ev.target.name] =
-      this.state[ev.target.name] === '' ? ev.target.value : '';
-    //console.log('onChange: ', change);
-    this.setState(change);
+    let array = [...this.state[ev.target.name]];
+    if (this.state[ev.target.name].includes(ev.target.value * 1)) {
+      let valueIndex = array.indexOf(ev.target.value * 1);
+      array.splice(valueIndex, 1);
+    } else {
+      array.push(ev.target.value * 1);
+    }
+
+    this.setState({ [ev.target.name]: array });
   }
 
   render() {
     console.log('state:', this.state);
     const orderId = this.props.cart.id;
     const { plants } = this.props;
-    // const { filteredPlants } = this.state;
-    // let filteredPlants = [...this.props.plants];
 
     const {
-      sizeFilterSmall,
-      sizeFilterMedium,
-      sizeFilterLarge,
-      sizeFilterExtraLarge,
-      lightFilterLow,
-      lightFilterMedium,
-      lightFilterBright,
-      difficultyFilterNoFuss,
-      difficultyFilterEasy,
-      difficultyFilterModerate,
-      priceFilterLow,
-      priceFilterHigh,
+      sizeFilters,
+      lightFilters,
+      difficultyFilters,
+      priceSort,
     } = this.state;
-
-    //if you add the functions in the with the onChange below,
-    // you get an error 'cannot filter of underfined.'
-    // i need help passing plants in, or if this is even the right approach
-    function sizeFilterFunc(plants) {
-      if (sizeFilterSmall === 'small') {
-        plants.filter((plant) => plant.size === 1);
-      } else {
-        plants.filter((plant) => plant.size !== 1);
-      }
-      if (sizeFilterMedium === 'medium') {
-        plants.filter((plant) => plant.size === 2);
-      } else {
-        plants.filter((plant) => plant.size !== 2);
-      }
-      if (sizeFilterLarge === 'large') {
-        plants.filter((plant) => plant.size === 3);
-      } else {
-        plants.filter((plant) => plant.size !== 3);
-      }
-      if (sizeFilterExtraLarge === 'extraLarge') {
-        plants.filter((plant) => plant.size === 4);
-      } else {
-        plants.filter((plant) => plant.size !== 4);
-      }
-    }
-
-    function lightFilterFunc(plants) {
-      if (lightFilterLow === 'lowLight') {
-        plants.filter((plant) => plant.light === 1);
-      } else {
-        plants.filter((plant) => plant.light !== 1);
-      }
-      if (lightFilterMedium === 'mediumLight') {
-        plants.filter((plant) => plant.light === 2);
-      } else {
-        plants.filter((plant) => plant.light !== 2);
-      }
-      if (lightFilterBright === 'brightLight') {
-        plants.filter((plant) => plant.light === 3);
-      } else {
-        plants.filter((plant) => plant.light !== 3);
-      }
-    }
-
-    function difficultyFilterFunc(plants) {
-      if (difficultyFilterNoFuss === 'noFuss') {
-        plants.filter((plant) => plant.difficulty === 1);
-      } else {
-        plants.filter((plant) => plant.difficulty !== 1);
-      }
-      if (difficultyFilterEasy === 'easy') {
-        plants.filter((plant) => plant.difficulty === 2);
-      } else {
-        plants.filter((plant) => plant.difficulty !== 2);
-      }
-      if (difficultyFilterModerate === 'moderate') {
-        plants.filter((plant) => plant.difficulty === 3);
-      } else {
-        plants.filter((plant) => plant.difficulty !== 3);
-      }
-    }
 
     function sortPrice(plants) {
       if (priceFilterLow === 'lowToHigh') {
-        plants.sort((a, b) =>
+        lants.sort((a, b) =>
           a.price < b.price
             ? 1
             : a.price === b.price
@@ -154,9 +78,72 @@ class AllPlants extends React.Component {
       }
     }
 
+    let filteredPlants = [];
+
+    if (sizeFilters.length) {
+      sizeFilters.forEach((num) => {
+        const _plants = plants.filter((plant) => {
+          return (
+            plant.size === num &&
+            !JSON.stringify(filteredPlants).includes(JSON.stringify(plant))
+          );
+        });
+        filteredPlants = [...filteredPlants, ..._plants];
+      });
+    }
+
+    if (lightFilters.length) {
+      lightFilters.forEach((num) => {
+        const _plants = plants.filter((plant) => {
+          return (
+            plant.light === num &&
+            !JSON.stringify(filteredPlants).includes(JSON.stringify(plant))
+          );
+        });
+        filteredPlants = [...filteredPlants, ..._plants];
+      });
+    }
+
+    if (difficultyFilters.length) {
+      difficultyFilters.forEach((num) => {
+        const _plants = plants.filter((plant) => {
+          return (
+            plant.difficulty === num &&
+            !JSON.stringify(filteredPlants).includes(JSON.stringify(plant))
+          );
+        });
+        filteredPlants = [...filteredPlants, ..._plants];
+      });
+    }
+    console.log('size plants:', filteredPlants);
+
+    if (priceSort) {
+      if (priceSort.includes(1)) {
+        //lowToHigh
+        filteredPlants.sort((a, b) => a.price - b.price);
+      }
+      if (priceSort.includes(2)) {
+        //HighToLow
+        filteredPlants.sort((a, b) => b.price - a.price);
+      }
+    }
+
     if (!this.props.plants) {
       return null;
     } else {
+      if (!filteredPlants.length) {
+        filteredPlants = plants;
+      }
+      if (priceSort) {
+        if (priceSort.includes(1)) {
+          //lowToHigh
+          filteredPlants.sort((a, b) => a.price - b.price);
+        }
+        if (priceSort.includes(2)) {
+          //HighToLow
+          filteredPlants.sort((a, b) => b.price - a.price);
+        }
+      }
       return (
         <div className="div-row">
           <div className="filterDiv">
@@ -167,8 +154,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="sizeFilterSmall"
-                    value={'small'}
+                    name="sizeFilters"
+                    value={1}
                     onChange={this.onChange}
                   />{' '}
                   Small
@@ -176,8 +163,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="sizeFilterMedium"
-                    value="medium"
+                    name="sizeFilters"
+                    value={2}
                     onChange={this.onChange}
                   />{' '}
                   Medium
@@ -185,8 +172,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="sizeFilterLarge"
-                    value="large"
+                    name="sizeFilters"
+                    value={3}
                     // i want to add the functions in the onChange below
                     onChange={this.onChange}
                   />{' '}
@@ -195,8 +182,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="sizeFilterExtraLarge"
-                    value="extraLarge"
+                    name="sizeFilters"
+                    value={4}
                     onChange={this.onChange}
                   />{' '}
                   Extra Large
@@ -207,8 +194,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="lightFilterLow"
-                    value="lowLight"
+                    name="lightFilters"
+                    value={1}
                     onChange={this.onChange}
                   />{' '}
                   Low to Partial
@@ -216,8 +203,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="lightFilterMedium"
-                    value="mediumLight"
+                    name="lightFilters"
+                    value={2}
                     onChange={this.onChange}
                   />{' '}
                   Medium - Bright (Indirect)
@@ -225,8 +212,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="lightFilterBright"
-                    value="brightLight"
+                    name="lightFilters"
+                    value={3}
                     onChange={this.onChange}
                   />{' '}
                   Bright
@@ -237,8 +224,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="difficultyFilterNoFuss"
-                    value="noFuss"
+                    name="difficultyFilters"
+                    value={1}
                     onChange={this.onChange}
                   />{' '}
                   No Fuss - Carefree
@@ -246,8 +233,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="difficultyFilterEasy"
-                    value="easy"
+                    name="difficultyFilters"
+                    value={2}
                     onChange={this.onChange}
                   />{' '}
                   Easy
@@ -255,8 +242,8 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="difficultyFilterModerate"
-                    value="moderate"
+                    name="difficultyFilters"
+                    value={3}
                     onChange={this.onChange}
                   />{' '}
                   Moderate
@@ -266,9 +253,9 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="priceFilterLow"
-                    value="lowToHigh"
-                    disabled={priceFilterHigh !== ''}
+                    name="priceSort"
+                    value={1}
+                    disabled={priceSort.includes(2)}
                     onChange={this.onChange}
                   />{' '}
                   Low to High
@@ -276,9 +263,9 @@ class AllPlants extends React.Component {
                 <label className="filter-label">
                   <input
                     type="checkbox"
-                    name="priceFilterHigh"
-                    value="highToLow"
-                    disabled={priceFilterLow !== ''}
+                    name="priceSort"
+                    value={2}
+                    disabled={priceSort.includes(1)}
                     onChange={this.onChange}
                   />{' '}
                   High to Low
@@ -288,7 +275,7 @@ class AllPlants extends React.Component {
           </div>
 
           <div id="all-plants">
-            {plants.map((plant, idx) => (
+            {filteredPlants.map((plant, idx) => (
               <div key={idx}>
                 <AddToCart orderId={orderId} plantId={plant.id} />
                 <Link to={`/plants/${plant.id}`}>
