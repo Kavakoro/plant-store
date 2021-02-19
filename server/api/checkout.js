@@ -47,6 +47,7 @@ router.post("/create-stripe-webhook", async (req, res) => {
 		const session = payload.data.object;
 		const order = await Order.findByPk(session.client_reference_id);
 		order.fullfilled = true;
+		order.total = session.amount_total * 0.01;
 		await order.save();
 	}
 
