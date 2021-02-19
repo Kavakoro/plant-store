@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import '../../public/SinglePlant.css';
-import { setPlant } from '../store/singlePlant';
-// import { Link } from "react-router-dom";
-import AddToCart from './AddToCart';
+import React from "react";
+import { connect } from "react-redux";
+import "../../public/SinglePlant.css";
+import { setPlant } from "../store/singlePlant";
+import { Link } from "react-router-dom";
+import AddToCart from "./AddToCart";
 
 class SinglePlant extends React.Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class SinglePlant extends React.Component {
               <h2>Details & Care</h2>
               <ul>
                 <li>
-                  PLANT SIZE: <b>{plant.size}</b>{' '}
+                  PLANT SIZE: <b>{plant.size}</b>{" "}
                 </li>
                 <li>
                   DIFFICULTY: <b>{plant.difficulty}</b>
@@ -79,7 +79,7 @@ class SinglePlant extends React.Component {
               </p>
             </div>
             <div id="guranteed">
-              <h2>Fully Grown {'&&'} Healthy</h2>
+              <h2>Fully Grown {"&&"} Healthy</h2>
               <p>
                 Most of the time when you buy houseplants, they are partially
                 grown and kept in less than ideal conditions. With Karakovo, our
@@ -91,12 +91,18 @@ class SinglePlant extends React.Component {
             <div id="guranteed">
               <h2>Guarantee</h2>
               <p>
-                If your plant dies within 30 days, we’ll replace it for free.
+                If your plant dies within 30 days, we’ll replace it for free.{" "}
+                <Link to="/return-policy">
+                  <b>learn more</b>
+                </Link>
               </p>
             </div>
             <div id="guranteed">
               <h2>Free Shipping</h2>
-              <p>Free shipping on orders over $75.</p>
+              <p>
+                Free shipping on orders over $75.{" "}
+                <Link to="/shipping-info">learn more</Link>
+              </p>
               <p>Plastic-free packaging</p>
             </div>
             <p>

@@ -22,6 +22,8 @@ import {
   Account,
   SinglePastOrder,
   About,
+  ShippingInfo,
+  ReturnPolicy,
 } from "./components";
 import { me } from "./store";
 
@@ -39,6 +41,8 @@ class Routes extends Component {
         <Route exact path="/about" component={About} />
         <Route exact path="/" component={Home} />
         <Route exact path="/" component={AllPlants} />
+        <Route exact path="/shipping-info" component={ShippingInfo} />
+        <Route exact path="/return-policy" component={ReturnPolicy} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/plants/:plantId" component={SinglePlant} />
