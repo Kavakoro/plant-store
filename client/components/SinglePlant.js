@@ -28,31 +28,33 @@ class SinglePlant extends React.Component {
 
             <img src={plant.img} />
 
-            <p>${plant.price}</p>
-            <p>
-              <b>Free shipping on orders over $75.</b>
-            </p>
+            <h2>Price: ${plant.price}</h2>
           </div>
-          <div>
+          <div id="plant-details">
             <h2>Description</h2>
             <p>{plant.description}</p>
             <div id="details">
-              <h2>Details & Care</h2>
+              <h2>Details + Care</h2>
               <ul>
                 <li>
-                  PLANT SIZE: <b>{plant.size}</b>{' '}
+                  <b>PLANT SIZE: </b>
+                  {plant.size}
                 </li>
                 <li>
-                  DIFFICULTY: <b>{plant.difficulty}</b>
+                  <b>DIFFICULTY: </b>
+                  {plant.difficulty}
                 </li>
                 <li>
-                  LIGHT: <b>{plant.light}</b>
+                  <b>LIGHT: </b>
+                  {plant.light}
                 </li>
                 <li>
-                  PET FRIENDLY: <b>{plant.petFriendly}</b>
+                  <b>PET FRIENDLY: </b>
+                  {plant.petFriendly}
                 </li>
                 <li>
-                  AIR CLEANER: <b>{plant.airCleaner}</b>
+                  <b>AIR CLEANER: </b>
+                  {plant.airCleaner}
                 </li>
               </ul>
             </div>
@@ -79,7 +81,7 @@ class SinglePlant extends React.Component {
               </p>
             </div>
             <div id="guranteed">
-              <h2>Fully Grown {'&&'} Healthy</h2>
+              <h2>Fully Grown {'&'} Healthy</h2>
               <p>
                 Most of the time when you buy houseplants, they are partially
                 grown and kept in less than ideal conditions. With Karakovo, our

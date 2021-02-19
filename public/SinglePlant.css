@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+#plant-details {
+  margin-top: 4rem;
+  width: 50vw;
+}
 /* #plant-div {
   margin: 2rem;
 }
