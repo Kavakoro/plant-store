@@ -11,6 +11,7 @@ router.use(async (req, res, next) => {
     return next();
   }
   try {
+    console.log(req.headers, 'req.headers before finding user by token');
     const user = await User.findByToken(req.headers.authorization);
     req.user = user;
     next();

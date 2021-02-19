@@ -8,6 +8,7 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
+  console.log(req.headers, 'req.headers in isAdmin middleware');
   if (req.user.isAdmin) {
     return next();
   }

@@ -12,7 +12,6 @@ class AllPlants extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // filteredPlants: [],
       sizeFilters: [],
       lightFilters: [],
       difficultyFilters: [],
@@ -24,10 +23,6 @@ class AllPlants extends React.Component {
 
   async componentDidMount() {
     await this.props.getPlants();
-    // this.setState({
-    //   filteredPlants: this.props.plants,
-    // });
-    // console.log('props', this.props);
   }
 
   onChange(ev) {
@@ -43,7 +38,6 @@ class AllPlants extends React.Component {
   }
 
   render() {
-    console.log('state:', this.state);
     const orderId = this.props.cart.id;
     const { plants } = this.props;
 
@@ -53,30 +47,6 @@ class AllPlants extends React.Component {
       difficultyFilters,
       priceSort,
     } = this.state;
-
-    function sortPrice(plants) {
-      if (priceFilterLow === 'lowToHigh') {
-        lants.sort((a, b) =>
-          a.price < b.price
-            ? 1
-            : a.price === b.price
-            ? a.name < b.name
-              ? 1
-              : -1
-            : -1
-        );
-      } else {
-        plants.sort((a, b) =>
-          a.price > b.price
-            ? 1
-            : a.price === b.price
-            ? a.name < b.name
-              ? 1
-              : -1
-            : -1
-        );
-      }
-    }
 
     let filteredPlants = [];
 
@@ -115,7 +85,6 @@ class AllPlants extends React.Component {
         filteredPlants = [...filteredPlants, ..._plants];
       });
     }
-    console.log('size plants:', filteredPlants);
 
     if (priceSort) {
       if (priceSort.includes(1)) {
@@ -145,133 +114,131 @@ class AllPlants extends React.Component {
         }
       }
       return (
-        <div className="div-row">
+        <div className="all-plants-wrapper div-row">
           <div className="filterDiv">
-            <span>
-              <form className="filter-form">
-                <h1>Shop All Plants</h1>
-                <h3>Size</h3>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="sizeFilters"
-                    value={1}
-                    onChange={this.onChange}
-                  />{' '}
-                  Small
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="sizeFilters"
-                    value={2}
-                    onChange={this.onChange}
-                  />{' '}
-                  Medium
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="sizeFilters"
-                    value={3}
-                    // i want to add the functions in the onChange below
-                    onChange={this.onChange}
-                  />{' '}
-                  Large
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="sizeFilters"
-                    value={4}
-                    onChange={this.onChange}
-                  />{' '}
-                  Extra Large
-                </label>
-                <br></br>
+            <form className="filter-form">
+              <h1>Shop All Plants</h1>
 
-                <h3>Light</h3>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="lightFilters"
-                    value={1}
-                    onChange={this.onChange}
-                  />{' '}
-                  Low to Partial
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="lightFilters"
-                    value={2}
-                    onChange={this.onChange}
-                  />{' '}
-                  Medium - Bright (Indirect)
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="lightFilters"
-                    value={3}
-                    onChange={this.onChange}
-                  />{' '}
-                  Bright
-                </label>
-                <br></br>
+              <h3>Size</h3>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="sizeFilters"
+                  value={1}
+                  onChange={this.onChange}
+                />{' '}
+                Small
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="sizeFilters"
+                  value={2}
+                  onChange={this.onChange}
+                />{' '}
+                Medium
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="sizeFilters"
+                  value={3}
+                  onChange={this.onChange}
+                />{' '}
+                Large
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="sizeFilters"
+                  value={4}
+                  onChange={this.onChange}
+                />{' '}
+                Extra Large
+              </label>
+              <br></br>
 
-                <h3>Difficulty</h3>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="difficultyFilters"
-                    value={1}
-                    onChange={this.onChange}
-                  />{' '}
-                  No Fuss - Carefree
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="difficultyFilters"
-                    value={2}
-                    onChange={this.onChange}
-                  />{' '}
-                  Easy
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="difficultyFilters"
-                    value={3}
-                    onChange={this.onChange}
-                  />{' '}
-                  Moderate
-                </label>
-                <br></br>
-                <h3>Price</h3>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="priceSort"
-                    value={1}
-                    disabled={priceSort.includes(2)}
-                    onChange={this.onChange}
-                  />{' '}
-                  Low to High
-                </label>
-                <label className="filter-label">
-                  <input
-                    type="checkbox"
-                    name="priceSort"
-                    value={2}
-                    disabled={priceSort.includes(1)}
-                    onChange={this.onChange}
-                  />{' '}
-                  High to Low
-                </label>
-              </form>
-            </span>
+              <h3>Light</h3>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="lightFilters"
+                  value={1}
+                  onChange={this.onChange}
+                />{' '}
+                Low to Partial
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="lightFilters"
+                  value={2}
+                  onChange={this.onChange}
+                />{' '}
+                Medium - Bright (Indirect)
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="lightFilters"
+                  value={3}
+                  onChange={this.onChange}
+                />{' '}
+                Bright
+              </label>
+              <br></br>
+
+              <h3>Difficulty</h3>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="difficultyFilters"
+                  value={1}
+                  onChange={this.onChange}
+                />{' '}
+                No Fuss - Carefree
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="difficultyFilters"
+                  value={2}
+                  onChange={this.onChange}
+                />{' '}
+                Easy
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="difficultyFilters"
+                  value={3}
+                  onChange={this.onChange}
+                />{' '}
+                Moderate
+              </label>
+              <br></br>
+              <h3>Price</h3>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="priceSort"
+                  value={1}
+                  disabled={priceSort.includes(2)}
+                  onChange={this.onChange}
+                />{' '}
+                Low to High
+              </label>
+              <label className="filter-label">
+                <input
+                  type="checkbox"
+                  name="priceSort"
+                  value={2}
+                  disabled={priceSort.includes(1)}
+                  onChange={this.onChange}
+                />{' '}
+                High to Low
+              </label>
+            </form>
           </div>
 
           <div id="all-plants">

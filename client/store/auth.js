@@ -26,7 +26,6 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    //is this where we merge the cart?
     history.push('/');
     return dispatch(setAuth(res.data));
   }

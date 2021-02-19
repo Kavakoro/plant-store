@@ -1,5 +1,6 @@
 #welcome {
+  font-family: 'Unna', serif;
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   justify-content: center;
 }

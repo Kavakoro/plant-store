@@ -1,6 +1,5 @@
 import axios from 'axios';
-const token = window.localStorage.getItem('token');
-
+const getToken = () => window.localStorage.getItem('token');
 //constants
 const SET_USER = 'SET_USER';
 const UPDATE_USER = 'UPDATE_USER';
@@ -30,6 +29,7 @@ export const updateProfile = (
   history
 ) => {
   return async (dispatch) => {
+    const token = getToken();
     const user = (
       await axios.put(
         `/api/users/${id}`,
@@ -62,7 +62,7 @@ export const updateUser = (
   history
 ) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem('token');
+    const token = getToken();
     const user = (
       await axios.put(
         `/admin/users/${id}`,

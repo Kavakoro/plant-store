@@ -1,5 +1,6 @@
 import axios from 'axios';
-const token = window.localStorage.getItem('token');
+// const token = window.localStorage.getItem('token');
+const getToken = () => window.localStorage.getItem('token');
 
 //constants
 const SET_PLANT = 'SET_PLANT';
@@ -35,6 +36,7 @@ export const updatePlant = (
   history
 ) => {
   return async (dispatch) => {
+    const token = getToken();
     const plant = (
       await axios.put(
         `/admin/plants/${id}`,

@@ -68,7 +68,6 @@ class Navbar extends React.Component {
     cart.plants.forEach((plant) => {
       totalItems += plant.lineitem.amount;
     });
-    console.log(totalItems, 'totalItems');
     return (
       <div>
         <ThemeProvider theme={navBarTheme}>
