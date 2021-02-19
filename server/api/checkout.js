@@ -32,8 +32,8 @@ router.post("/create-stripe-session", async (req, res, next) => {
 		payment_method_types: ["card"],
 		line_items: stripeLineItems,
 		mode: "payment",
-		success_url: `http://localhost:8080/cart?success=true`,
-		cancel_url: `http://localhost:8080?cancelled=true`,
+		success_url: `http://localhost:8080/account/orders?success=true`,
+		cancel_url: `http://localhost:8080/cart?cancelled=true`,
 	});
 
 	res.status(201).send({ id: session.id });
@@ -47,6 +47,7 @@ router.post("/create-stripe-webhook", async (req, res) => {
 		const session = payload.data.object;
 		const order = await Order.findByPk(session.client_reference_id);
 		order.fullfilled = true;
+		order.total = session.amount_total * 0.01;
 		await order.save();
 	}
 
