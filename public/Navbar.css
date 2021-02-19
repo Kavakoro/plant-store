@@ -38,8 +38,20 @@ nav a:visited,
   flex-direction: column;
 }
 a.cart {
+  margin-right: 2px;
   text-decoration: none;
 }
+
+#cartImg {
+  margin-right: 5px;
+}
+
 span.total {
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
   font-size: 0.8rem;
 }
