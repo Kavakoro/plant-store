@@ -1,16 +1,24 @@
 #orderUpdate-form {
-  margin: 1rem;
-  /* flex-direction: column; */
+  margin: 2rem auto;
+  display: flex;
+  width: 30vw;
+  flex-direction: column;
 }
 
 #update-heading {
   text-align: center;
-  margin-bottom: 0px;
 }
 #orderUpdate-p {
   /* margin-left: 4rem; */
   /* padding: 1rem 1rem; */
   text-align: center;
+}
+
+#update-div {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
 }
 
 #orderForm-label {

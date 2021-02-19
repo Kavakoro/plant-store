@@ -96,6 +96,7 @@ span:hover {
   text-align: center;
   margin: 0.5rem;
 }
+
 .checkout button {
   background-color: #fcf9f3;
   height: 2.5rem;
@@ -105,4 +106,16 @@ span:hover {
 
 .checkout button:hover {
   background-color: white;
+}
+
+#shipping-form {
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#form-input {
+  margin: 0 1rem;
+  font-size: 20px;
+  width: 30rem;
 }

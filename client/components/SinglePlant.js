@@ -18,6 +18,26 @@ class SinglePlant extends React.Component {
     const { plant } = this.props;
     const orderId = this.props.cart.id;
 
+    function sizeConverter(size) {
+      if (size === 1) return 'Small (7" - 15" tall including ecopot)';
+      if (size === 2) return 'Medium (16" - 26" tall including ecopot)';
+      if (size === 3) return 'Large (27"-40" tall including ecopot)';
+      if (size === 4) return 'Extra Large (41"-58" tall including ecopot)';
+    }
+
+    function difficultyConverter(difficulty) {
+      if (difficulty === 1) return "No-fuss — Carefree";
+      if (difficulty === 2) return "Easy — Relatively low maintenance";
+      if (difficulty === 3) return "Moderate — Needs a bit of extra care";
+    }
+
+    function lightConverter(difficulty) {
+      if (difficulty === 1)
+        return "Low to Partial — Low to bright indirect light";
+      if (difficulty === 2) return "Medium — Bright indirect light";
+      if (difficulty === 3) return "Medium — Bright indirect light";
+    }
+
     if (!this.props.plant) {
       return null;
     } else {
@@ -37,15 +57,13 @@ class SinglePlant extends React.Component {
               <h2>Details + Care</h2>
               <ul>
                 <li>
-                  PLANT SIZE: <b>{plant.size}</b>{" "}
+                  PLANT SIZE: <b>{sizeConverter(plant.size)}</b>
                 </li>
                 <li>
-                  <b>DIFFICULTY: </b>
-                  {plant.difficulty}
+                  DIFFICULTY: <b> {difficultyConverter(plant.difficulty)} </b>
                 </li>
                 <li>
-                  <b>LIGHT: </b>
-                  {plant.light}
+                  LIGHT: <b>{lightConverter(plant.light)} </b>
                 </li>
                 <li>
                   <b>PET FRIENDLY: </b>
