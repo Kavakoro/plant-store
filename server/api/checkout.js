@@ -4,12 +4,9 @@ const {
 } = require("../db");
 module.exports = router;
 
-const bodyParser = require("body-parser");
+const { stripeSecret, stripeEndpointSecret } = require("../../secrets");
 
-const { stripeSecretKey } = require("../../secrets");
-const endpointSecret = "whsec_01zvkW88xuwsN7wlVggkK8O9JKsXzWSE";
-
-const stripe = require("stripe")(stripeSecretKey);
+const stripe = require("stripe")(stripeSecret);
 
 // create stripe session
 router.post("/create-stripe-session", async (req, res, next) => {
@@ -43,15 +40,17 @@ router.post("/create-stripe-session", async (req, res, next) => {
 // create stripe event handler
 router.post("/create-stripe-webhook", (req, res) => {
 	const payload = req.body;
-	const sig = request.headers["stripe-signature"];
+	const sig = req.headers["stripe-signature"];
 
 	let event;
 
 	try {
 		event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
 	} catch (err) {
-		return response.status(400).send(`Webhook Error: ${err.message}`);
+		return res.status(400).send(`Webhook Error: ${err.message}`);
 	}
+
+	console.log("Got payload: " + payload);
 
 	res.status(200);
 });
