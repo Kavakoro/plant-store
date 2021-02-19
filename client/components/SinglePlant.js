@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "../../public/SinglePlant.css";
 import { setPlant } from "../store/singlePlant";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddToCart from "./AddToCart";
 
 class SinglePlant extends React.Component {
@@ -28,7 +28,10 @@ class SinglePlant extends React.Component {
             <h1>{plant.name}</h1>
             <p>${plant.price}</p>
             <p>
-              <b>Free shipping on orders over $75.</b>
+              <b>
+                Free shipping on orders over $2000.{" "}
+                <Link to="/shipping-info">learn more</Link>
+              </b>
             </p>
           </div>
           <div>
@@ -38,7 +41,7 @@ class SinglePlant extends React.Component {
               <h2>Details & Care</h2>
               <ul>
                 <li>
-                  PANT SIZE: <b>{plant.size}</b>{" "}
+                  PLANT SIZE: <b>{plant.size}</b>{" "}
                 </li>
                 <li>
                   DIFFICULTY: <b>{plant.difficulty}</b>
@@ -64,7 +67,10 @@ class SinglePlant extends React.Component {
             <div id="guranteed">
               <h2>Guranteed</h2>
               <p>
-                If your plant dies within 30 days, we’ll replace it for free.
+                If your plant dies within 1 day, we’ll replace it for free.{" "}
+                <Link to="/return-policy">
+                  <b>learn more</b>
+                </Link>
               </p>
             </div>
             <p>

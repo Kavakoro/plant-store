@@ -20,9 +20,9 @@ a:visited {
   color: black;
 }
 
-a:hover {
+/* a:hover {
   cursor: default;
-}
+} */
 
 #all-plants button {
   background-color: rgb(252 249 243 / 65%);
@@ -40,4 +40,13 @@ a:hover {
 } */
 #all-plants button:hover {
   background-color: #fcf9f3;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a.selected {
+  font-weight: bold;
 }

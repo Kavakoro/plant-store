@@ -4,25 +4,25 @@ import "../../public/About.css";
 const engineers = {
   rommel: {
     name: "Rommel Demano",
-    about: "eh",
-    role: "account profile, front/backend",
+    about: "",
+    role: "TBD hahhah",
     img: "/images/rommel.jpg",
   },
   kate: {
     name: "Kate Quinn",
-    about: "supermom",
+    about: "",
     role: "securing routes, front/backend",
     img: "/images/kate.jpg",
   },
   kokko: {
     name: "Kokko Tso",
-    about: "doesnt he look so happy? ",
+    about: "best smile hahhah",
     role: "checkout page, front/backend",
     img: "/images/kokko.jpg",
   },
   vanessa: {
     name: "Vanessa Lima",
-    about: "hmmmmm",
+    about: "",
     role: "admin bar front/backend",
     img: "/images/vanessa.jpg",
   },

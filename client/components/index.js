@@ -24,3 +24,5 @@ export { PastOrders } from "./PastOrders";
 export { Account } from "./Account";
 export { SinglePastOrder } from "./SinglePastOrder";
 export { default as About } from "./About";
+export { default as ShippingInfo } from "./ShippingInfo";
+export { default as ReturnPolicy } from "./ReturnPolicy";
