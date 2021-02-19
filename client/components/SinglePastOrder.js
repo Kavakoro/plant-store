@@ -36,14 +36,12 @@ export const _SinglePastOrder = ({ auth, orderId }) => {
   return (
     <div id="single-past-order">
       <table>
-        <thead>
-          <tr>
-            <th>Order number</th>
-            <th>Ship To </th>
-            <th>Date Placed</th>
-            <th>Total</th>
-          </tr>
-        </thead>
+        <tr>
+          <th>Order number</th>
+          <th>Ship To </th>
+          <th>Date Placed</th>
+          <th>Total</th>
+        </tr>
         <tbody>
           <tr>
             <td>{order.id}</td>
@@ -56,7 +54,6 @@ export const _SinglePastOrder = ({ auth, orderId }) => {
       <div id="plants">
         {plants.map((plant, idx) => (
           <div className="column" key={idx}>
-            {plant.name}
             <img src={plant.img} /> <span>x {plant.lineitem.amount}</span>
           </div>
         ))}
