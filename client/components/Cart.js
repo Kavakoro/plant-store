@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchCart, updateCart, createCart, deleteItem } from "../store/cart";
 import auth from "../store/auth";
 import { loadStripe } from "@stripe/stripe-js";
+import { TextField } from "@material-ui/core";
 
 import axios from "axios";
 
@@ -43,6 +44,15 @@ export const cartObj = {
 class Cart extends React.Component {
 	constructor(props) {
 		super(props);
+		// form state
+		this.state = {
+			shipTo: "",
+			streetAddress: "",
+			city: "",
+			state: "",
+			zipCode: "",
+		};
+		this.handleChange = this.handleChange.bind(this);
 		this.getSubtotal = this.getSubtotal.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -56,7 +66,15 @@ class Cart extends React.Component {
 		}
 	}
 
+	handleChange(ev) {
+		this.setState({
+			...this.state,
+			[ev.target.id]: ev.target.value,
+		});
+	}
+
 	async handleClick() {
+		await axios.put(`/api/cart/${this.props.cart.id}/shipping`, this.state);
 		const stripe = await stripePromise;
 		const response = await axios.post("/api/checkout/create-stripe-session", {
 			cartId: this.props.cart.id,
@@ -75,6 +93,7 @@ class Cart extends React.Component {
 	}
 
 	render() {
+		const { shipTo, streetAddress, city, state, zipCode } = this.state;
 		const { cart } = this.props;
 		const { plants } = cart;
 		const orderId = cart.id;
@@ -155,6 +174,39 @@ class Cart extends React.Component {
 							<span>${this.getSubtotal()}</span>
 						</div>
 						<div className="checkout">
+							<h3>Shipping Address</h3>
+							<form>
+								<TextField
+									id="shipTo"
+									label="Name"
+									value={shipTo}
+									onChange={this.handleChange}
+								></TextField>
+								<TextField
+									id="streetAddress"
+									label="Street Address"
+									value={streetAddress}
+									onChange={this.handleChange}
+								></TextField>
+								<TextField
+									id="city"
+									label="City"
+									value={city}
+									onChange={this.handleChange}
+								></TextField>
+								<TextField
+									id="state"
+									label="State"
+									value={state}
+									onChange={this.handleChange}
+								></TextField>
+								<TextField
+									id="zipCode"
+									label="ZIP Code"
+									value={zipCode}
+									onChange={this.handleChange}
+								></TextField>
+							</form>
 							<button
 								type="button"
 								id="checkout-button"

@@ -32,8 +32,8 @@ router.post("/create-stripe-session", async (req, res, next) => {
 		payment_method_types: ["card"],
 		line_items: stripeLineItems,
 		mode: "payment",
-		success_url: `http://localhost:8080/cart?success=true`,
-		cancel_url: `http://localhost:8080?cancelled=true`,
+		success_url: `http://localhost:8080/account/orders?success=true`,
+		cancel_url: `http://localhost:8080/cart?cancelled=true`,
 	});
 
 	res.status(201).send({ id: session.id });
