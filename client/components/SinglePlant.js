@@ -60,14 +60,44 @@ class SinglePlant extends React.Component {
               <h2>What's Included</h2>
               <ul>
                 <li>Healthy plant pre-potted with premium soil</li>
-                <li>Ecopots pot and saucers for expert-level care</li>
+                <li>
+                  Ecopots pot (made from up to 80% recycled plastic) and saucer
+                </li>
+                <li>All the tips and tricks for expert-level care</li>
               </ul>
             </div>
+
             <div id="guranteed">
-              <h2>Guranteed</h2>
+              <h2>Living Room Ready</h2>
+              <p>
+                Unlike buying a plant from a box store, your Karakovo plant
+                arrives fully-grown as pictured and pre-potted. We’ve spent a
+                lot of time selecting pots that have optimal drainage, look
+                great, and come with a saucer so your floor or desk won’t get
+                ruined. All you have to do is unpack your plant and find the
+                perfect spot for it in your home.
+              </p>
+            </div>
+            <div id="guranteed">
+              <h2>Fully Grown {'&&'} Healthy</h2>
+              <p>
+                Most of the time when you buy houseplants, they are partially
+                grown and kept in less than ideal conditions. With Karakovo, our
+                houseplants are grown and cared for in our greenhouses by plant
+                experts until the day we ship them to you. That way, your plants
+                arrive fully-grown, healthy, and ready for you to enjoy.
+              </p>
+            </div>
+            <div id="guranteed">
+              <h2>Guarantee</h2>
               <p>
                 If your plant dies within 30 days, we’ll replace it for free.
               </p>
+            </div>
+            <div id="guranteed">
+              <h2>Free Shipping</h2>
+              <p>Free shipping on orders over $75.</p>
+              <p>Plastic-free packaging</p>
             </div>
             <p>
               <AddToCart orderId={orderId} plantId={plant.id} />
