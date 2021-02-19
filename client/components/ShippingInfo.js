@@ -7,7 +7,7 @@ const ShippingInfo = () => {
     <div className="shipping">
       <h1>Shipping FAQ</h1>
       <br />
-      <div>
+      <div id="shipping">
         <h2>Shipping FAQ's</h2>
         <p>
           Due to previous delays and severe winter weather across the country,
