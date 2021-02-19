@@ -1,12 +1,15 @@
 #orders {
+  margin: 0 auto;
+  width: 40vw;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 }
 ul {
+  width: inherit;
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
 }
 
@@ -16,12 +19,19 @@ ul {
 #single-order {
   font-size: 1.1rem;
   text-align: left;
-  text-decoration: underline;
+  padding: 0.4rem;
+  width: inherit;
+  justify-content: space-between;
+  display: flex;
 }
+
 #single-past-order td {
   text-align: center;
 }
 
+#single-order button {
+  width: 8rem;
+}
 #orders button {
   margin-top: 2rem;
 }

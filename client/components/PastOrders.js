@@ -35,26 +35,27 @@ class _PastOrders extends React.Component {
           <span>
             <h1>Past Orders</h1>
           </span>
-          {orders.map((order, idx) => (
-            <div key={idx} id="single-order">
-              <ul>
-                <Link to={`/account/orders/${order.id}`}>
-                  <li>Order # {order.id}</li>
-                </Link>
-              </ul>
-            </div>
-          ))}
-          <Button
-            component={Link}
-            to={`/account`}
-            variant="contained"
-            type="submit"
-            style={
-              ({ height: '2em' },
-              { margin: '3rem' },
-              { backgroundColor: '#abd4a8' })
-            }
-          >{`<< Back to account`}</Button>
+          <ul>
+            {orders.map((order, idx) => (
+              <li key={idx} id="single-order">
+                <span>Order Number: {order.id}</span>
+                <Link to={`/account/orders/${order.id}`}>Order Details</Link>
+              </li>
+            ))}
+          </ul>
+          <div>
+            <Button
+              component={Link}
+              to={`/account`}
+              variant="contained"
+              type="submit"
+              style={
+                ({ height: '2em' },
+                { margin: '3rem' },
+                { backgroundColor: '#abd4a8' })
+              }
+            >{`<< Back to account`}</Button>
+          </div>
         </div>
       );
     }

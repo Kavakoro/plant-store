@@ -26,6 +26,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
+    console.log(history, 'history');
     history.push('/');
     return dispatch(setAuth(res.data));
   }
