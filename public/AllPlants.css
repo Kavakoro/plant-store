@@ -1,9 +1,11 @@
 #all-plants {
+  font-family: 'Unna', serif;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
+.all-plants-wrapper {
+}
 #plant-div {
   margin: 2rem;
 }
@@ -14,6 +16,10 @@
 #plant-div img {
   height: 26rem;
   width: 21rem;
+}
+
+#plant-div span {
+  font-size: 1.2rem;
 }
 #all-plants a,
 #all-plants a:visited {

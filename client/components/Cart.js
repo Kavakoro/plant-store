@@ -13,34 +13,6 @@ const stripePromise = loadStripe(
 	"pk_test_51IKvwUChsJVQ70ihrQt8gz8thYCRD5tytJ1Cdfm71Lz7LWKhXChHrZehBApoY21VjDhnr6pBMibULXqRVNHC3bBY00uRrV2W4w"
 );
 
-//cart will be held in state (redux store) in an object. THe cart will
-//reflect the cart of hhe specific user using the site, so it should be an object
-
-//should we have a class method to calculate total on the front end as items are added?
-//or should this logic be done on the backend? is it "business logic" ?
-// if no items in cart, display alternate message 'there are no items in cart, etc'button: <return to shopping>
-
-//dummy data - export to store to test out store code/logic
-export const cartObj = {
-	orderId: 2,
-	plants: [
-		{
-			id: 1,
-			name: "Fern",
-			img: "https://www.loremflickr.com/220/200/houseplant",
-			price: 120,
-			amount: 1,
-		},
-		{
-			id: 2,
-			name: "Cactus",
-			img: "https://www.loremflickr.com/220/200/houseplant?random=1",
-			price: 100,
-			amount: 1,
-		},
-	],
-};
-
 class Cart extends React.Component {
 	constructor(props) {
 		super(props);

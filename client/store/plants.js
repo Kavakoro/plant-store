@@ -1,5 +1,5 @@
 import axios from 'axios';
-const token = window.localStorage.getItem('token');
+const getToken = () => window.localStorage.getItem('token');
 
 //Action Types //
 
@@ -36,6 +36,7 @@ export const createPlant = (
   history
 ) => {
   return async (dispatch) => {
+    const token = getToken();
     const plant = (
       await axios.post(
         `/admin/plants/`,
@@ -61,6 +62,8 @@ export const createPlant = (
 
 // admin deletes a plant from database
 export const destroyPlant = (id, history) => {
+  const token = getToken();
+
   return async (dispatch) => {
     await axios.delete(`/admin/plants/${id}`, {
       headers: { authorization: token },

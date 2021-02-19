@@ -110,7 +110,10 @@ class UpdatePlant extends Component {
     const two = 2;
     const three = 3;
     const four = 4;
-
+    console.log(
+      window.localStorage.getItem('token'),
+      'token in update plant section'
+    );
     return (
       <div>
         <div className="heading row">

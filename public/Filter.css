@@ -1,10 +1,14 @@
 .filter-form {
-  width: 16rem;
+  font-family: 'Unna', serif;
+  width: 18rem;
+  margin-left: 3rem;
   padding-left: 2rem;
-  margin: 0 0;
   font-size: medium;
 }
 
+.filter-form h1 {
+  font-size: 2rem;
+}
 .div-row {
   display: flex;
   flex: wrap;
@@ -17,11 +21,12 @@
   border: 0;
   text-align: left;
 }
-
+.filterDiv h3 {
+  font-size: 1.3rem;
+}
 .filter-label {
+  font-size: 1.2rem;
+  align-items: center;
   display: flex;
-  /* justify-content: left; */
-  /* align-self: start;
-  align-content: flex-start;
-  align-items: flex-start; */
+  padding: 0.1rem;
 }
