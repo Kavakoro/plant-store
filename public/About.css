@@ -1,6 +1,6 @@
 #about {
   display: flex;
-  /* align-items: center; */
+  font-family: "Unna", serif;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 1rem;
@@ -10,11 +10,5 @@
   margin: 1rem;
   display: flex;
   flex-direction: column;
-}
-
-.engineer-info {
-  /* display: flex;
-  justify-content: center;
-  /* align-content: center;
-  align-items: center; */
+  font-family: "Unna", serif;
 }
