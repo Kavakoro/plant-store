@@ -28,31 +28,32 @@ class SinglePlant extends React.Component {
 
             <img src={plant.img} />
 
-            <p>${plant.price}</p>
-            <p>
-              <b>Free shipping on orders over $75.</b>
-            </p>
+            <h2>Price: ${plant.price}</h2>
           </div>
-          <div>
+          <div id="plant-details">
             <h2>Description</h2>
             <p>{plant.description}</p>
             <div id="details">
-              <h2>Details & Care</h2>
+              <h2>Details + Care</h2>
               <ul>
                 <li>
                   PLANT SIZE: <b>{plant.size}</b>{" "}
                 </li>
                 <li>
-                  DIFFICULTY: <b>{plant.difficulty}</b>
+                  <b>DIFFICULTY: </b>
+                  {plant.difficulty}
                 </li>
                 <li>
-                  LIGHT: <b>{plant.light}</b>
+                  <b>LIGHT: </b>
+                  {plant.light}
                 </li>
                 <li>
-                  PET FRIENDLY: <b>{plant.petFriendly}</b>
+                  <b>PET FRIENDLY: </b>
+                  {plant.petFriendly}
                 </li>
                 <li>
-                  AIR CLEANER: <b>{plant.airCleaner}</b>
+                  <b>AIR CLEANER: </b>
+                  {plant.airCleaner}
                 </li>
               </ul>
             </div>

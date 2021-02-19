@@ -109,8 +109,15 @@ class Navbar extends React.Component {
 
                   <Link className="cart" to="/cart">
                     <div className="column cart">
-                      <img height="40" width="35" src="/images/cart.png"></img>
-                      <span className="total">{`(${totalItems})`}</span>
+                      <span className="total">
+                        <img
+                          id="cartImg"
+                          height="40"
+                          width="35"
+                          src="/images/cart.png"
+                        ></img>
+                        <span className="total">{`(${totalItems})`}</span>
+                      </span>
                     </div>
                   </Link>
                 </div>
