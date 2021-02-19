@@ -27,8 +27,12 @@ ul {
 
 #single-past-order td {
   text-align: center;
+  font-size: 1.1rem;
 }
 
+#single-past-order th {
+  font-size: 1.2rem;
+}
 #single-order button {
   width: 8rem;
 }
@@ -40,15 +44,26 @@ ul {
   width: 5rem;
 }
 #single-past-order {
+  margin: 3rem auto;
+  border: 1px solid black;
+  justify-content: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  border-radius: 12px;
+  padding: 2rem;
 }
 #plants {
+  width: 20rem;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
-  justify-content: space-evenly;
   display: flex;
-  flex-direction: row;
 }
-
+#plants img {
+  margin: 0.2rem;
+}
 #plants div.column {
   display: flex;
   align-items: center;

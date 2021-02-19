@@ -61,18 +61,5 @@ class _PastOrders extends React.Component {
     }
   }
 }
-//   useEffect(() => {
-//     const getOrders = async () => {
-//   const orders = (
-//     await axios.get(`/api/users/${props.auth.id}/orders`, {
-//       headers: {
-//         authorization: token,
-//       },
-//     })
-//   ).data;
-//return orders
-//}
-//     getOrders().then((orders) => setOrders(orders));
-//   }, []);
 
 export const PastOrders = connect((state) => state)(_PastOrders);
