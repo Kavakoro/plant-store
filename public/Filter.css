@@ -4,3 +4,24 @@
   margin: 0 0;
   font-size: medium;
 }
+
+.div-row {
+  display: flex;
+  flex: wrap;
+}
+
+.filterDiv {
+  width: 17rem;
+  margin-right: 0;
+  padding-right: 0;
+  border: 0;
+  text-align: left;
+}
+
+.filter-label {
+  display: flex;
+  /* justify-content: left; */
+  /* align-self: start;
+  align-content: flex-start;
+  align-items: flex-start; */
+}
