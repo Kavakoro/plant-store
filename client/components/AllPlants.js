@@ -51,10 +51,107 @@ class AllPlants extends React.Component {
     const orderId = this.props.cart.id;
     const { plants } = this.props;
     // const { filteredPlants } = this.state;
+    // let filteredPlants = [...this.props.plants];
 
-    //create filter functions to filter or sort plants
-    let filteredPlants = [...this.props.plants];
-    if (this.state.sizeFilterSmall === '') {
+    const {
+      sizeFilterSmall,
+      sizeFilterMedium,
+      sizeFilterLarge,
+      sizeFilterExtraLarge,
+      lightFilterLow,
+      lightFilterMedium,
+      lightFilterBright,
+      difficultyFilterNoFuss,
+      difficultyFilterEasy,
+      difficultyFilterModerate,
+      priceFilterLow,
+      priceFilterHigh,
+    } = this.state;
+
+    //if you add the functions in the with the onChange below,
+    // you get an error 'cannot filter of underfined.'
+    // i need help passing plants in, or if this is even the right approach
+    function sizeFilterFunc(plants) {
+      if (sizeFilterSmall === 'small') {
+        plants.filter((plant) => plant.size === 1);
+      } else {
+        plants.filter((plant) => plant.size !== 1);
+      }
+      if (sizeFilterMedium === 'medium') {
+        plants.filter((plant) => plant.size === 2);
+      } else {
+        plants.filter((plant) => plant.size !== 2);
+      }
+      if (sizeFilterLarge === 'large') {
+        plants.filter((plant) => plant.size === 3);
+      } else {
+        plants.filter((plant) => plant.size !== 3);
+      }
+      if (sizeFilterExtraLarge === 'extraLarge') {
+        plants.filter((plant) => plant.size === 4);
+      } else {
+        plants.filter((plant) => plant.size !== 4);
+      }
+    }
+
+    function lightFilterFunc(plants) {
+      if (lightFilterLow === 'lowLight') {
+        plants.filter((plant) => plant.light === 1);
+      } else {
+        plants.filter((plant) => plant.light !== 1);
+      }
+      if (lightFilterMedium === 'mediumLight') {
+        plants.filter((plant) => plant.light === 2);
+      } else {
+        plants.filter((plant) => plant.light !== 2);
+      }
+      if (lightFilterBright === 'brightLight') {
+        plants.filter((plant) => plant.light === 3);
+      } else {
+        plants.filter((plant) => plant.light !== 3);
+      }
+    }
+
+    function difficultyFilterFunc(plants) {
+      if (difficultyFilterNoFuss === 'noFuss') {
+        plants.filter((plant) => plant.difficulty === 1);
+      } else {
+        plants.filter((plant) => plant.difficulty !== 1);
+      }
+      if (difficultyFilterEasy === 'easy') {
+        plants.filter((plant) => plant.difficulty === 2);
+      } else {
+        plants.filter((plant) => plant.difficulty !== 2);
+      }
+      if (difficultyFilterModerate === 'moderate') {
+        plants.filter((plant) => plant.difficulty === 3);
+      } else {
+        plants.filter((plant) => plant.difficulty !== 3);
+      }
+    }
+
+    function sortPrice(plants) {
+      if (priceFilterLow === 'lowToHigh') {
+        plants.sort((a, b) =>
+          a.price < b.price
+            ? 1
+            : a.price === b.price
+            ? a.name < b.name
+              ? 1
+              : -1
+            : -1
+        );
+      } else {
+        plants.sort((a, b) =>
+          a.price > b.price
+            ? 1
+            : a.price === b.price
+            ? a.name < b.name
+              ? 1
+              : -1
+            : -1
+        );
+      }
     }
 
     if (!this.props.plants) {
@@ -67,7 +164,7 @@ class AllPlants extends React.Component {
               <form className="filter-form">
                 <h1>Shop All Plants</h1>
                 <h3>Size</h3>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="sizeFilterSmall"
@@ -76,7 +173,7 @@ class AllPlants extends React.Component {
                   />{' '}
                   Small
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="sizeFilterMedium"
@@ -85,16 +182,17 @@ class AllPlants extends React.Component {
                   />{' '}
                   Medium
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="sizeFilterLarge"
                     value="large"
+                    // i want to add the functions in the onChange below
                     onChange={this.onChange}
                   />{' '}
                   Large
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="sizeFilterExtraLarge"
@@ -106,7 +204,7 @@ class AllPlants extends React.Component {
                 <br></br>
 
                 <h3>Light</h3>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="lightFilterLow"
@@ -115,7 +213,7 @@ class AllPlants extends React.Component {
                   />{' '}
                   Low to Partial
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="lightFilterMedium"
@@ -124,19 +222,19 @@ class AllPlants extends React.Component {
                   />{' '}
                   Medium - Bright (Indirect)
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="lightFilterBright"
                     value="brightLight"
                     onChange={this.onChange}
                   />{' '}
-                  Large
+                  Bright
                 </label>
                 <br></br>
 
                 <h3>Difficulty</h3>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="difficultyFilterNoFuss"
@@ -145,7 +243,7 @@ class AllPlants extends React.Component {
                   />{' '}
                   No Fuss - Carefree
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="difficultyFilterEasy"
@@ -154,7 +252,7 @@ class AllPlants extends React.Component {
                   />{' '}
                   Easy
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="difficultyFilterModerate"
@@ -165,20 +263,22 @@ class AllPlants extends React.Component {
                 </label>
                 <br></br>
                 <h3>Price</h3>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="priceFilterLow"
                     value="lowToHigh"
+                    disabled={priceFilterHigh !== ''}
                     onChange={this.onChange}
                   />{' '}
                   Low to High
                 </label>
-                <label>
+                <label className="filter-label">
                   <input
                     type="checkbox"
                     name="priceFilterHigh"
                     value="highToLow"
+                    disabled={priceFilterLow !== ''}
                     onChange={this.onChange}
                   />{' '}
                   High to Low

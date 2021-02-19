@@ -1,15 +1,3 @@
-.div-row {
-  display: flex;
-  flex: wrap;
-}
-
-.filterDiv {
-  width: 17rem;
-  margin-right: 0;
-  padding-right: 0;
-  border: 0;
-}
-
 #all-plants {
   display: flex;
   flex-wrap: wrap;
