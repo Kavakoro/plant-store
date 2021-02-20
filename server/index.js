@@ -6,31 +6,30 @@
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-try {
+/* try {
   require('../secrets')
 }
 catch(ex){
   console.log(ex.message);
   console.log('if you are in your development environment, you can add a secrets.js file where environment variables can be set, if you are in a production environment, make sure to set environment variables');
-}
+} */
 
-const { db, syncAndSeed } = require('./db')
-const PORT = process.env.PORT || 8080
-const app = require('./app')
+const { db, syncAndSeed } = require("./db");
+const PORT = process.env.PORT || 8080;
+const app = require("./app");
 
 const init = async () => {
-  try {
-    if(process.env.SEED){
-      await syncAndSeed();
-    }
-    else {
-      await db.sync()
-    }
-    // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
-  } catch (ex) {
-    console.log(ex)
-  }
-}
+	try {
+		if (process.env.SEED) {
+			await syncAndSeed();
+		} else {
+			await db.sync();
+		}
+		// start listening (and create a 'server' object representing our server)
+		app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
+	} catch (ex) {
+		console.log(ex);
+	}
+};
 
-init()
+init();
