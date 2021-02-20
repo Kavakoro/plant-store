@@ -5,6 +5,10 @@ const {
 } = require("../db");
 module.exports = router;
 
+const _domain = process.env.PORT
+	? "http://www.kavakoro.com"
+	: "http://localhost:8080";
+
 const stripeSecret =
 	"sk_test_51IKvwUChsJVQ70ih6fsb1mJTZfAeY67EQhAj91kfZM6mGE7UgJB0448s6DSUmvPkzgTrCESraG2QqdfjuvlmfQj700HvZUgJdz";
 
@@ -34,8 +38,8 @@ router.post("/create-stripe-session", async (req, res, next) => {
 		payment_method_types: ["card"],
 		line_items: stripeLineItems,
 		mode: "payment",
-		success_url: `http://www.kavakoro.com/account/orders?success=true`,
-		cancel_url: `http://www.kavakoro.com/cart?cancelled=true`,
+		success_url: `${_domain}/account/orders?success=true`,
+		cancel_url: `${_domain}/cart?cancelled=true`,
 	});
 
 	res.status(201).send({ id: session.id });
