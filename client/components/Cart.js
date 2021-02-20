@@ -67,7 +67,7 @@ class Cart extends React.Component {
   render() {
     const { shipTo, streetAddress, city, state, zipCode } = this.state;
     const { cart } = this.props;
-    const { plants } = cart;
+    const plants = cart.plants.sort((a, b) => a.id - b.id);
     const orderId = cart.id;
 
     if (!plants.length) {
