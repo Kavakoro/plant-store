@@ -1,6 +1,6 @@
-import React from "react";
-import "../../public/ShippingInfo.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import '../../public/ShippingInfo.css';
+import { Link } from 'react-router-dom';
 
 const ShippingInfo = () => {
   return (
@@ -27,32 +27,32 @@ const ShippingInfo = () => {
           <li>
             <b>Can I make changes to my order?</b>
           </li>
-          <p>Yes. you can only add more plants.</p>
+          <p>Yes. You can only add more plants.</p>
           <li>
             <b>When will my order arrive?</b>
           </li>
-          <p>you get it when you get it.</p>
+          <p>You get it when you get it.</p>
           <li>
             <b>Can I ship to multiple addresses?</b>
           </li>
-          <p>maybe.</p>
+          <p>Maybe.</p>
           <li>
             <b>I’d like my order to arrive on a specific date.</b>
           </li>
-          <p>well, thats too bad..</p>
+          <p>Well, thats too bad..</p>
           <li>
             <b>Does Bloomscape ship to Canada?</b>
           </li>
           <p>eh.</p>
           <li>
-            <b>Does Bloomscape ship to Alaska & Hawaii?</b>
+            <b>Does Bloomscape ship to Alaska {'&'} Hawaii?</b>
           </li>
-          <p>extra shipping fees may apply..</p>
+          <p>Extra shipping fees may apply..</p>
         </ul>
       </div>
       <br />
       <h3>
-        Still have questions? We’re here to help!{" "}
+        Still have questions? We’re here to help!{' '}
         <Link to="/login">Get in touch</Link> and we’ll get back to you as
       </h3>
     </div>

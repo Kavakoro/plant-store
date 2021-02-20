@@ -5,25 +5,28 @@ const engineers = {
   rommel: {
     name: 'Rommel Demano',
     about: 'eh',
-    role: 'account profile, front/backend',
+    role:
+      'Account Profile, Single Plant, Return Policy, Shipping FAQ, About, Front & Backend',
     img: '/images/rommel.jpg',
   },
   kate: {
     name: 'Kate Quinn',
     about: 'supermom',
-    role: 'securing routes, front/backend',
+    role:
+      'Securing Routes, All Plants View,  isAdmin?, Admin Database Tables/Panel, Front & Backend',
     img: '/images/kate.jpg',
   },
   kokko: {
     name: 'Kokko Tso',
     about: 'doesnt he look so happy? ',
-    role: 'checkout page, front/backend',
+    role: 'Checkout Page, Add To Cart, Cart, Payment Page, Front &Backend',
     img: '/images/kokko.jpg',
   },
   vanessa: {
     name: 'Vanessa Lima',
     about: 'hmmmmm',
-    role: 'admin bar front/backend',
+    role:
+      'Filter, Update Forms, Create/Delete Plant, Database Data, Admin Bar, Front & Backend',
     img: '/images/vanessa.jpg',
   },
 };
