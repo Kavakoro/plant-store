@@ -99,18 +99,14 @@ class Navbar extends React.Component {
                   </Link>
                   {isLoggedIn ? (
                     <div>
-                      <a id="aLinks" href="/" onClick={handleClick}>
+                      <a href="/" onClick={handleClick}>
                         Logout
                       </a>
-                      <Link id="aLinks" to="/account">
-                        Account
-                      </Link>
+                      <Link to="/account">Account</Link>
                     </div>
                   ) : (
                     <div>
-                      <Link id="aLinks" to="/login">
-                        Login
-                      </Link>
+                      <Link to="/login">Login</Link>
                     </div>
                   )}
                   <Link to="/signup">Sign Up</Link>
