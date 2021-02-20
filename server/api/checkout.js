@@ -52,11 +52,15 @@ router.post("/create-stripe-webhook", async (req, res) => {
 	res.sendStatus(200);
 
 	if (payload.type === "checkout.session.completed") {
-		const session = payload.data.object;
-		const order = await Order.findByPk(session.client_reference_id);
-		order.fullfilled = true;
-		order.total = session.amount_total * 0.01;
-		await order.save();
+		try {
+			const session = payload.data.object;
+			const order = await Order.findByPk(session.client_reference_id);
+			order.fullfilled = true;
+			order.total = session.amount_total * 0.01;
+			await order.save();
+		} catch (er) {
+			next(er);
+		}
 	}
 
 	// res.status(200);
