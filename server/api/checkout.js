@@ -21,7 +21,7 @@ router.post("/create-stripe-session", async (req, res, next) => {
 				currency: "usd",
 				product_data: {
 					name: lineItem.name,
-					images: ["https://picsum.photos/200"],
+					images: [`http://kavakoro.com${lineItem.img}`],
 				},
 				unit_amount: lineItem.price * 100,
 			},
@@ -34,8 +34,8 @@ router.post("/create-stripe-session", async (req, res, next) => {
 		payment_method_types: ["card"],
 		line_items: stripeLineItems,
 		mode: "payment",
-		success_url: `http://localhost:8080/account/orders?success=true`,
-		cancel_url: `http://localhost:8080/cart?cancelled=true`,
+		success_url: `http://www.kavakoro.com/account/orders?success=true`,
+		cancel_url: `http://www.kavakoro.com/cart?cancelled=true`,
 	});
 
 	res.status(201).send({ id: session.id });
