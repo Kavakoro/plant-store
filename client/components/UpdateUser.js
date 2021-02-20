@@ -129,10 +129,10 @@ class UpdateUser extends Component {
 
           <InputLabel id="dob">Date of Birth</InputLabel>
           <TextField
-            name="birthday"
+            name="birthdate"
             value={birthdate}
             onChange={onChange}
-            id="dob"
+            id="birthdate"
             variant="outlined"
           ></TextField>
 
