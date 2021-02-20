@@ -7,10 +7,14 @@ import '../../public/Home.css';
  */
 export const Home = (props) => {
   const { email, isLoggedIn } = props;
-
+  console.log('props', props);
   return (
     <div id="welcome">
-      {isLoggedIn ? <h3>Welcome, {email}!</h3> : <h3>Welcome!</h3>}
+      {isLoggedIn ? (
+        <h3>Welcome, {email}!</h3>
+      ) : (
+        <h3>Welcome to Karakovo's Plants!</h3>
+      )}
     </div>
   );
 };

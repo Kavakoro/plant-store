@@ -82,25 +82,35 @@ class Navbar extends React.Component {
           >
             <nav>
               <div id="navbar">
-                <div>
-                  <Link id="home" to="/">
-                    <h1>Kavakoro's Plants</h1>
-                  </Link>
-                </div>
+                <Link id="aLinks" id="home" to="/">
+                  <h1 id="heading1">Kavakoro's Plants</h1>
+                </Link>
+
                 <div id="nav-links">
-                  {isAdmin ? <Link to="/admin">Admin</Link> : ''}
-                  <Link to="/">Home</Link>
+                  {isAdmin ? (
+                    <Link id="aLinks" to="/admin">
+                      Admin
+                    </Link>
+                  ) : (
+                    ''
+                  )}
+                  <Link id="aLinks" id="aLinks" to="/">
+                    Home
+                  </Link>
                   {isLoggedIn ? (
                     <div>
-                      <a href="/" onClick={handleClick}>
+                      <a id="aLinks" href="/" onClick={handleClick}>
                         Logout
                       </a>
-                      <Link to="/account">Account</Link>
+                      <Link id="aLinks" to="/account">
+                        Account
+                      </Link>
                     </div>
                   ) : (
                     <div>
-                      <span>Returning customer?</span>
-                      <Link to="/login">Login</Link>
+                      <Link id="aLinks" to="/login">
+                        Login
+                      </Link>
                     </div>
                   )}
                   <Link to="/signup">Sign Up</Link>
