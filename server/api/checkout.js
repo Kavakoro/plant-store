@@ -1,10 +1,11 @@
 const router = require("express").Router();
+const { EnvironmentPlugin } = require("webpack");
 const {
 	models: { Order },
 } = require("../db");
 module.exports = router;
 
-const { stripeSecret, stripeEndpointSecret } = require("../../secrets");
+const { stripeSecret } = process.env.STRIPE_SECRET || require("../../secrets");
 
 const stripe = require("stripe")(stripeSecret);
 
@@ -43,6 +44,8 @@ router.post("/create-stripe-session", async (req, res, next) => {
 router.post("/create-stripe-webhook", async (req, res) => {
 	const payload = req.body;
 
+	res.sendStatus(200);
+
 	if (payload.type === "checkout.session.completed") {
 		const session = payload.data.object;
 		const order = await Order.findByPk(session.client_reference_id);
@@ -51,5 +54,5 @@ router.post("/create-stripe-webhook", async (req, res) => {
 		await order.save();
 	}
 
-	res.status(200);
+	// res.status(200);
 });
