@@ -38,6 +38,7 @@ function About(props) {
         <img src={engineers.kate.img} />
         <div className="engineer-info">
           <h2>Name: {engineers.kate.name}</h2>
+          <a>Contact Info</a>
           <div>
             <p>
               <b> About: {engineers.kate.about}</b>
@@ -55,6 +56,7 @@ function About(props) {
         <img src={engineers.vanessa.img} />
         <div className="engineer-info">
           <h2>Name: {engineers.vanessa.name}</h2>
+          <a>Contact Info</a>
           <div>
             <p>
               <b> About: {engineers.vanessa.about}</b>
@@ -72,6 +74,7 @@ function About(props) {
         <img src={engineers.kokko.img} />
         <div className="engineer-info">
           <h2>Name: {engineers.kokko.name}</h2>
+          <a>Contact Info</a>
           <div>
             <p>
               <b> About: {engineers.kokko.about}</b>
@@ -89,6 +92,7 @@ function About(props) {
         <img src={engineers.rommel.img} />
         <div className="engineer-info">
           <h2>Name: {engineers.rommel.name}</h2>
+          <a>Contact Info</a>
           <div>
             <p>
               <b> About: {engineers.rommel.about}</b>

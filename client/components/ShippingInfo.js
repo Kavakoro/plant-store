@@ -53,7 +53,7 @@ const ShippingInfo = () => {
       <br />
       <h3>
         Still have questions? We’re here to help!{' '}
-        <Link to="/login">Get in touch</Link> and we’ll get back to you as
+        <Link to="/about">Get in touch</Link> and we’ll get back to you as
       </h3>
     </div>
   );
