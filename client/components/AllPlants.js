@@ -175,7 +175,7 @@ class AllPlants extends React.Component {
                   value={2}
                   onChange={this.onChange}
                 />{' '}
-                Medium - Bright (Indirect)
+                Medium - Bright (Indirect){' '}
               </label>
               <label className="filter-label">
                 <input
