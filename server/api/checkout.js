@@ -1,11 +1,12 @@
 const router = require("express").Router();
-const { EnvironmentPlugin } = require("webpack");
+
 const {
 	models: { Order },
 } = require("../db");
 module.exports = router;
 
-const { stripeSecret } = process.env.STRIPE_SECRET || require("../../secrets");
+const stripeSecret =
+	"sk_test_51IKvwUChsJVQ70ih6fsb1mJTZfAeY67EQhAj91kfZM6mGE7UgJB0448s6DSUmvPkzgTrCESraG2QqdfjuvlmfQj700HvZUgJdz";
 
 const stripe = require("stripe")(stripeSecret);
 
