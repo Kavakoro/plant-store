@@ -13,7 +13,7 @@ export const Home = (props) => {
       {isLoggedIn ? (
         <h3>Welcome, {email}!</h3>
       ) : (
-        <h3>Welcome to Karakovo's Plants!</h3>
+        <h3>Welcome to Kavakoro's Plants!</h3>
       )}
     </div>
   );
